@@ -6,6 +6,9 @@ import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame {
 
+    int x = 100;
+    int y = 100;
+
     public TankFrame() {
         this.setSize(800, 600);
         this.setResizable(false);
@@ -22,6 +25,7 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
-        
+        g.fillRect(x, y, 50, 50);
+        x += 100;
     }
 }

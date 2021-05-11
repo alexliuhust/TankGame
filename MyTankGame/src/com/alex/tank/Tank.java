@@ -4,23 +4,27 @@ import java.awt.*;
 
 public class Tank {
 
+    private TankFrame tf = null;
+
     private int x = 100;
     private int y = 100;
     private Dir dir = Dir.DOWN;
     private static final int SPEED = 5;
+    private static final int T_WIDTH = 50, T_HEIGHT = 50;
     private boolean moving = false;
 
-    public Tank(int x, int y, Dir dir) {
+    public Tank(int x, int y, Dir dir, TankFrame tf) {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.tf = tf;
     }
 
     public void paint(Graphics g) {
         Color c = g.getColor();
 
         g.setColor(Color.YELLOW);
-        g.fillRect(x, y, 50, 50);
+        g.fillRect(x, y, T_WIDTH, T_HEIGHT);
         g.setColor(c);
 
         if (!moving) return;
@@ -58,5 +62,9 @@ public class Tank {
 
     public void setMoving(boolean moving) {
         this.moving = moving;
+    }
+
+    public void fire() {
+        tf.b = new Bullet(x + T_WIDTH / 2 - 5, y + T_HEIGHT / 2 - 5, this.dir);
     }
 }

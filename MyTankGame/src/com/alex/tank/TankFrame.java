@@ -11,8 +11,10 @@ public class TankFrame extends Frame {
     Tank myTank = new Tank(200, 200, Dir.DOWN);
     Bullet b = new Bullet(220, 220, Dir.RIGHT);
 
+    private static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;
+
     public TankFrame() {
-        this.setSize(800, 600);
+        this.setSize(GAME_WIDTH, GAME_HEIGHT);
         this.setResizable(false);
         this.setTitle("Tank Game");
         this.setVisible(true);
@@ -25,6 +27,21 @@ public class TankFrame extends Frame {
                 System.exit(0);
             }
         });
+    }
+
+    Image offScreenImage = null;
+    @Override
+    public void update(Graphics g) {
+        if (offScreenImage == null) {
+            offScreenImage = this.createImage(GAME_WIDTH, GAME_HEIGHT);
+        }
+        Graphics gOffScreen = offScreenImage.getGraphics();
+        Color c = gOffScreen.getColor();
+        gOffScreen.setColor(Color.BLACK);
+        gOffScreen.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+        gOffScreen.setColor(c);
+        paint(gOffScreen);
+        g.drawImage(offScreenImage, 0, 0, null);
     }
 
     @Override
@@ -60,7 +77,7 @@ public class TankFrame extends Frame {
                 default:
                     break;
             }
-            myTank.setMoving(true);
+
             setMainTankDir();
         }
 
@@ -85,11 +102,18 @@ public class TankFrame extends Frame {
                 default:
                     break;
             }
-            myTank.setMoving(false);
+
             setMainTankDir();
         }
 
         private void setMainTankDir() {
+
+            if (!L && !R && !U && !D) {
+                myTank.setMoving(false);
+                return;
+            }
+            myTank.setMoving(true);
+
             if (L) myTank.setDir(Dir.LEFT);
             if (R) myTank.setDir(Dir.RIGHT);
             if (U) myTank.setDir(Dir.UP);

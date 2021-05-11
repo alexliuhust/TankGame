@@ -11,6 +11,9 @@ public class TankFrame extends Frame {
     int x = 100;
     int y = 100;
 
+    Dir dir = Dir.DOWN;
+    private static final int SPEED = 10;
+
     public TankFrame() {
         this.setSize(800, 600);
         this.setResizable(false);
@@ -30,6 +33,26 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         g.fillRect(x, y, 50, 50);
+
+        switch (dir) {
+            case LEFT:
+                x -= SPEED;
+                break;
+            case RIGHT:
+                x += SPEED;
+                break;
+            case UP:
+                y -= SPEED;
+                break;
+            case DOWN:
+                y += SPEED;
+                break;
+
+            default:
+                break;
+        }
+
+
     }
 
     class MyKeyListener extends KeyAdapter {
@@ -60,10 +83,12 @@ public class TankFrame extends Frame {
                     break;
             }
 
-            if (L) x -= 10;
-            if (R) x += 10;
-            if (U) y -= 10;
-            if (D) y += 10;
+//            if (L) x -= 10;
+//            if (R) x += 10;
+//            if (U) y -= 10;
+//            if (D) y += 10;
+
+            setMainTankDir();
         }
 
         @Override
@@ -87,6 +112,15 @@ public class TankFrame extends Frame {
                 default:
                     break;
             }
+
+            setMainTankDir();
+        }
+
+        private void setMainTankDir() {
+            if (L) dir = Dir.LEFT;
+            if (R) dir = Dir.RIGHT;
+            if (U) dir = Dir.UP;
+            if (D) dir = Dir.DOWN;
         }
     }
 }

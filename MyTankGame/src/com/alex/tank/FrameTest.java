@@ -7,7 +7,7 @@ public class FrameTest {
         TankFrame tf = new TankFrame();
 
         while (true) {
-            Thread.sleep(20);
+            Thread.sleep(100);
             tf.repaint();
         }
 

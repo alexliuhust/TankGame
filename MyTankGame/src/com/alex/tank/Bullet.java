@@ -8,8 +8,8 @@ public class Bullet {
 
     private int x;
     private int y;
-    private static final int WIDTH = 10;
-    private static final int HEIGHT = 10;
+    static final int WIDTH = 10;
+    static final int HEIGHT = 10;
     private Dir dir;
     private static final int SPEED = 10;
     private boolean live = true;

@@ -32,6 +32,10 @@ public class Bullet {
         g.fillOval(x, y, WIDTH, HEIGHT);
         g.setColor(c);
 
+        move();
+    }
+
+    private void move() {
         switch (dir) {
             case LEFT:
                 x -= SPEED;

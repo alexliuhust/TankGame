@@ -6,12 +6,13 @@ public class Tank {
 
     private TankFrame tf = null;
 
-    private int x = 100;
-    private int y = 100;
+    int x = 100;
+    int y = 100;
     private Dir dir = Dir.DOWN;
     private static final int SPEED = 5;
-    private static final int T_WIDTH = ResourceMgr.tankL.getWidth(), T_HEIGHT = ResourceMgr.tankL.getHeight();
+    static final int T_WIDTH = ResourceMgr.tankL.getWidth(), T_HEIGHT = ResourceMgr.tankL.getHeight();
     private boolean moving = false;
+    private boolean live = true;
 
     public Tank(int x, int y, Dir dir, TankFrame tf) {
         this.x = x;
@@ -21,6 +22,11 @@ public class Tank {
     }
 
     public void paint(Graphics g) {
+        if (!live) {
+            tf.tanks.remove(this);
+            return;
+        }
+
         switch(dir) {
             case LEFT:
                 g.drawImage(ResourceMgr.tankL, x, y, null);
@@ -47,21 +53,33 @@ public class Tank {
 
         switch (dir) {
             case LEFT:
-                x -= SPEED;
+                if (x > 0) {
+                    x -= SPEED;
+                }
                 break;
             case RIGHT:
-                x += SPEED;
+                if (x < TankFrame.GAME_WIDTH - T_WIDTH) {
+                    x += SPEED;
+                }
                 break;
             case UP:
-                y -= SPEED;
+                if (y > 30) {
+                    y -= SPEED;
+                }
                 break;
             case DOWN:
-                y += SPEED;
+                if (y < TankFrame.GAME_HEIGHT - T_HEIGHT) {
+                    y += SPEED;
+                }
                 break;
 
             default:
                 break;
         }
+    }
+
+    public void die() {
+        this.live = false;
     }
 
     public Dir getDir() {

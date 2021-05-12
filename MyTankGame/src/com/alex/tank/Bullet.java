@@ -25,6 +25,7 @@ public class Bullet {
     public void paint(Graphics g) {
         if (!live) {
             tf.bullets.remove(this);
+            return;
         }
 
         Color c = g.getColor();
@@ -56,6 +57,16 @@ public class Bullet {
 
         if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
             this.live = false;
+        }
+    }
+
+    public void collideWidth(Tank tank) {
+        Rectangle rect1 = new Rectangle(x, y, WIDTH, HEIGHT);
+        Rectangle rect2 = new Rectangle(tank.x, tank.y, Tank.T_WIDTH, Tank.T_HEIGHT);
+
+        if (rect1.intersects(rect2)) {
+            this.live = false;
+            tank.die();
         }
     }
 }

@@ -51,7 +51,7 @@ public class TankFrame extends Frame {
     public void paint(Graphics g) {
         Color c = g.getColor();
         g.setColor(Color.WHITE);
-        g.drawString(bullets.size() + " bullets left.", 40, 60);
+        g.drawString(bullets.size() + " bullets left. || " + tanks.size() + " enemies left.", 40, 60);
         g.setColor(c);
 
         myTank.paint(g);
@@ -61,6 +61,14 @@ public class TankFrame extends Frame {
         for (int i = 0; i < tanks.size(); i++) {
             tanks.get(i).paint(g);
         }
+
+        // Detect collision between every bullet and every tank
+        for (int i = 0; i < bullets.size(); i++) {
+            for (int j = 0; j < tanks.size(); j++) {
+                bullets.get(i).collideWidth(tanks.get(j));
+            }
+        }
+
     }
 
     class MyKeyListener extends KeyAdapter {

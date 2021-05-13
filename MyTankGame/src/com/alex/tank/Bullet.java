@@ -14,6 +14,8 @@ public class Bullet {
     private static final int SPEED = 10;
     private boolean live = true;
 
+    int damage = 300;
+
 
     public Bullet(int x, int y, Dir dir, TankFrame tf) {
         this.x = x;
@@ -66,7 +68,7 @@ public class Bullet {
 
         if (rect1.intersects(rect2)) {
             this.live = false;
-            tank.die();
+            tank.getHit(this);
         }
     }
 }

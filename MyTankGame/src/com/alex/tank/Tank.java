@@ -11,12 +11,17 @@ public class Tank {
     int y = 100;
     private Dir dir = Dir.DOWN;
     private static final int SPEED = 5;
-    static final int T_WIDTH = ResourceMgr.tankL.getWidth(), T_HEIGHT = ResourceMgr.tankL.getHeight();
+    static final int T_WIDTH = ResourceMgr.tankL.getWidth();
+    static final int T_HEIGHT = ResourceMgr.tankL.getHeight();
+    private final boolean[] isBlock = new boolean[4];
+
     private boolean moving = false;
     private boolean live = true;
-    int fireTimeCount = 0;
-
-    private boolean[] isBlock = new boolean[4];
+    int fireTimeCount = 30;
+    int fullFireTime = 30;
+    int AP_left = 10;
+    int max_hp = 1000;
+    int hp = 1000;
 
     public Tank(int x, int y, Dir dir, TankFrame tf) {
         this.x = x;
@@ -30,6 +35,7 @@ public class Tank {
             tf.tanks.remove(this);
             return;
         }
+
         switch(dir) {
             case LEFT:
                 g.drawImage(ResourceMgr.tankL, x, y, null);
@@ -49,9 +55,21 @@ public class Tank {
         }
 
         move();
-        if (fireTimeCount != 0) {
-            fireTimeCount--;
+        if (fireTimeCount != fullFireTime) {
+            fireTimeCount++;
         }
+
+        drawHpBar(g);
+    }
+
+    private void drawHpBar(Graphics g) {
+        Color c = g.getColor();
+        g.setColor(Color.WHITE);
+        g.fillRect(x, y, T_WIDTH, 3);
+        g.setColor(Color.GREEN);
+        g.fillRect(x, y, T_WIDTH * (hp * 100 / max_hp) / 100, 3);
+
+        g.setColor(c);
     }
 
     private void move() {
@@ -106,10 +124,6 @@ public class Tank {
         Arrays.fill(isBlock, false);
     }
 
-    public void die() {
-        this.live = false;
-    }
-
     public Dir getDir() {
         return dir;
     }
@@ -127,14 +141,28 @@ public class Tank {
     }
 
     public void fire() {
-        if (fireTimeCount != 0) {
+        if (fireTimeCount != fullFireTime) {
             return;
         }
+
+        if (this.AP_left == 0) {
+            return;
+        }
+
+        AP_left--;
 
         int bx = x + T_WIDTH / 2 - Bullet.WIDTH / 2;
         int by = y + T_HEIGHT / 2 - Bullet.HEIGHT / 2;
 
         tf.bullets.add(new Bullet(bx, by, this.dir, this.tf));
-        fireTimeCount = 99;
+        fireTimeCount = 0;
+    }
+
+    public void getHit(Bullet b) {
+        int damage = b.damage;
+        this.hp -= damage;
+        if (hp <= 0) {
+            this.live = false;
+        }
     }
 }

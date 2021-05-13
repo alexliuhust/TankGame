@@ -51,8 +51,10 @@ public class TankFrame extends Frame {
     public void paint(Graphics g) {
         Color c = g.getColor();
         g.setColor(Color.WHITE);
-        g.drawString(bullets.size() + " bullets left. || " + tanks.size() + " enemies left.", 40, 40);
-        g.fillRect(40, 50, 100 - myTank.fireTimeCount, 5);
+        g.drawString(bullets.size() + " bullets left. || " + tanks.size() + " enemies left.", 10, 40);
+        g.drawString("Reload: ", 10, 60);
+        g.fillRect(60, 50, myTank.fireTimeCount, 10);
+        g.drawString("AP: " + myTank.AP_left, 10, 80);
         g.setColor(c);
 
         myTank.paint(g);

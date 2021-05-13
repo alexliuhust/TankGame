@@ -60,7 +60,7 @@ public class Bullet {
         }
     }
 
-    public void collideWidth(Tank tank) {
+    public void collideWith(Tank tank) {
         Rectangle rect1 = new Rectangle(x, y, WIDTH, HEIGHT);
         Rectangle rect2 = new Rectangle(tank.x, tank.y, Tank.T_WIDTH, Tank.T_HEIGHT);
 

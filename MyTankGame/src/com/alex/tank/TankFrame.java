@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TankFrame extends Frame {
 
-    Tank myTank = new Tank(200, 200, Dir.DOWN, this);
+    Tank myTank = new Tank(401, 401, Dir.DOWN, this);
     List<Bullet> bullets = new ArrayList<>();
     List<Tank> tanks = new ArrayList<>();
 
@@ -65,7 +65,7 @@ public class TankFrame extends Frame {
         // Detect collision between every bullet and every tank
         for (int i = 0; i < bullets.size(); i++) {
             for (int j = 0; j < tanks.size(); j++) {
-                bullets.get(i).collideWidth(tanks.get(j));
+                bullets.get(i).collideWith(tanks.get(j));
             }
         }
 

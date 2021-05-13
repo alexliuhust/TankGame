@@ -10,7 +10,7 @@ public class MainTest {
         }
 
         while (true) {
-            Thread.sleep(20);
+            Thread.sleep(35);
             tf.repaint();
         }
 

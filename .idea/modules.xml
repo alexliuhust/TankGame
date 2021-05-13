@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyTankGame/MyTankGame.iml" filepath="$PROJECT_DIR$/MyTankGame/MyTankGame.iml" />
       <module fileurl="file://$PROJECT_DIR$/TankCraft.iml" filepath="$PROJECT_DIR$/TankCraft.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TraditionalTank/TraditionalTank.iml" filepath="$PROJECT_DIR$/TraditionalTank/TraditionalTank.iml" />
     </modules>
   </component>
 </project>

@@ -51,10 +51,7 @@ public class TankFrame extends Frame {
     public void paint(Graphics g) {
         Color c = g.getColor();
         g.setColor(Color.WHITE);
-        g.drawString(bullets.size() + " bullets left. || " + tanks.size() + " enemies left.", 10, 40);
-        g.drawString("Reload: ", 10, 60);
-        g.fillRect(60, 50, myTank.fireTimeCount, 10);
-        g.drawString("AP: " + myTank.AP_left, 10, 80);
+        paintMyTankInfo(g);
         g.setColor(c);
 
         myTank.paint(g);
@@ -72,6 +69,22 @@ public class TankFrame extends Frame {
             }
         }
 
+    }
+
+    private void paintMyTankInfo(Graphics g) {
+        g.drawString("Reload: ", 10, 60);
+        g.fillRect(60, 50, myTank.fireTimeCount, 10);
+        g.drawString("AP: " + myTank.AP_left, 30, 80);
+        g.drawString("AT: " + myTank.AT_left, 30, 100);
+        g.drawString("HE: " + myTank.HE_left, 30, 120);
+
+        if (myTank.currentUse == 0) {
+            g.fillOval(10, 70, 10, 10);
+        } else if (myTank.currentUse == 1) {
+            g.fillOval(10, 90, 10, 10);
+        } else {
+            g.fillOval(10, 110, 10, 10);
+        }
     }
 
     class MyKeyListener extends KeyAdapter {
@@ -124,6 +137,9 @@ public class TankFrame extends Frame {
                     break;
                 case KeyEvent.VK_SLASH:
                     myTank.fire();
+                    break;
+                case KeyEvent.VK_COMMA:
+                    myTank.shiftBulletType();
                     break;
 
                 default:

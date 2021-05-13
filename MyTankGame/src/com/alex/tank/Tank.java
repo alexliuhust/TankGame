@@ -19,9 +19,14 @@ public class Tank {
     private boolean live = true;
     int fireTimeCount = 30;
     int fullFireTime = 30;
-    int AP_left = 10;
     int max_hp = 1000;
     int hp = 1000;
+
+    int AP_left = 10;
+    int AT_left = 10;
+    int HE_left = 10;
+    int currentUse = 0;
+
 
     public Tank(int x, int y, Dir dir, TankFrame tf) {
         this.x = x;
@@ -145,16 +150,28 @@ public class Tank {
             return;
         }
 
-        if (this.AP_left == 0) {
+        if (currentUse == 0 && this.AP_left == 0
+                || currentUse == 1 && this.AT_left == 0
+                || currentUse == 2 && this.HE_left == 0) {
             return;
         }
 
-        AP_left--;
+        String fire_type;
+        if (currentUse == 0) {
+            fire_type = "AP";
+            AP_left--;
+        } else if (currentUse == 1) {
+            fire_type = "AT";
+            AT_left--;
+        } else {
+            fire_type = "HE";
+            HE_left--;
+        }
 
         int bx = x + T_WIDTH / 2 - Bullet.WIDTH / 2;
         int by = y + T_HEIGHT / 2 - Bullet.HEIGHT / 2;
 
-        tf.bullets.add(new Bullet(bx, by, this.dir, this.tf));
+        tf.bullets.add(new Bullet(bx, by, this.dir, this.tf, fire_type));
         fireTimeCount = 0;
     }
 
@@ -163,6 +180,14 @@ public class Tank {
         this.hp -= damage;
         if (hp <= 0) {
             this.live = false;
+        }
+    }
+
+    public void shiftBulletType() {
+        this.fireTimeCount = 0;
+        this.currentUse++;
+        if (currentUse == 3) {
+            this.currentUse = 0;
         }
     }
 }

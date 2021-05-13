@@ -11,17 +11,19 @@ public class Bullet {
     static final int WIDTH = 10;
     static final int HEIGHT = 10;
     private Dir dir;
-    private static final int SPEED = 10;
+    private static final int SPEED = 20;
     private boolean live = true;
 
     int damage = 300;
+    String type;
 
 
-    public Bullet(int x, int y, Dir dir, TankFrame tf) {
+    public Bullet(int x, int y, Dir dir, TankFrame tf, String type) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.tf = tf;
+        this.type = type;
     }
 
     public void paint(Graphics g) {

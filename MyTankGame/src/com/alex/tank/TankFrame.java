@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TankFrame extends Frame {
 
-    Tank myTank = new Tank(401, 401, Dir.DOWN, this);
+    Tank myTank = new Tank(403, 402, Dir.DOWN, this);
     List<Bullet> bullets = new ArrayList<>();
     List<Tank> tanks = new ArrayList<>();
 
@@ -51,7 +51,8 @@ public class TankFrame extends Frame {
     public void paint(Graphics g) {
         Color c = g.getColor();
         g.setColor(Color.WHITE);
-        g.drawString(bullets.size() + " bullets left. || " + tanks.size() + " enemies left.", 40, 60);
+        g.drawString(bullets.size() + " bullets left. || " + tanks.size() + " enemies left.", 40, 40);
+        g.fillRect(40, 50, 100 - myTank.fireTimeCount, 5);
         g.setColor(c);
 
         myTank.paint(g);

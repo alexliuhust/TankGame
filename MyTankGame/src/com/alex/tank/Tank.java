@@ -14,6 +14,7 @@ public class Tank {
     static final int T_WIDTH = ResourceMgr.tankL.getWidth(), T_HEIGHT = ResourceMgr.tankL.getHeight();
     private boolean moving = false;
     private boolean live = true;
+    int fireTimeCount = 0;
 
     private boolean[] isBlock = new boolean[4];
 
@@ -48,6 +49,9 @@ public class Tank {
         }
 
         move();
+        if (fireTimeCount != 0) {
+            fireTimeCount--;
+        }
     }
 
     private void move() {
@@ -123,9 +127,14 @@ public class Tank {
     }
 
     public void fire() {
+        if (fireTimeCount != 0) {
+            return;
+        }
+
         int bx = x + T_WIDTH / 2 - Bullet.WIDTH / 2;
         int by = y + T_HEIGHT / 2 - Bullet.HEIGHT / 2;
 
         tf.bullets.add(new Bullet(bx, by, this.dir, this.tf));
+        fireTimeCount = 99;
     }
 }

@@ -12,7 +12,7 @@ public class Bullet {
     static final int WIDTH = 10;
     static final int HEIGHT = 10;
     private Dir dir;
-    private static final int SPEED = 20;
+    private static final int SPEED = 30;
     private boolean live = true;
     int flyingTime = 0;
 

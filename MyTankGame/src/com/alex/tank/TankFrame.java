@@ -1,5 +1,7 @@
 package com.alex.tank;
 
+import com.alex.terrian.IronWall;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -10,11 +12,12 @@ import java.util.List;
 
 public class TankFrame extends Frame {
 
-    Tank tank1 = new Tank(203, 402, Dir.DOWN, this, 1);
-    Tank tank2 = new Tank(603, 402, Dir.DOWN, this, 2);
+    Tank tank1 = new Tank(200, 400, Dir.RIGHT, this, 1);
+    Tank tank2 = new Tank(970, 400, Dir.LEFT, this, 2);
     List<Bullet> bullets = new ArrayList<>();
+    List<IronWall> ironWalls = new ArrayList<>();
 
-    static final int GAME_WIDTH = 800, GAME_HEIGHT = 750;
+    static final int GAME_WIDTH = 1200, GAME_HEIGHT = 850;
 
     public TankFrame() {
         this.setSize(GAME_WIDTH, GAME_HEIGHT);
@@ -30,6 +33,14 @@ public class TankFrame extends Frame {
                 System.exit(0);
             }
         });
+
+        ironWalls.add(new IronWall(600, 200));
+        ironWalls.add(new IronWall(600, 250));
+        ironWalls.add(new IronWall(600, 350));
+        ironWalls.add(new IronWall(600, 410));
+        ironWalls.add(new IronWall(650, 410));
+        ironWalls.add(new IronWall(700, 410));
+        ironWalls.add(new IronWall(760, 410));
     }
 
     Image offScreenImage = null;
@@ -49,6 +60,10 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
+        for (IronWall iron : ironWalls) {
+            iron.paint(g);
+        }
+
         Color c = g.getColor();
         g.setColor(Color.WHITE);
         paintTankInfo(g, tank2);
@@ -80,7 +95,7 @@ public class TankFrame extends Frame {
         // Detect collision
         for (int i = 0; i < bullets.size(); i++) {
             Bullet b = bullets.get(i);
-            if (b.fromTank.equals(tank2)) {
+            if (b.fromTank.player == 2) {
                 b.collideWith(tank1);
                 break;
             }
@@ -92,10 +107,10 @@ public class TankFrame extends Frame {
 
     private void paintTankInfo(Graphics g, Tank tank) {
         int x = 10;
-        if (tank.equals(tank2)) {
-            x += 650;
+        if (tank.player == 2) {
+            x += 1050;
         }
-        if (tank.equals(tank1)) {
+        if (tank.player == 1) {
             g.drawString("Player 1: " + tank1.hp, x, 42);
         } else {
             g.drawString("Player 2: " + tank2.hp, x, 42);

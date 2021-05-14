@@ -31,7 +31,7 @@ public class CalculateDamage {
             if (random_number <= penetrateProb) {
                 return 800;
             } else {
-                return 200;
+                return 250;
             }
         }
 

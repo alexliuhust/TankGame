@@ -83,23 +83,7 @@ public class Tank {
     private void move(Tank tank) {
         if (!moving) return;
 
-        // Left:
-        if (x <= tank.x + T_WIDTH && x >= tank.x + T_WIDTH - SPEED
-                && y <= tank.y + T_HEIGHT && y >= tank.y - T_HEIGHT)
-            isBlock[0] = true;
-        // Right:
-        if (x >= tank.x - T_WIDTH && x <= tank.x - T_WIDTH + SPEED
-                && y <= tank.y + T_HEIGHT && y >= tank.y - T_HEIGHT)
-            isBlock[1] = true;
-        // Up:
-        if (y <= tank.y + T_HEIGHT && y >= tank.y + T_HEIGHT - SPEED
-                && x <= tank.x + T_WIDTH && x >= tank.x - T_WIDTH)
-            isBlock[2] = true;
-        // Down:
-        if (y >= tank.y - T_HEIGHT && y <= tank.y - T_HEIGHT + SPEED
-                && x <= tank.x + T_WIDTH && x >= tank.x - T_WIDTH)
-            isBlock[3] = true;
-
+        detectTankOrTerrainCollisions(tank.x, tank.y, T_WIDTH, T_HEIGHT);
 
         switch (dir) {
             case LEFT:
@@ -128,6 +112,25 @@ public class Tank {
         }
 
         Arrays.fill(isBlock, false);
+    }
+
+    private void detectTankOrTerrainCollisions(int ox, int oy, int W, int H) {
+        // Left:
+        if (x <= ox + W && x >= ox + W - SPEED
+                && y <= oy + H && y >= oy - H)
+            isBlock[0] = true;
+        // Right:
+        if (x >= ox - W && x <= ox - W + SPEED
+                && y <= oy + H && y >= oy - H)
+            isBlock[1] = true;
+        // Up:
+        if (y <= oy + H && y >= oy + H - SPEED
+                && x <= ox + W && x >= ox - W)
+            isBlock[2] = true;
+        // Down:
+        if (y >= oy - H && y <= oy - H + SPEED
+                && x <= ox + W && x >= ox - W)
+            isBlock[3] = true;
     }
 
     private void drawHpBar(Graphics g) {
@@ -189,7 +192,7 @@ public class Tank {
 
     public void getHit(Bullet b) {
         int damage = CalculateDamage.bulletDamage(b);
-        System.out.println(b.type + ": " + damage);
+//        System.out.println(b.type + ": " + damage);
 
         this.hp -= damage;
         if (hp <= 0) {

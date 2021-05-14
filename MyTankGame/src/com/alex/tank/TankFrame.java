@@ -145,7 +145,6 @@ public class TankFrame extends Frame {
                     myTank.fire();
                     break;
 
-
                 default:
                     break;
             }

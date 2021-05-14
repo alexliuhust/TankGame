@@ -13,8 +13,8 @@ public class Bullet {
     private Dir dir;
     private static final int SPEED = 20;
     private boolean live = true;
+    int flyingTime = 0;
 
-    int damage = 300;
     String type;
 
 
@@ -31,6 +31,8 @@ public class Bullet {
             tf.bullets.remove(this);
             return;
         }
+
+        this.flyingTime++;
 
         Color c = g.getColor();
         g.setColor(Color.RED);

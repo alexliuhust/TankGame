@@ -60,6 +60,7 @@ public class Tank {
         }
 
         move();
+
         if (fireTimeCount != fullFireTime) {
             fireTimeCount++;
         }
@@ -176,7 +177,7 @@ public class Tank {
     }
 
     public void getHit(Bullet b) {
-        int damage = b.damage;
+        int damage = CalculateDamage.bulletDamage(b);
         this.hp -= damage;
         if (hp <= 0) {
             this.live = false;

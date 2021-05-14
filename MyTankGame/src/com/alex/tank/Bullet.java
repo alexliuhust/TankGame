@@ -1,5 +1,7 @@
 package com.alex.tank;
 
+import com.alex.terrian.IronWall;
+
 import java.awt.*;
 
 public class Bullet {
@@ -68,13 +70,24 @@ public class Bullet {
         }
     }
 
-    public void collideWith(Tank tank) {
+    public boolean collideWith(Tank tank) {
+        boolean ans = false;
         Rectangle rect1 = new Rectangle(x, y, WIDTH, HEIGHT);
         Rectangle rect2 = new Rectangle(tank.x, tank.y, Tank.T_WIDTH, Tank.T_HEIGHT);
 
         if (rect1.intersects(rect2)) {
             this.live = false;
             tank.getHit(this);
+            ans = true;
+        }
+        return ans;
+    }
+
+    public void collideWithWalls(IronWall ironWall) {
+        Rectangle rect1 = new Rectangle(x, y, WIDTH, HEIGHT);
+        Rectangle rect2 = new Rectangle(ironWall.x, ironWall.y, IronWall.IronWall_WIDTH, IronWall.IronWall_HEIGHT);
+        if (rect1.intersects(rect2)) {
+            this.live = false;
         }
     }
 }

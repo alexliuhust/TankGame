@@ -92,15 +92,21 @@ public class TankFrame extends Frame {
             bullets.get(i).paint(g);
         }
 
-        // Detect collision
+        // Detect collision with tanks
         for (int i = 0; i < bullets.size(); i++) {
             Bullet b = bullets.get(i);
             if (b.fromTank.player == 2) {
-                b.collideWith(tank1);
-                break;
+                if(b.collideWith(tank1)) break;
             }
-            b.collideWith(tank2);
-            break;
+            if (b.collideWith(tank2)) break;
+        }
+
+        // Detect collision with walls
+        for (int i = 0; i < bullets.size(); i++) {
+            Bullet b = bullets.get(i);
+            for (IronWall ironWall : ironWalls) {
+                b.collideWithWalls(ironWall);
+            }
         }
 
     }

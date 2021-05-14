@@ -82,9 +82,10 @@ public class TankFrame extends Frame {
             Bullet b = bullets.get(i);
             if (b.fromTank.equals(tank2)) {
                 b.collideWith(tank1);
-            } else {
-                b.collideWith(tank2);
+                break;
             }
+            b.collideWith(tank2);
+            break;
         }
 
     }
@@ -95,9 +96,9 @@ public class TankFrame extends Frame {
             x += 650;
         }
         if (tank.equals(tank1)) {
-            g.drawString("Player 1", x, 42);
+            g.drawString("Player 1: " + tank1.hp, x, 42);
         } else {
-            g.drawString("Player 2", x, 42);
+            g.drawString("Player 2: " + tank2.hp, x, 42);
         }
 
         g.drawString("Reload: ", x, 60);

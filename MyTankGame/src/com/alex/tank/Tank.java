@@ -173,6 +173,8 @@ public class Tank {
 
     public void getHit(Bullet b) {
         int damage = CalculateDamage.bulletDamage(b);
+        System.out.println(b.type + ": " + damage);
+
         this.hp -= damage;
         if (hp <= 0) {
             this.live = false;

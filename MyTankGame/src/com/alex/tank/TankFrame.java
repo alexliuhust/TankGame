@@ -125,6 +125,7 @@ public class TankFrame extends Frame {
             int key = e.getKeyCode();
 
             switch (key) {
+                // Tanks move
                 case KeyEvent.VK_A:
                     L1 = true;
                     break;
@@ -150,7 +151,16 @@ public class TankFrame extends Frame {
                     D2 = true;
                     break;
 
-
+                // Tanks fire or shift bullets
+                case KeyEvent.VK_BACK_QUOTE:
+                    tank1.shiftBulletType("left");
+                    break;
+                case KeyEvent.VK_1:
+                    tank1.fire();
+                    break;
+                case KeyEvent.VK_2:
+                    tank1.shiftBulletType("right");
+                    break;
                 case KeyEvent.VK_COMMA:
                     tank2.shiftBulletType("left");
                     break;

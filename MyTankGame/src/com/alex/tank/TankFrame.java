@@ -14,7 +14,7 @@ public class TankFrame extends Frame {
     Tank tank1 = new Tank(203, 402, Dir.DOWN, this);
     List<Bullet> bullets = new ArrayList<>();
 
-    static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;
+    static final int GAME_WIDTH = 800, GAME_HEIGHT = 750;
 
     public TankFrame() {
         this.setSize(GAME_WIDTH, GAME_HEIGHT);
@@ -53,6 +53,7 @@ public class TankFrame extends Frame {
         g.setColor(Color.WHITE);
         paintTankInfo(g, tank2);
         paintTankInfo(g, tank1);
+        g.fillRect(0,140, GAME_WIDTH, 10);
         g.setColor(c);
 
         if (tank1.live && tank2.live) {
@@ -92,6 +93,11 @@ public class TankFrame extends Frame {
         int x = 10;
         if (tank.equals(tank2)) {
             x += 650;
+        }
+        if (tank.equals(tank1)) {
+            g.drawString("Player 1", x, 42);
+        } else {
+            g.drawString("Player 2", x, 42);
         }
 
         g.drawString("Reload: ", x, 60);

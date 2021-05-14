@@ -17,10 +17,10 @@ public class Tank {
 
     private boolean moving = false;
     boolean live = true;
-    int fireTimeCount = 30;
-    int fullFireTime = 30;
+    int fullFireTime = 50;
+    int fireTimeCount = fullFireTime;
     int max_hp = 2000;
-    int hp = 2000;
+    int hp = max_hp;
 
     int AP_left = 10;
     int AT_left = 10;
@@ -97,7 +97,7 @@ public class Tank {
                 }
                 break;
             case UP:
-                if (y > 30 && !isBlock[2]) {
+                if (y > 150 && !isBlock[2]) {
                     y -= SPEED;
                 }
                 break;

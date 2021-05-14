@@ -18,9 +18,9 @@ public class CalculateDamage {
         }
 
         if (b.type.equals("AT")) {
-            int penetrateProb = 70;
+            int penetrateProb = 60;
             if (random_number <= penetrateProb) {
-                return 450;
+                return 400;
             } else {
                 return 200;
             }

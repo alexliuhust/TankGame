@@ -10,9 +10,9 @@ import java.util.List;
 
 public class TankFrame extends Frame {
 
-    Tank myTank = new Tank(403, 402, Dir.DOWN, this);
+    Tank tank2 = new Tank(603, 402, Dir.DOWN, this);
+    Tank tank1 = new Tank(203, 402, Dir.DOWN, this);
     List<Bullet> bullets = new ArrayList<>();
-    List<Tank> tanks = new ArrayList<>();
 
     static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;
 
@@ -51,47 +51,69 @@ public class TankFrame extends Frame {
     public void paint(Graphics g) {
         Color c = g.getColor();
         g.setColor(Color.WHITE);
-        paintMyTankInfo(g);
+        paintTankInfo(g, tank2);
+        paintTankInfo(g, tank1);
         g.setColor(c);
 
-        myTank.paint(g);
+        if (tank1.live && tank2.live) {
+            tank1.paint(g, tank2);
+            tank2.paint(g, tank1);
+        } else if (tank1.live) {
+            g.setColor(Color.WHITE);
+            g.drawString("Player 1 is the winner!",300, 300);
+            g.setColor(c);
+            return;
+        } else if (tank2.live) {
+            g.setColor(Color.WHITE);
+            g.drawString("Player 2 is the winner!",300, 300);
+            g.setColor(c);
+            return;
+        } else {
+            return;
+        }
+
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).paint(g);
         }
-        for (int i = 0; i < tanks.size(); i++) {
-            tanks.get(i).paint(g);
-        }
 
-        // Detect collision between every bullet and every tank
+        // Detect collision
         for (int i = 0; i < bullets.size(); i++) {
-            for (int j = 0; j < tanks.size(); j++) {
-                bullets.get(i).collideWith(tanks.get(j));
+            Bullet b = bullets.get(i);
+            if (b.fromTank.equals(tank2)) {
+                b.collideWith(tank1);
+            } else {
+                b.collideWith(tank2);
             }
         }
 
     }
 
-    private void paintMyTankInfo(Graphics g) {
-        g.drawString("Reload: ", 10, 60);
-        g.fillRect(60, 50, myTank.fireTimeCount, 10);
-        g.drawString("AP: " + myTank.AP_left, 30, 80);
-        g.drawString("AT: " + myTank.AT_left, 30, 100);
-        g.drawString("HE: " + myTank.HE_left, 30, 120);
+    private void paintTankInfo(Graphics g, Tank tank) {
+        int x = 10;
+        if (tank.equals(tank2)) {
+            x += 600;
+        }
 
-        if (myTank.currentUse == 0) {
-            g.fillOval(10, 70, 10, 10);
-        } else if (myTank.currentUse == 1) {
-            g.fillOval(10, 90, 10, 10);
+        g.drawString("Reload: ", x, 60);
+        g.fillRect(x + 50, 50, tank.fireTimeCount, 10);
+        g.drawString("AP: " + tank.AP_left, x + 20, 80);
+        g.drawString("AT: " + tank.AT_left, x + 20, 100);
+        g.drawString("HE: " + tank.HE_left, x + 20, 120);
+
+        if (tank.currentUse == 0) {
+            g.fillOval(x, 70, 10, 10);
+        } else if (tank.currentUse == 1) {
+            g.fillOval(x, 90, 10, 10);
         } else {
-            g.fillOval(10, 110, 10, 10);
+            g.fillOval(x, 110, 10, 10);
         }
     }
 
     class MyKeyListener extends KeyAdapter {
-        private boolean L = false;
-        private boolean R = false;
-        private boolean U = false;
-        private boolean D = false;
+        private boolean L2 = false;
+        private boolean R2 = false;
+        private boolean U2 = false;
+        private boolean D2 = false;
 
         @Override
         public void keyPressed(KeyEvent e) {
@@ -99,26 +121,26 @@ public class TankFrame extends Frame {
 
             switch (key) {
                 case KeyEvent.VK_LEFT:
-                    L = true;
+                    L2 = true;
                     break;
                 case KeyEvent.VK_RIGHT:
-                    R = true;
+                    R2 = true;
                     break;
                 case KeyEvent.VK_UP:
-                    U = true;
+                    U2 = true;
                     break;
                 case KeyEvent.VK_DOWN:
-                    D = true;
+                    D2 = true;
                     break;
 
                 case KeyEvent.VK_COMMA:
-                    myTank.shiftBulletType("left");
+                    tank2.shiftBulletType("left");
                     break;
                 case KeyEvent.VK_PERIOD:
-                    myTank.fire();
+                    tank2.fire();
                     break;
                 case KeyEvent.VK_SLASH:
-                    myTank.shiftBulletType("right");
+                    tank2.shiftBulletType("right");
                     break;
 
                 default:
@@ -134,16 +156,16 @@ public class TankFrame extends Frame {
 
             switch (key) {
                 case KeyEvent.VK_LEFT:
-                    L = false;
+                    L2 = false;
                     break;
                 case KeyEvent.VK_RIGHT:
-                    R = false;
+                    R2 = false;
                     break;
                 case KeyEvent.VK_UP:
-                    U = false;
+                    U2 = false;
                     break;
                 case KeyEvent.VK_DOWN:
-                    D = false;
+                    D2 = false;
                     break;
 
                 default:
@@ -155,16 +177,16 @@ public class TankFrame extends Frame {
 
         private void setMainTankDir() {
 
-            if (!L && !R && !U && !D) {
-                myTank.setMoving(false);
+            if (!L2 && !R2 && !U2 && !D2) {
+                tank2.setMoving(false);
                 return;
             }
-            myTank.setMoving(true);
+            tank2.setMoving(true);
 
-            if (L) myTank.setDir(Dir.LEFT);
-            if (R) myTank.setDir(Dir.RIGHT);
-            if (U) myTank.setDir(Dir.UP);
-            if (D) myTank.setDir(Dir.DOWN);
+            if (L2) tank2.setDir(Dir.LEFT);
+            if (R2) tank2.setDir(Dir.RIGHT);
+            if (U2) tank2.setDir(Dir.UP);
+            if (D2) tank2.setDir(Dir.DOWN);
         }
     }
 }

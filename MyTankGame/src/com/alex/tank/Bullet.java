@@ -5,6 +5,7 @@ import java.awt.*;
 public class Bullet {
 
     private TankFrame tf = null;
+    Tank fromTank;
 
     private int x;
     private int y;
@@ -18,12 +19,13 @@ public class Bullet {
     String type;
 
 
-    public Bullet(int x, int y, Dir dir, TankFrame tf, String type) {
+    public Bullet(int x, int y, Dir dir, TankFrame tf, String type, Tank fromTank) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.tf = tf;
         this.type = type;
+        this.fromTank = fromTank;
     }
 
     public void paint(Graphics g) {

@@ -5,22 +5,22 @@ import java.util.Arrays;
 
 public class Tank {
 
-    private TankFrame tf = null;
+    private TankFrame tf;
 
-    int x = 100;
-    int y = 100;
-    private Dir dir = Dir.DOWN;
+    int x;
+    int y;
+    private Dir dir;
     private static final int SPEED = 5;
     static final int T_WIDTH = ResourceMgr.tankL.getWidth();
     static final int T_HEIGHT = ResourceMgr.tankL.getHeight();
     private final boolean[] isBlock = new boolean[4];
 
     private boolean moving = false;
-    private boolean live = true;
+    boolean live = true;
     int fireTimeCount = 30;
     int fullFireTime = 30;
-    int max_hp = 1000;
-    int hp = 1000;
+    int max_hp = 2000;
+    int hp = 2000;
 
     int AP_left = 10;
     int AT_left = 10;
@@ -35,12 +35,8 @@ public class Tank {
         this.tf = tf;
     }
 
-    public void paint(Graphics g) {
-        if (!live) {
-            tf.tanks.remove(this);
-            return;
-        }
-
+    public void paint(Graphics g, Tank enemy) {
+        // Load corresponding tank image
         switch(dir) {
             case LEFT:
                 g.drawImage(ResourceMgr.tankL, x, y, null);
@@ -59,7 +55,7 @@ public class Tank {
                 break;
         }
 
-        move();
+        move(enemy);
 
         if (fireTimeCount != fullFireTime) {
             fireTimeCount++;
@@ -68,38 +64,26 @@ public class Tank {
         drawHpBar(g);
     }
 
-    private void drawHpBar(Graphics g) {
-        Color c = g.getColor();
-        g.setColor(Color.WHITE);
-        g.fillRect(x, y, T_WIDTH, 3);
-        g.setColor(Color.GREEN);
-        g.fillRect(x, y, T_WIDTH * (hp * 100 / max_hp) / 100, 3);
-
-        g.setColor(c);
-    }
-
-    private void move() {
+    private void move(Tank tank) {
         if (!moving) return;
 
-        // Detect collisions between myTank and other tanks
-        for (Tank tank : tf.tanks) {
-            // Left:
-            if (x <= tank.x + T_WIDTH && x >= tank.x + T_WIDTH - SPEED
-                    && y <= tank.y + T_HEIGHT && y >= tank.y - T_HEIGHT)
-                isBlock[0] = true;
-            // Right:
-            if (x >= tank.x - T_WIDTH && x <= tank.x - T_WIDTH + SPEED
-                    && y <= tank.y + T_HEIGHT && y >= tank.y - T_HEIGHT)
-                isBlock[1] = true;
-            // Up:
-            if (y <= tank.y + T_HEIGHT && y >= tank.y + T_HEIGHT - SPEED
-                    && x <= tank.x + T_WIDTH && x >= tank.x - T_WIDTH)
-                isBlock[2] = true;
-            // Down:
-            if (y >= tank.y - T_HEIGHT && y <= tank.y - T_HEIGHT + SPEED
-                    && x <= tank.x + T_WIDTH && x >= tank.x - T_WIDTH)
-                isBlock[3] = true;
-        }
+        // Left:
+        if (x <= tank.x + T_WIDTH && x >= tank.x + T_WIDTH - SPEED
+                && y <= tank.y + T_HEIGHT && y >= tank.y - T_HEIGHT)
+            isBlock[0] = true;
+        // Right:
+        if (x >= tank.x - T_WIDTH && x <= tank.x - T_WIDTH + SPEED
+                && y <= tank.y + T_HEIGHT && y >= tank.y - T_HEIGHT)
+            isBlock[1] = true;
+        // Up:
+        if (y <= tank.y + T_HEIGHT && y >= tank.y + T_HEIGHT - SPEED
+                && x <= tank.x + T_WIDTH && x >= tank.x - T_WIDTH)
+            isBlock[2] = true;
+        // Down:
+        if (y >= tank.y - T_HEIGHT && y <= tank.y - T_HEIGHT + SPEED
+                && x <= tank.x + T_WIDTH && x >= tank.x - T_WIDTH)
+            isBlock[3] = true;
+
 
         switch (dir) {
             case LEFT:
@@ -129,6 +113,17 @@ public class Tank {
 
         Arrays.fill(isBlock, false);
     }
+
+    private void drawHpBar(Graphics g) {
+        Color c = g.getColor();
+        g.setColor(Color.WHITE);
+        g.fillRect(x, y, T_WIDTH, 3);
+        g.setColor(Color.GREEN);
+        g.fillRect(x, y, T_WIDTH * (hp * 100 / max_hp) / 100, 3);
+
+        g.setColor(c);
+    }
+
 
     public Dir getDir() {
         return dir;
@@ -172,7 +167,7 @@ public class Tank {
         int bx = x + T_WIDTH / 2 - Bullet.WIDTH / 2;
         int by = y + T_HEIGHT / 2 - Bullet.HEIGHT / 2;
 
-        tf.bullets.add(new Bullet(bx, by, this.dir, this.tf, fire_type));
+        tf.bullets.add(new Bullet(bx, by, this.dir, this.tf, fire_type, this));
         fireTimeCount = 0;
     }
 

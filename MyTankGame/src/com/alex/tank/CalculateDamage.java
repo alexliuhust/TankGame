@@ -11,7 +11,7 @@ public class CalculateDamage {
         if (b.type.equals("AP")) {
             int penetrateProb = 100 - b.flyingTime * 3;
             if (random_number <= penetrateProb) {
-                return 600;
+                return 500;
             } else {
                 return 10;
             }

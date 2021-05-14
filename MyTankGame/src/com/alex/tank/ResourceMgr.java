@@ -8,14 +8,19 @@ import java.io.IOException;
 
 public class ResourceMgr {
 
-    public static BufferedImage tankL, tankR, tankU, tankD;
+    public static BufferedImage tankL1, tankR1, tankU1, tankD1;
+    public static BufferedImage tankL2, tankR2, tankU2, tankD2;
 
     static {
         try {
-            tankL = ImageIO.read(ImageTest.class.getClassLoader().getResourceAsStream("images/tankL.png"));
-            tankR = ImageIO.read(ImageTest.class.getClassLoader().getResourceAsStream("images/tankR.png"));
-            tankU = ImageIO.read(ImageTest.class.getClassLoader().getResourceAsStream("images/tankU.png"));
-            tankD = ImageIO.read(ImageTest.class.getClassLoader().getResourceAsStream("images/tankD.png"));
+            tankL1 = ImageIO.read(ImageTest.class.getClassLoader().getResourceAsStream("images/tankL1.png"));
+            tankR1 = ImageIO.read(ImageTest.class.getClassLoader().getResourceAsStream("images/tankR1.png"));
+            tankU1 = ImageIO.read(ImageTest.class.getClassLoader().getResourceAsStream("images/tankU1.png"));
+            tankD1 = ImageIO.read(ImageTest.class.getClassLoader().getResourceAsStream("images/tankD1.png"));
+            tankL2 = ImageIO.read(ImageTest.class.getClassLoader().getResourceAsStream("images/tankL2.png"));
+            tankR2 = ImageIO.read(ImageTest.class.getClassLoader().getResourceAsStream("images/tankR2.png"));
+            tankU2 = ImageIO.read(ImageTest.class.getClassLoader().getResourceAsStream("images/tankU2.png"));
+            tankD2 = ImageIO.read(ImageTest.class.getClassLoader().getResourceAsStream("images/tankD2.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

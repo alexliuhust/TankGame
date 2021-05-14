@@ -1,18 +1,21 @@
 package com.alex.tank;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
 public class Tank {
 
     private TankFrame tf;
+    private BufferedImage tankL, tankR, tankU, tankD;
 
+    int player;
     int x;
     int y;
     private Dir dir;
     private static final int SPEED = 5;
-    static final int T_WIDTH = ResourceMgr.tankL.getWidth();
-    static final int T_HEIGHT = ResourceMgr.tankL.getHeight();
+    static final int T_WIDTH = 30;
+    static final int T_HEIGHT = 30;
     private final boolean[] isBlock = new boolean[4];
 
     private boolean moving = false;
@@ -28,27 +31,40 @@ public class Tank {
     int currentUse = 0;
 
 
-    public Tank(int x, int y, Dir dir, TankFrame tf) {
+    public Tank(int x, int y, Dir dir, TankFrame tf, int player) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.tf = tf;
+        this.player = player;
+
+        if (player == 1) {
+            this.tankL = ResourceMgr.tankL1;
+            this.tankR = ResourceMgr.tankR1;
+            this.tankU = ResourceMgr.tankU1;
+            this.tankD = ResourceMgr.tankD1;
+        } else {
+            this.tankL = ResourceMgr.tankL2;
+            this.tankR = ResourceMgr.tankR2;
+            this.tankU = ResourceMgr.tankU2;
+            this.tankD = ResourceMgr.tankD2;
+        }
     }
 
     public void paint(Graphics g, Tank enemy) {
         // Load corresponding tank image
         switch(dir) {
             case LEFT:
-                g.drawImage(ResourceMgr.tankL, x, y, null);
+                g.drawImage(tankL, x, y, null);
                 break;
             case RIGHT:
-                g.drawImage(ResourceMgr.tankR, x, y, null);
+                g.drawImage(tankR, x, y, null);
                 break;
             case UP:
-                g.drawImage(ResourceMgr.tankU, x, y, null);
+                g.drawImage(tankU, x, y, null);
                 break;
             case DOWN:
-                g.drawImage(ResourceMgr.tankD, x, y, null);
+                g.drawImage(tankD, x, y, null);
                 break;
 
             default:

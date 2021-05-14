@@ -91,7 +91,7 @@ public class TankFrame extends Frame {
     private void paintTankInfo(Graphics g, Tank tank) {
         int x = 10;
         if (tank.equals(tank2)) {
-            x += 600;
+            x += 650;
         }
 
         g.drawString("Reload: ", x, 60);
@@ -110,6 +110,11 @@ public class TankFrame extends Frame {
     }
 
     class MyKeyListener extends KeyAdapter {
+        private boolean L1 = false;
+        private boolean R1 = false;
+        private boolean U1 = false;
+        private boolean D1 = false;
+
         private boolean L2 = false;
         private boolean R2 = false;
         private boolean U2 = false;
@@ -120,6 +125,18 @@ public class TankFrame extends Frame {
             int key = e.getKeyCode();
 
             switch (key) {
+                case KeyEvent.VK_A:
+                    L1 = true;
+                    break;
+                case KeyEvent.VK_D:
+                    R1 = true;
+                    break;
+                case KeyEvent.VK_W:
+                    U1 = true;
+                    break;
+                case KeyEvent.VK_S:
+                    D1 = true;
+                    break;
                 case KeyEvent.VK_LEFT:
                     L2 = true;
                     break;
@@ -132,6 +149,7 @@ public class TankFrame extends Frame {
                 case KeyEvent.VK_DOWN:
                     D2 = true;
                     break;
+
 
                 case KeyEvent.VK_COMMA:
                     tank2.shiftBulletType("left");
@@ -147,7 +165,8 @@ public class TankFrame extends Frame {
                     break;
             }
 
-            setMainTankDir();
+            setMainTankDir(L1, R1, U1, D1, tank1);
+            setMainTankDir(L2, R2, U2, D2, tank2);
         }
 
         @Override
@@ -155,6 +174,18 @@ public class TankFrame extends Frame {
             int key = e.getKeyCode();
 
             switch (key) {
+                case KeyEvent.VK_A:
+                    L1 = false;
+                    break;
+                case KeyEvent.VK_D:
+                    R1 = false;
+                    break;
+                case KeyEvent.VK_W:
+                    U1 = false;
+                    break;
+                case KeyEvent.VK_S:
+                    D1 = false;
+                    break;
                 case KeyEvent.VK_LEFT:
                     L2 = false;
                     break;
@@ -172,21 +203,20 @@ public class TankFrame extends Frame {
                     break;
             }
 
-            setMainTankDir();
+            setMainTankDir(L1, R1, U1, D1, tank1);
+            setMainTankDir(L2, R2, U2, D2, tank2);
         }
 
-        private void setMainTankDir() {
-
-            if (!L2 && !R2 && !U2 && !D2) {
-                tank2.setMoving(false);
+        private void setMainTankDir(boolean L, boolean R, boolean U, boolean D, Tank tank) {
+            if (!L && !R && !U && !D) {
+                tank.setMoving(false);
                 return;
             }
-            tank2.setMoving(true);
-
-            if (L2) tank2.setDir(Dir.LEFT);
-            if (R2) tank2.setDir(Dir.RIGHT);
-            if (U2) tank2.setDir(Dir.UP);
-            if (D2) tank2.setDir(Dir.DOWN);
+            tank.setMoving(true);
+            if (L) tank.setDir(Dir.LEFT);
+            if (R) tank.setDir(Dir.RIGHT);
+            if (U) tank.setDir(Dir.UP);
+            if (D) tank.setDir(Dir.DOWN);
         }
     }
 }

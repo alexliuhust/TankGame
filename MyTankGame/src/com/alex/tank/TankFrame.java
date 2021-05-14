@@ -34,7 +34,7 @@ public class TankFrame extends Frame {
             }
         });
 
-        ironWalls.add(new IronWall(600, 200));
+        ironWalls.add(new IronWall(600, 150));
         ironWalls.add(new IronWall(600, 250));
         ironWalls.add(new IronWall(600, 350));
         ironWalls.add(new IronWall(600, 410));

@@ -1,5 +1,7 @@
 package com.alex.tank;
 
+import com.alex.terrian.IronWall;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
@@ -84,6 +86,9 @@ public class Tank {
         if (!moving) return;
 
         detectTankOrTerrainCollisions(tank.x, tank.y, T_WIDTH, T_HEIGHT);
+        for (IronWall iron : this.tf.ironWalls) {
+            detectTankOrTerrainCollisions(iron.x, iron.y, IronWall.IronWall_WIDTH, IronWall.IronWall_HEIGHT);
+        }
 
         switch (dir) {
             case LEFT:
@@ -117,19 +122,19 @@ public class Tank {
     private void detectTankOrTerrainCollisions(int ox, int oy, int W, int H) {
         // Left:
         if (x <= ox + W && x >= ox + W - SPEED
-                && y <= oy + H && y >= oy - H)
+                && y > oy - T_HEIGHT && y < oy + H)
             isBlock[0] = true;
         // Right:
-        if (x >= ox - W && x <= ox - W + SPEED
-                && y <= oy + H && y >= oy - H)
+        if (x >= ox - T_WIDTH && x <= ox - T_WIDTH + SPEED
+                && y > oy - T_HEIGHT && y < oy + H)
             isBlock[1] = true;
         // Up:
         if (y <= oy + H && y >= oy + H - SPEED
-                && x <= ox + W && x >= ox - W)
+                && x > ox - T_WIDTH && x < ox + W)
             isBlock[2] = true;
         // Down:
-        if (y >= oy - H && y <= oy - H + SPEED
-                && x <= ox + W && x >= ox - W)
+        if (y >= oy - T_HEIGHT && y <= oy - T_HEIGHT + SPEED
+                && x > ox - T_WIDTH && x < ox + W)
             isBlock[3] = true;
     }
 

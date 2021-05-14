@@ -183,11 +183,18 @@ public class Tank {
         }
     }
 
-    public void shiftBulletType() {
+    public void shiftBulletType(String leftOrRight) {
         this.fireTimeCount = 0;
-        this.currentUse++;
+        if (leftOrRight.equals("left")) {
+            this.currentUse--;
+        } else if (leftOrRight.equals("right")) {
+            this.currentUse++;
+        }
+
         if (currentUse == 3) {
             this.currentUse = 0;
+        } else if (currentUse == -1) {
+            this.currentUse = 2;
         }
     }
 }

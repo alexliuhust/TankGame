@@ -110,6 +110,12 @@ public class TankFrame extends Frame {
                 case KeyEvent.VK_DOWN:
                     D = true;
                     break;
+                case KeyEvent.VK_COMMA:
+                    myTank.shiftBulletType("left");
+                    break;
+                case KeyEvent.VK_PERIOD:
+                    myTank.shiftBulletType("right");
+                    break;
 
                 default:
                     break;
@@ -138,9 +144,7 @@ public class TankFrame extends Frame {
                 case KeyEvent.VK_SLASH:
                     myTank.fire();
                     break;
-                case KeyEvent.VK_COMMA:
-                    myTank.shiftBulletType();
-                    break;
+
 
                 default:
                     break;

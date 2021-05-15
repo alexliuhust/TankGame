@@ -1,4 +1,4 @@
-package com.alex.terrian;
+package com.alex.terrain;
 
 import com.alex.tank.ResourceMgr;
 

@@ -1,4 +1,4 @@
-package com.alex.terrian;
+package com.alex.terrain;
 
 public class DigitalMaps {
     // 0: Blank

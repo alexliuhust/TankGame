@@ -1,7 +1,7 @@
 package com.alex.tank;
 
-import com.alex.terrian.IronWall;
-import com.alex.terrian.River;
+import com.alex.terrain.IronWall;
+import com.alex.terrain.River;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

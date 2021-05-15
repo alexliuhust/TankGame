@@ -1,6 +1,6 @@
 package com.alex.tank;
 
-import com.alex.terrian.IronWall;
+import com.alex.terrain.IronWall;
 
 import java.awt.*;
 

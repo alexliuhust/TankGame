@@ -1,16 +1,12 @@
-package com.alex.terrian;
+package com.alex.terrain;
 
-import com.alex.tank.ResourceMgr;
 import com.alex.tank.TankFrame;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Mapper {
 
-    public static void drawTerrian(Graphics g, int[][] map, TankFrame tf) {
+    public static void drawTerrain(Graphics g, int[][] map, TankFrame tf) {
         int step = River.River_HEIGHT;
 
         for (int i = 0; i < map.length; i++) {

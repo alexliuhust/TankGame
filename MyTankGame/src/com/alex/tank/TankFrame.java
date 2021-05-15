@@ -1,9 +1,9 @@
 package com.alex.tank;
 
-import com.alex.terrian.DigitalMaps;
-import com.alex.terrian.IronWall;
-import com.alex.terrian.Mapper;
-import com.alex.terrian.River;
+import com.alex.terrain.DigitalMaps;
+import com.alex.terrain.IronWall;
+import com.alex.terrain.Mapper;
+import com.alex.terrain.River;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -55,8 +55,8 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
-        // Terrian draw
-        Mapper.drawTerrian(g, DigitalMaps.map1, this);
+        // Terrain drawing
+        Mapper.drawTerrain(g, DigitalMaps.map1, this);
 
         Color c = g.getColor();
         g.setColor(Color.WHITE);

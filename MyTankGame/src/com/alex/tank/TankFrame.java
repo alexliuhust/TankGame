@@ -1,6 +1,8 @@
 package com.alex.tank;
 
+import com.alex.terrian.DigitalMaps;
 import com.alex.terrian.IronWall;
+import com.alex.terrian.Mapper;
 import com.alex.terrian.River;
 
 import java.awt.*;
@@ -12,14 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TankFrame extends Frame {
+    public static final int GAME_WIDTH = 1200, GAME_HEIGHT = 850;
 
-    Tank tank1 = new Tank(200, 400, Dir.RIGHT, this, 1);
-    Tank tank2 = new Tank(970, 400, Dir.LEFT, this, 2);
-    List<Bullet> bullets = new ArrayList<>();
-    List<IronWall> ironWalls = new ArrayList<>();
-    List<River> rivers = new ArrayList<>();
-
-    static final int GAME_WIDTH = 1200, GAME_HEIGHT = 850;
+    Tank tank1 = new Tank(0, 350, Dir.RIGHT, this, 1);
+    Tank tank2 = new Tank(1150, 350, Dir.LEFT, this, 2);
+    public List<Bullet> bullets = new ArrayList<>();
+    public List<IronWall> ironWalls = new ArrayList<>();
+    public List<River> rivers = new ArrayList<>();
 
     public TankFrame() {
         this.setSize(GAME_WIDTH, GAME_HEIGHT);
@@ -35,12 +36,6 @@ public class TankFrame extends Frame {
                 System.exit(0);
             }
         });
-
-        ironWalls.add(new IronWall(600, 150));
-        ironWalls.add(new IronWall(600, 250));
-        rivers.add(new River(400, 470));
-        rivers.add(new River(500, 470));
-        rivers.add(new River(400, 510));
     }
 
     Image offScreenImage = null;
@@ -61,12 +56,7 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         // Terrian draw
-        for (IronWall iron : ironWalls) {
-            iron.paint(g);
-        }
-        for (River river : rivers) {
-            river.paint(g);
-        }
+        Mapper.drawTerrian(g, DigitalMaps.map1, this);
 
         Color c = g.getColor();
         g.setColor(Color.WHITE);

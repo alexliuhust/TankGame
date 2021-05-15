@@ -1,6 +1,7 @@
 package com.alex.tank;
 
 import com.alex.terrian.IronWall;
+import com.alex.terrian.River;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -88,6 +89,9 @@ public class Tank {
         detectTankOrTerrainCollisions(tank.x, tank.y, T_WIDTH, T_HEIGHT);
         for (IronWall iron : this.tf.ironWalls) {
             detectTankOrTerrainCollisions(iron.x, iron.y, IronWall.IronWall_WIDTH, IronWall.IronWall_HEIGHT);
+        }
+        for (River river : this.tf.rivers) {
+            detectTankOrTerrainCollisions(river.x, river.y, River.River_WIDTH, River.River_HEIGHT);
         }
 
         switch (dir) {

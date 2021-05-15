@@ -96,7 +96,7 @@ public class TankFrame extends Frame {
             bullets.get(i).paint(g);
         }
 
-        // Detect collision with tanks
+        // Detect collisions between bullets and tanks
         for (int i = 0; i < bullets.size(); i++) {
             Bullet b = bullets.get(i);
             if (b.fromTank.player == 2) {
@@ -105,7 +105,7 @@ public class TankFrame extends Frame {
             if (b.collideWith(tank2)) break;
         }
 
-        // Detect collision with walls
+        // Detect collision between bullets and walls
         for (int i = 0; i < bullets.size(); i++) {
             Bullet b = bullets.get(i);
             for (IronWall ironWall : ironWalls) {

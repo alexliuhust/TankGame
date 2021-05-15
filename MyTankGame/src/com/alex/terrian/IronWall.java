@@ -14,10 +14,8 @@ public class IronWall {
     public IronWall(int x, int y) {
         this.x = x;
         this.y = y;
-//        IronWall_WIDTH = ironWall.getWidth();
-//        IronWall_HEIGHT = ironWall.getHeight();
-        IronWall_WIDTH = 50;
-        IronWall_HEIGHT = 50;
+        IronWall_WIDTH = ironWall.getWidth();
+        IronWall_HEIGHT = ironWall.getHeight();
     }
 
     public void paint(Graphics g) {

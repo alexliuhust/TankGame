@@ -1,6 +1,7 @@
 package com.alex.tank;
 
 import com.alex.terrian.IronWall;
+import com.alex.terrian.River;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -16,6 +17,7 @@ public class TankFrame extends Frame {
     Tank tank2 = new Tank(970, 400, Dir.LEFT, this, 2);
     List<Bullet> bullets = new ArrayList<>();
     List<IronWall> ironWalls = new ArrayList<>();
+    List<River> rivers = new ArrayList<>();
 
     static final int GAME_WIDTH = 1200, GAME_HEIGHT = 850;
 
@@ -36,11 +38,9 @@ public class TankFrame extends Frame {
 
         ironWalls.add(new IronWall(600, 150));
         ironWalls.add(new IronWall(600, 250));
-        ironWalls.add(new IronWall(600, 350));
-        ironWalls.add(new IronWall(600, 410));
-        ironWalls.add(new IronWall(650, 410));
-        ironWalls.add(new IronWall(700, 410));
-        ironWalls.add(new IronWall(760, 410));
+        rivers.add(new River(400, 470));
+        rivers.add(new River(500, 470));
+        rivers.add(new River(400, 510));
     }
 
     Image offScreenImage = null;
@@ -60,8 +60,12 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
+        // Terrian draw
         for (IronWall iron : ironWalls) {
             iron.paint(g);
+        }
+        for (River river : rivers) {
+            river.paint(g);
         }
 
         Color c = g.getColor();

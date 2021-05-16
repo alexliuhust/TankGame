@@ -36,6 +36,18 @@ public class Bullet {
             return;
         }
 
+        if (collideWithTanks(tf.tank1) || collideWithTanks(tf.tank2)) {
+            return;
+        }
+
+        for (IronWall ironWall : tf.ironWalls) {
+            if (collideWithWalls(ironWall)) {
+                return;
+            }
+        }
+
+
+
         this.flyingTime++;
 
         Color c = g.getColor();
@@ -70,7 +82,7 @@ public class Bullet {
         }
     }
 
-    public boolean collideWith(Tank tank) {
+    public boolean collideWithTanks(Tank tank) {
         boolean ans = false;
         Rectangle rect1 = new Rectangle(x, y, WIDTH, HEIGHT);
         Rectangle rect2 = new Rectangle(tank.x, tank.y, Tank.T_WIDTH, Tank.T_HEIGHT);
@@ -83,11 +95,13 @@ public class Bullet {
         return ans;
     }
 
-    public void collideWithWalls(IronWall ironWall) {
+    public boolean collideWithWalls(IronWall ironWall) {
         Rectangle rect1 = new Rectangle(x, y, WIDTH, HEIGHT);
         Rectangle rect2 = new Rectangle(ironWall.x, ironWall.y, IronWall.IronWall_WIDTH, IronWall.IronWall_HEIGHT);
         if (rect1.intersects(rect2)) {
             this.live = false;
+            return true;
         }
+        return false;
     }
 }

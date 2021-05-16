@@ -57,6 +57,7 @@ public class TankFrame extends Frame {
         // Terrain drawing
         Mapper.drawTerrain(g, DigitalMaps.map1, this);
 
+        // Show info of tanks
         Color c = g.getColor();
         g.setColor(Color.WHITE);
         paintTankInfo(g, tank2);
@@ -64,42 +65,28 @@ public class TankFrame extends Frame {
         g.fillRect(0,140, GAME_WIDTH, 10);
         g.setColor(c);
 
+        // Tanks drawing
         if (tank1.live && tank2.live) {
             tank1.paint(g, tank2);
             tank2.paint(g, tank1);
         } else if (tank1.live) {
             g.setColor(Color.WHITE);
-            g.drawString("Player 1 is the winner!",300, 300);
+            g.drawString("Player 1 is the winner!",tank1.x, tank1.y);
             g.setColor(c);
             return;
         } else if (tank2.live) {
             g.setColor(Color.WHITE);
-            g.drawString("Player 2 is the winner!",300, 300);
+            g.drawString("Player 2 is the winner!",tank2.x, tank2.y);
             g.setColor(c);
             return;
         } else {
             return;
         }
 
+        // Bullets drawing
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).paint(g);
         }
-
-        // Detect collisions between bullets and tanks
-        for (int i = 0; i < bullets.size(); i++) {
-            Bullet b = bullets.get(i);
-            if (b.collideWith(tank1)) break;
-            if (b.collideWith(tank2)) break;
-        }
-
-        // Detect collision between bullets and walls
-        for (int i = 0; i < bullets.size(); i++) {
-            Bullet b = bullets.get(i);
-            for (IronWall ironWall : ironWalls) {
-                b.collideWithWalls(ironWall);
-            }
-        }
-
     }
 
     private void paintTankInfo(Graphics g, Tank tank) {

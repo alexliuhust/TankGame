@@ -218,31 +218,21 @@ public class Tank {
         int by = y + T_HEIGHT / 2 - Bullet.HEIGHT / 2;
         switch (dir) {
             case LEFT:
-                bx -= 20;break;
+                bx -= 25;break;
             case RIGHT:
-                bx += 20;break;
+                bx += 25;break;
             case UP:
-                by -= 20;break;
+                by -= 25;break;
             case DOWN:
-                by += 20;break;
+                by += 25;break;
         }
 
         Bullet b = new Bullet(bx, by, this.dir, this.tf, fire_type, this);
-        if (!b.collideWith(tf.tank1) && !b.collideWith(tf.tank2)) {
+        if (!b.collideWithTanks(tf.tank1) && !b.collideWithTanks(tf.tank2)) {
             tf.bullets.add(b);
         }
 
         fireTimeCount = 0;
-    }
-
-    public void getHit(Bullet b) {
-        int damage = CalculateDamage.bulletDamage(b);
-//        System.out.println(b.type + ": " + damage);
-
-        this.hp -= damage;
-        if (hp <= 0) {
-            this.live = false;
-        }
     }
 
     public void shiftBulletType(String leftOrRight) {
@@ -259,4 +249,15 @@ public class Tank {
             this.currentUse = 2;
         }
     }
+
+    public void getHit(Bullet b) {
+        int damage = CalculateDamage.bulletDamage(b);
+//        System.out.println(b.type + ": " + damage);
+
+        this.hp -= damage;
+        if (hp <= 0) {
+            this.live = false;
+        }
+    }
+
 }

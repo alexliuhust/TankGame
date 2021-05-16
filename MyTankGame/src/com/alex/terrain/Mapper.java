@@ -20,6 +20,10 @@ public class Mapper {
                     River river = new River(j * step, i * step + 150);
                     tf.rivers.add(river);
                     river.paint(g);
+                } else if (val == 3) {
+                    Grass grass = new Grass(j * step, i * step + 150);
+                    tf.grasses.add(grass);
+                    grass.paint(g);
                 }
             }
         }

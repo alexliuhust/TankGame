@@ -1,9 +1,6 @@
 package com.alex.tank;
 
-import com.alex.terrain.DigitalMaps;
-import com.alex.terrain.IronWall;
-import com.alex.terrain.Mapper;
-import com.alex.terrain.River;
+import com.alex.terrain.*;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -21,6 +18,7 @@ public class TankFrame extends Frame {
     public List<Bullet> bullets = new ArrayList<>();
     public List<IronWall> ironWalls = new ArrayList<>();
     public List<River> rivers = new ArrayList<>();
+    public List<Grass> grasses = new ArrayList<>();
 
     public TankFrame() {
         this.setSize(GAME_WIDTH, GAME_HEIGHT);

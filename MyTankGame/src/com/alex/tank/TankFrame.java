@@ -16,8 +16,8 @@ import java.util.List;
 public class TankFrame extends Frame {
     public static final int GAME_WIDTH = 1200, GAME_HEIGHT = 850;
 
-    Tank tank1 = new Tank(0, 350, Dir.RIGHT, this, 1);
-    Tank tank2 = new Tank(1150, 350, Dir.LEFT, this, 2);
+    public Tank tank1 = new Tank(0, 350, Dir.RIGHT, this, 1);
+    public Tank tank2 = new Tank(1150, 350, Dir.LEFT, this, 2);
     public List<Bullet> bullets = new ArrayList<>();
     public List<IronWall> ironWalls = new ArrayList<>();
     public List<River> rivers = new ArrayList<>();
@@ -89,9 +89,7 @@ public class TankFrame extends Frame {
         // Detect collisions between bullets and tanks
         for (int i = 0; i < bullets.size(); i++) {
             Bullet b = bullets.get(i);
-            if (b.fromTank.player == 2) {
-                if(b.collideWith(tank1)) break;
-            }
+            if (b.collideWith(tank1)) break;
             if (b.collideWith(tank2)) break;
         }
 

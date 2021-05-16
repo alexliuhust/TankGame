@@ -194,8 +194,22 @@ public class Tank {
 
         int bx = x + T_WIDTH / 2 - Bullet.WIDTH / 2;
         int by = y + T_HEIGHT / 2 - Bullet.HEIGHT / 2;
+        switch (dir) {
+            case LEFT:
+                bx -= 20;break;
+            case RIGHT:
+                bx += 20;break;
+            case UP:
+                by -= 20;break;
+            case DOWN:
+                by += 20;break;
+        }
 
-        tf.bullets.add(new Bullet(bx, by, this.dir, this.tf, fire_type, this));
+        Bullet b = new Bullet(bx, by, this.dir, this.tf, fire_type, this);
+        if (!b.collideWith(tf.tank1) && !b.collideWith(tf.tank2)) {
+            tf.bullets.add(b);
+        }
+
         fireTimeCount = 0;
     }
 

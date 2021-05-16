@@ -14,7 +14,7 @@ public class Bullet {
     static final int WIDTH = 10;
     static final int HEIGHT = 10;
     private Dir dir;
-    private static final int SPEED = 30;
+    private static final int SPEED = 35;
     private boolean live = true;
     int flyingTime = 0;
 
@@ -65,7 +65,7 @@ public class Bullet {
                 break;
         }
 
-        if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
+        if (x < 0 || y < 150 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
             this.live = false;
         }
     }

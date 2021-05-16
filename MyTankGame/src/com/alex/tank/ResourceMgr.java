@@ -1,7 +1,5 @@
 package com.alex.tank;
 
-import test.ImageTest;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -16,29 +14,29 @@ public class ResourceMgr {
     static {
         try {
             tankL1 = ImageIO.read(Objects.requireNonNull(
-                    ImageTest.class.getClassLoader().getResourceAsStream("images/tankL1.png")));
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankL1.png")));
             tankR1 = ImageIO.read(Objects.requireNonNull(
-                    ImageTest.class.getClassLoader().getResourceAsStream("images/tankR1.png")));
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankR1.png")));
             tankU1 = ImageIO.read(Objects.requireNonNull(
-                    ImageTest.class.getClassLoader().getResourceAsStream("images/tankU1.png")));
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankU1.png")));
             tankD1 = ImageIO.read(Objects.requireNonNull(
-                    ImageTest.class.getClassLoader().getResourceAsStream("images/tankD1.png")));
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankD1.png")));
 
             tankL2 = ImageIO.read(Objects.requireNonNull(
-                    ImageTest.class.getClassLoader().getResourceAsStream("images/tankL2.png")));
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankL2.png")));
             tankR2 = ImageIO.read(Objects.requireNonNull(
-                    ImageTest.class.getClassLoader().getResourceAsStream("images/tankR2.png")));
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankR2.png")));
             tankU2 = ImageIO.read(Objects.requireNonNull(
-                    ImageTest.class.getClassLoader().getResourceAsStream("images/tankU2.png")));
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankU2.png")));
             tankD2 = ImageIO.read(Objects.requireNonNull(
-                    ImageTest.class.getClassLoader().getResourceAsStream("images/tankD2.png")));
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankD2.png")));
 
             grass = ImageIO.read(Objects.requireNonNull(
-                    ImageTest.class.getClassLoader().getResourceAsStream("images/grass.png")));
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/grass.png")));
             ironWall = ImageIO.read(Objects.requireNonNull(
-                    ImageTest.class.getClassLoader().getResourceAsStream("images/ironWall.png")));
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/ironWall.png")));
             river = ImageIO.read(Objects.requireNonNull(
-                    ImageTest.class.getClassLoader().getResourceAsStream("images/river.png")));
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/river.png")));
 
 
         } catch (IOException e) {

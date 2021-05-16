@@ -5,7 +5,7 @@ import com.alex.tank.ResourceMgr;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Grass {
+public class Grass implements Terrain {
     public static int Grass_WIDTH;
     public static int Grass_HEIGHT;
     private final BufferedImage grass = ResourceMgr.grass;

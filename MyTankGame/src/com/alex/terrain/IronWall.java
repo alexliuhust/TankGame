@@ -5,7 +5,7 @@ import com.alex.tank.ResourceMgr;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class IronWall {
+public class IronWall implements Terrain {
     public static int IronWall_WIDTH;
     public static int IronWall_HEIGHT;
     private final BufferedImage ironWall = ResourceMgr.ironWall;

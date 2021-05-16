@@ -1,7 +1,9 @@
 package com.alex.tank;
 
+import com.alex.terrain.Grass;
 import com.alex.terrain.IronWall;
 import com.alex.terrain.River;
+import com.alex.terrain.Terrain;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,10 +18,11 @@ public class Tank {
     int x;
     int y;
     private Dir dir;
-    private static final int SPEED = 5;
+    int SPEED = 5;
     static final int T_WIDTH = 30;
     static final int T_HEIGHT = 30;
     private final boolean[] isBlock = new boolean[4];
+    private boolean inGrass = false;
 
     private boolean moving = false;
     boolean live = true;
@@ -86,13 +89,23 @@ public class Tank {
     private void move(Tank tank) {
         if (!moving) return;
 
-        detectTankOrTerrainCollisions(tank.x, tank.y, T_WIDTH, T_HEIGHT);
+        // Detect collisions among tanks or between tanks and terrain
+        detectTankOrTerrainCollisions(tank.x, tank.y, T_WIDTH, T_HEIGHT, false);
         for (IronWall iron : this.tf.ironWalls) {
-            detectTankOrTerrainCollisions(iron.x, iron.y, IronWall.IronWall_WIDTH, IronWall.IronWall_HEIGHT);
+            detectTankOrTerrainCollisions(iron.x, iron.y, IronWall.IronWall_WIDTH, IronWall.IronWall_HEIGHT, false);
         }
         for (River river : this.tf.rivers) {
-            detectTankOrTerrainCollisions(river.x, river.y, River.River_WIDTH, River.River_HEIGHT);
+            detectTankOrTerrainCollisions(river.x, river.y, River.River_WIDTH, River.River_HEIGHT, false);
         }
+        this.inGrass = false;
+        for (Grass grass : this.tf.grasses) {
+            if (detectTankOrTerrainCollisions(grass.x, grass.y, Grass.Grass_WIDTH, Grass.Grass_HEIGHT, true)){
+                this.inGrass = true;
+                break;
+            }
+        }
+        if (inGrass) this.SPEED = 2;
+        else this.SPEED = 5;
 
         switch (dir) {
             case LEFT:
@@ -123,23 +136,36 @@ public class Tank {
         Arrays.fill(isBlock, false);
     }
 
-    private void detectTankOrTerrainCollisions(int ox, int oy, int W, int H) {
-        // Left:
-        if (x <= ox + W && x >= ox + W - SPEED
-                && y > oy - T_HEIGHT && y < oy + H)
-            isBlock[0] = true;
-        // Right:
-        if (x >= ox - T_WIDTH && x <= ox - T_WIDTH + SPEED
-                && y > oy - T_HEIGHT && y < oy + H)
-            isBlock[1] = true;
-        // Up:
-        if (y <= oy + H && y >= oy + H - SPEED
-                && x > ox - T_WIDTH && x < ox + W)
-            isBlock[2] = true;
-        // Down:
-        if (y >= oy - T_HEIGHT && y <= oy - T_HEIGHT + SPEED
-                && x > ox - T_WIDTH && x < ox + W)
-            isBlock[3] = true;
+    private boolean detectTankOrTerrainCollisions(int ox, int oy, int W, int H, boolean isGrass) {
+        if (isGrass) {
+            Rectangle rect1 = new Rectangle(x, y, T_WIDTH, T_HEIGHT);
+            Rectangle rect2 = new Rectangle(ox, oy, W, H);
+            if (rect1.intersects(rect2)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        else {
+            // Left:
+            if (x <= ox + W && x >= ox + W - SPEED
+                    && y > oy - T_HEIGHT && y < oy + H)
+                isBlock[0] = true;
+            // Right:
+            if (x >= ox - T_WIDTH && x <= ox - T_WIDTH + SPEED
+                    && y > oy - T_HEIGHT && y < oy + H)
+                isBlock[1] = true;
+            // Up:
+            if (y <= oy + H && y >= oy + H - SPEED
+                    && x > ox - T_WIDTH && x < ox + W)
+                isBlock[2] = true;
+            // Down:
+            if (y >= oy - T_HEIGHT && y <= oy - T_HEIGHT + SPEED
+                    && x > ox - T_WIDTH && x < ox + W)
+                isBlock[3] = true;
+        }
+        return false;
     }
 
     private void drawHpBar(Graphics g) {

@@ -140,11 +140,7 @@ public class Tank {
         if (isGrass) {
             Rectangle rect1 = new Rectangle(x, y, T_WIDTH, T_HEIGHT);
             Rectangle rect2 = new Rectangle(ox, oy, W, H);
-            if (rect1.intersects(rect2)) {
-                return true;
-            } else {
-                return false;
-            }
+            return rect1.intersects(rect2);
         }
 
         else {

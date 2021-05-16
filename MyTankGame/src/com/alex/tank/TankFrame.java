@@ -7,6 +7,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,10 +103,14 @@ public class TankFrame extends Frame {
     }
 
     private void paintTankInfo(Graphics g, Tank tank) {
-        int x = 10;
+        BufferedImage tankIcon = ResourceMgr.tankU1;
+        int x = 50;
         if (tank.player == 2) {
-            x += 1050;
+            x += 1030;
+            tankIcon = ResourceMgr.tankU2;
         }
+        g.drawImage(tankIcon,x - 40, 35, null);
+
         if (tank.player == 1) {
             g.drawString("Player 1: " + tank1.hp, x, 42);
         } else {

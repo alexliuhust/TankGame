@@ -16,7 +16,7 @@ public class Tank {
     public int player;
     public int x;
     public int y;
-    private Dir dir;
+    public Dir dir;
     int SPEED = 5;
     static final int T_WIDTH = 30;
     static final int T_HEIGHT = 30;
@@ -27,8 +27,11 @@ public class Tank {
     public boolean live = true;
     public int fullFireTime = 50;
     public int fireTimeCount = fullFireTime;
-    public int max_hp = 2000;
+    public int max_hp = 10000;
     public int hp = max_hp;
+    public int frontArmor = 20;
+    public int sideArmor = 5;
+    public int rearArmor = -20;
 
     public int AP_left = 10;
     public int AT_left = 10;
@@ -255,9 +258,8 @@ public class Tank {
     }
 
     public void getHit(Bullet b) {
-        int damage = CalculateDamage.bulletDamage(b);
-//        System.out.println(b.type + ": " + damage);
-
+        int damage = CalculateDamage.bulletDamage(b, this);
+        System.out.println(damage);
         this.hp -= damage;
         if (hp <= 0) {
             this.live = false;

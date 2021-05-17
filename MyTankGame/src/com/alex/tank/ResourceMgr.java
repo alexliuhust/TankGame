@@ -9,7 +9,7 @@ public class ResourceMgr {
 
     public static BufferedImage tankL1, tankR1, tankU1, tankD1;
     public static BufferedImage tankL2, tankR2, tankU2, tankD2;
-    public static BufferedImage ironWall, river, grass;
+    public static BufferedImage ironWall, river, grass, brickWall;
 
     static {
         try {
@@ -37,6 +37,8 @@ public class ResourceMgr {
                     ResourceMgr.class.getClassLoader().getResourceAsStream("images/ironWall.png")));
             river = ImageIO.read(Objects.requireNonNull(
                     ResourceMgr.class.getClassLoader().getResourceAsStream("images/river.png")));
+            brickWall = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/brickWall.png")));
 
 
         } catch (IOException e) {

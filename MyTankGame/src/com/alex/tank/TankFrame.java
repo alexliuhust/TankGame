@@ -20,6 +20,7 @@ public class TankFrame extends Frame {
     public List<IronWall> ironWalls = new ArrayList<>();
     public List<River> rivers = new ArrayList<>();
     public List<Grass> grasses = new ArrayList<>();
+    public List<BrickWall> brickWalls = new ArrayList<>();
 
     public TankFrame() {
         this.setSize(GAME_WIDTH, GAME_HEIGHT);

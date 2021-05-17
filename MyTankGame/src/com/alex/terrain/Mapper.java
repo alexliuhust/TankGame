@@ -12,18 +12,29 @@ public class Mapper {
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
                 int val = map[i][j];
+
                 if (val == 1) {
                     IronWall iron = new IronWall(j * step, i * step + 150);
                     tf.ironWalls.add(iron);
                     iron.paint(g);
-                } else if (val == 2) {
+                }
+
+                else if (val == 2) {
                     River river = new River(j * step, i * step + 150);
                     tf.rivers.add(river);
                     river.paint(g);
-                } else if (val == 3) {
+                }
+
+                else if (val == 3) {
                     Grass grass = new Grass(j * step, i * step + 150);
                     tf.grasses.add(grass);
                     grass.paint(g);
+                }
+
+                else if (val == 4) {
+                    BrickWall brickWall = new BrickWall(j * step, i * step + 150);
+                    tf.brickWalls.add(brickWall);
+                    brickWall.paint(g);
                 }
             }
         }

@@ -5,7 +5,7 @@ import com.alex.tank.ResourceMgr;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class River implements Terrain {
+public class River {
     public static int River_WIDTH;
     public static int River_HEIGHT;
     private final BufferedImage river = ResourceMgr.river;

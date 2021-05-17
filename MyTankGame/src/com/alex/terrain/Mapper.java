@@ -1,8 +1,6 @@
 package com.alex.terrain;
 
-import com.alex.tank.TankFrame;
-
-import java.awt.*;
+import com.alex.drawing.TankFrame;
 
 public class Mapper {
 

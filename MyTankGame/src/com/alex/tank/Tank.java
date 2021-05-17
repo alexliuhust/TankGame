@@ -1,5 +1,7 @@
 package com.alex.tank;
 
+import com.alex.drawing.ResourceMgr;
+import com.alex.drawing.TankFrame;
 import com.alex.terrain.*;
 
 import java.awt.*;
@@ -11,9 +13,9 @@ public class Tank {
     private TankFrame tf;
     private BufferedImage tankL, tankR, tankU, tankD;
 
-    int player;
-    int x;
-    int y;
+    public int player;
+    public int x;
+    public int y;
     private Dir dir;
     int SPEED = 5;
     static final int T_WIDTH = 30;
@@ -22,16 +24,16 @@ public class Tank {
     private boolean inGrass = false;
 
     private boolean moving = false;
-    boolean live = true;
-    int fullFireTime = 50;
-    int fireTimeCount = fullFireTime;
-    int max_hp = 2000;
-    int hp = max_hp;
+    public boolean live = true;
+    public int fullFireTime = 50;
+    public int fireTimeCount = fullFireTime;
+    public int max_hp = 2000;
+    public int hp = max_hp;
 
-    int AP_left = 10;
-    int AT_left = 10;
-    int HE_left = 10;
-    int currentUse = 0;
+    public int AP_left = 10;
+    public int AT_left = 10;
+    public int HE_left = 10;
+    public int currentUse = 0;
 
 
     public Tank(int x, int y, Dir dir, TankFrame tf, int player) {

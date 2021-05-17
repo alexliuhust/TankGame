@@ -1,5 +1,6 @@
 package com.alex.tank;
 
+import com.alex.drawing.TankFrame;
 import com.alex.terrain.BrickWall;
 import com.alex.terrain.IronWall;
 

@@ -1,5 +1,8 @@
-package com.alex.tank;
+package com.alex.drawing;
 
+import com.alex.tank.Bullet;
+import com.alex.tank.Dir;
+import com.alex.tank.Tank;
 import com.alex.terrain.*;
 
 import java.awt.*;

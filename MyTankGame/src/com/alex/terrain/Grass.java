@@ -1,6 +1,6 @@
 package com.alex.terrain;
 
-import com.alex.tank.ResourceMgr;
+import com.alex.drawing.ResourceMgr;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

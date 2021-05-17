@@ -19,6 +19,7 @@ public class IronWall {
     }
 
     public void paint(Graphics g) {
+//        System.out.println("iron : " + x + "," + y);
         g.drawImage(ironWall, x, y, null);
     }
 }

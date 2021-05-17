@@ -1,9 +1,6 @@
 package com.alex.tank;
 
-import com.alex.terrain.Grass;
-import com.alex.terrain.IronWall;
-import com.alex.terrain.River;
-import com.alex.terrain.Terrain;
+import com.alex.terrain.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -97,6 +94,10 @@ public class Tank {
         for (River river : this.tf.rivers) {
             detectTankOrTerrainCollisions(river.x, river.y, River.River_WIDTH, River.River_HEIGHT, false);
         }
+        for (BrickWall brick : this.tf.brickWalls) {
+            detectTankOrTerrainCollisions(brick.x, brick.y, BrickWall.BrickWall_WIDTH, BrickWall.BrickWall_HEIGHT, false);
+        }
+
         this.inGrass = false;
         for (Grass grass : this.tf.grasses) {
             if (detectTankOrTerrainCollisions(grass.x, grass.y, Grass.Grass_WIDTH, Grass.Grass_HEIGHT, true)){
@@ -107,6 +108,7 @@ public class Tank {
         if (inGrass) this.SPEED = 2;
         else this.SPEED = 5;
 
+        // Move the tank
         switch (dir) {
             case LEFT:
                 if (x > 0 && !isBlock[0]) {

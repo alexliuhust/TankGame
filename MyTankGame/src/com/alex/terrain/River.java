@@ -19,6 +19,7 @@ public class River {
     }
 
     public void paint(Graphics g) {
+//        System.out.println("river : " + x + "," + y);
         g.drawImage(river, x, y, null);
     }
 }

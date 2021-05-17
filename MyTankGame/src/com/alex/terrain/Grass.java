@@ -19,6 +19,7 @@ public class Grass {
     }
 
     public void paint(Graphics g) {
+//        System.out.println("grass : " + x + "," + y);
         g.drawImage(grass, x, y, null);
     }
 }

@@ -28,6 +28,8 @@ public class TankFrame extends Frame {
         this.setTitle("Tank Game");
         this.setVisible(true);
 
+        Mapper.addTerrain(DigitalMaps.map2, this);
+
         this.addKeyListener(new MyKeyListener());
 
         this.addWindowListener(new WindowAdapter() {
@@ -56,7 +58,13 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         // Terrain drawing
-        Mapper.drawTerrain(g, DigitalMaps.map1, this);
+        for (IronWall iron : this.ironWalls) iron.paint(g);
+        for (River river : this.rivers) river.paint(g);
+        for (Grass grass : this.grasses) grass.paint(g);
+        for (int i = brickWalls.size() - 1; i >= 0; i--) {
+            BrickWall brick = brickWalls.get(i);
+            brick.paint(g, this);
+        }
 
         // Show info of tanks
         Color c = g.getColor();

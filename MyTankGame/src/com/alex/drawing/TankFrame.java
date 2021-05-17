@@ -61,6 +61,18 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         // Terrain drawing
+        paintTerrain(g);
+        // Show info of tanks
+        paintInfoBar(g);
+        // Tanks drawing
+        if (!paintTanks(g)) return;
+        // Bullets drawing
+        for (int i = 0; i < bullets.size(); i++) {
+            bullets.get(i).paint(g);
+        }
+    }
+
+    private void paintTerrain(Graphics g) {
         for (IronWall iron : this.ironWalls) iron.paint(g);
         for (River river : this.rivers) river.paint(g);
         for (Grass grass : this.grasses) grass.paint(g);
@@ -68,37 +80,15 @@ public class TankFrame extends Frame {
             BrickWall brick = brickWalls.get(i);
             brick.paint(g, this);
         }
+    }
 
-        // Show info of tanks
+    private void paintInfoBar(Graphics g) {
         Color c = g.getColor();
         g.setColor(Color.WHITE);
         paintTankInfo(g, tank2);
         paintTankInfo(g, tank1);
         g.fillRect(0,140, GAME_WIDTH, 10);
         g.setColor(c);
-
-        // Tanks drawing
-        if (tank1.live && tank2.live) {
-            tank1.paint(g, tank2);
-            tank2.paint(g, tank1);
-        } else if (tank1.live) {
-            g.setColor(Color.WHITE);
-            g.drawString("Player 1 is the winner!",tank1.x, tank1.y);
-            g.setColor(c);
-            return;
-        } else if (tank2.live) {
-            g.setColor(Color.WHITE);
-            g.drawString("Player 2 is the winner!",tank2.x, tank2.y);
-            g.setColor(c);
-            return;
-        } else {
-            return;
-        }
-
-        // Bullets drawing
-        for (int i = 0; i < bullets.size(); i++) {
-            bullets.get(i).paint(g);
-        }
     }
 
     private void paintTankInfo(Graphics g, Tank tank) {
@@ -128,6 +118,27 @@ public class TankFrame extends Frame {
             g.fillOval(x, 90, 10, 10);
         } else {
             g.fillOval(x, 110, 10, 10);
+        }
+    }
+
+    private boolean paintTanks(Graphics g) {
+        Color c = g.getColor();
+        if (tank1.live && tank2.live) {
+            tank1.paint(g, tank2);
+            tank2.paint(g, tank1);
+            return true;
+        } else if (tank1.live) {
+            g.setColor(Color.WHITE);
+            g.drawString("Player 1 is the winner!",tank1.x, tank1.y);
+            g.setColor(c);
+            return false;
+        } else if (tank2.live) {
+            g.setColor(Color.WHITE);
+            g.drawString("Player 2 is the winner!",tank2.x, tank2.y);
+            g.setColor(c);
+            return false;
+        } else {
+            return false;
         }
     }
 

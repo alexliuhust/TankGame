@@ -27,7 +27,7 @@ public class Tank {
     public boolean live = true;
     public int fullFireTime = 50;
     public int fireTimeCount = fullFireTime;
-    public int max_hp = 10000;
+    public int max_hp = 2000;
     public int hp = max_hp;
     public int frontArmor = 20;
     public int sideArmor = 5;

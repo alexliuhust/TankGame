@@ -19,7 +19,7 @@ public class Bullet {
     private boolean live = true;
     int flyingTime = 0;
 
-    String type;
+    public String type;
 
 
     public Bullet(int x, int y, Dir dir, TankFrame tf, String type, Tank fromTank) {
@@ -83,7 +83,7 @@ public class Bullet {
                 break;
         }
 
-        if (x < 0 || y < 150 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
+        if (x < -SPEED || y < 150-SPEED || x > TankFrame.GAME_WIDTH + SPEED || y > TankFrame.GAME_HEIGHT + SPEED) {
             this.live = false;
         }
     }
@@ -116,7 +116,7 @@ public class Bullet {
         Rectangle rect2 = new Rectangle(brickWall.x, brickWall.y, BrickWall.BrickWall_WIDTH, BrickWall.BrickWall_HEIGHT);
         if (rect1.intersects(rect2)) {
             this.live = false;
-            brickWall.getHit();
+            brickWall.getHit(this);
             return true;
         }
         return false;

@@ -9,10 +9,14 @@ public class ResourceMgr {
 
     public static BufferedImage tankL1, tankR1, tankU1, tankD1;
     public static BufferedImage tankL2, tankR2, tankU2, tankD2;
+    public static BufferedImage apL, apR, apU, apD;
+    public static BufferedImage atL, atR, atU, atD;
+    public static BufferedImage heL, heR, heU, heD;
     public static BufferedImage ironWall, river, grass, brickWall, damagedBrick;
 
     static {
         try {
+            // ==============================================================================================
             tankL1 = ImageIO.read(Objects.requireNonNull(
                     ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankL1.png")));
             tankR1 = ImageIO.read(Objects.requireNonNull(
@@ -31,6 +35,35 @@ public class ResourceMgr {
             tankD2 = ImageIO.read(Objects.requireNonNull(
                     ResourceMgr.class.getClassLoader().getResourceAsStream("images/tankD2.png")));
 
+            // ==============================================================================================
+            apL = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/apL.png")));
+            apR = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/apR.png")));
+            apU = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/apU.png")));
+            apD = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/apD.png")));
+
+            atL = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/atL.png")));
+            atR = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/atR.png")));
+            atU = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/atU.png")));
+            atD = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/atD.png")));
+
+            heL = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/heL.png")));
+            heR = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/heR.png")));
+            heU = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/heU.png")));
+            heD = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/heD.png")));
+
+            // ==============================================================================================
             grass = ImageIO.read(Objects.requireNonNull(
                     ResourceMgr.class.getClassLoader().getResourceAsStream("images/grass.png")));
             ironWall = ImageIO.read(Objects.requireNonNull(

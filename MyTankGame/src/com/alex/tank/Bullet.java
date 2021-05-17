@@ -1,10 +1,12 @@
 package com.alex.tank;
 
+import com.alex.drawing.ResourceMgr;
 import com.alex.drawing.TankFrame;
 import com.alex.terrain.BrickWall;
 import com.alex.terrain.IronWall;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Bullet {
 
@@ -21,6 +23,7 @@ public class Bullet {
     int flyingTime = 0;
 
     public String type;
+    private BufferedImage bulletL, bulletR, bulletU, bulletD;
 
 
     public Bullet(int x, int y, Dir dir, TankFrame tf, String type, Tank fromTank) {
@@ -30,6 +33,28 @@ public class Bullet {
         this.tf = tf;
         this.type = type;
         this.fromTank = fromTank;
+        loadTypeImages();
+    }
+
+    private void loadTypeImages() {
+        if (this.type.equals("AP")) {
+            this.bulletL = ResourceMgr.apL;
+            this.bulletR = ResourceMgr.apR;
+            this.bulletU = ResourceMgr.apU;
+            this.bulletD = ResourceMgr.apD;
+        }
+        else if (this.type.equals("AT")) {
+            this.bulletL = ResourceMgr.atL;
+            this.bulletR = ResourceMgr.atR;
+            this.bulletU = ResourceMgr.atU;
+            this.bulletD = ResourceMgr.atD;
+        }
+        else {
+            this.bulletL = ResourceMgr.heL;
+            this.bulletR = ResourceMgr.heR;
+            this.bulletU = ResourceMgr.heU;
+            this.bulletD = ResourceMgr.heD;
+        }
     }
 
     public void paint(Graphics g) {
@@ -54,15 +79,30 @@ public class Bullet {
             }
         }
 
-
         this.flyingTime++;
 
-        Color c = g.getColor();
-        g.setColor(Color.RED);
-        g.fillOval(x, y, WIDTH, HEIGHT);
-        g.setColor(c);
-
+        loadDirImages(g);
         move();
+    }
+
+    private void loadDirImages(Graphics g) {
+        switch(dir) {
+            case LEFT:
+                g.drawImage(bulletL, x, y, null);
+                break;
+            case RIGHT:
+                g.drawImage(bulletR, x, y, null);
+                break;
+            case UP:
+                g.drawImage(bulletU, x, y, null);
+                break;
+            case DOWN:
+                g.drawImage(bulletD, x, y, null);
+                break;
+
+            default:
+                break;
+        }
     }
 
     private void move() {

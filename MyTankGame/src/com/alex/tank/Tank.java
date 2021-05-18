@@ -34,7 +34,7 @@ public class Tank {
     public int rearArmor = -20;
 
     public int max_reactiveArmor = 6;
-    public int reactiveArmor = max_reactiveArmor;
+    public int reactiveArmor = 1;
 
     public int AP_left = 20;
     public int AT_left = 20;

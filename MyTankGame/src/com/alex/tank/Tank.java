@@ -18,8 +18,8 @@ public class Tank {
     public int y;
     public Dir dir;
     int SPEED = 5;
-    static final int T_WIDTH = 30;
-    static final int T_HEIGHT = 30;
+    static int T_WIDTH;
+    static int T_HEIGHT;
     private final boolean[] isBlock = new boolean[4];
     private boolean inGrass = false;
 
@@ -57,6 +57,9 @@ public class Tank {
             this.tankU = ResourceMgr.tankU2;
             this.tankD = ResourceMgr.tankD2;
         }
+
+        T_WIDTH = tankD.getWidth();
+        T_HEIGHT = tankD.getHeight();
     }
 
     public void paint(Graphics g, Tank enemy) {
@@ -223,15 +226,18 @@ public class Tank {
 
         int bx = x + T_WIDTH / 2 - Bullet.WIDTH / 2;
         int by = y + T_HEIGHT / 2 - Bullet.HEIGHT / 2;
+
+        int bias = (T_WIDTH - Bullet.WIDTH) / 2 + 2 * Bullet.WIDTH;
+
         switch (dir) {
             case LEFT:
-                bx -= 25;break;
+                bx -= bias;break;
             case RIGHT:
-                bx += 25;break;
+                bx += bias;break;
             case UP:
-                by -= 25;break;
+                by -= bias;break;
             case DOWN:
-                by += 25;break;
+                by += bias;break;
         }
 
         Bullet b = new Bullet(bx, by, this.dir, this.tf, fire_type, this);

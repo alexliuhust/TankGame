@@ -15,8 +15,8 @@ public class Bullet {
 
     private int x;
     private int y;
-    static final int WIDTH = 10;
-    static final int HEIGHT = 10;
+    static int WIDTH;
+    static int HEIGHT;
     public Dir dir;
     private static final int SPEED = 35;
     private boolean live = true;
@@ -34,6 +34,9 @@ public class Bullet {
         this.type = type;
         this.fromTank = fromTank;
         loadTypeImages();
+
+        WIDTH = bulletD.getWidth();
+        HEIGHT = bulletD.getHeight();
     }
 
     private void loadTypeImages() {
@@ -135,9 +138,11 @@ public class Bullet {
         Rectangle rect2 = new Rectangle(tank.x, tank.y, Tank.T_WIDTH, Tank.T_HEIGHT);
 
         if (rect1.intersects(rect2)) {
-            this.live = false;
-            tank.getHit(this);
-            ans = true;
+            if (fromTank.player != tank.player) {
+                this.live = false;
+                tank.getHit(this);
+                ans = true;
+            }
         }
         return ans;
     }

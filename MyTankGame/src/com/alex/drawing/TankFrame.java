@@ -60,6 +60,7 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
+        this.bullets.add(new Bullet(0, 0, Dir.UP, this, "AT", null));
         // Terrain drawing
         paintTerrain(g);
         // Show info of tanks

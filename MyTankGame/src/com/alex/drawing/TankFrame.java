@@ -20,10 +20,12 @@ public class TankFrame extends Frame {
     public Tank tank1 = new Tank(0, 350, Dir.RIGHT, this, 1);
     public Tank tank2 = new Tank(1150, 350, Dir.LEFT, this, 2);
     public List<Bullet> bullets = new ArrayList<>();
+
     public List<IronWall> ironWalls = new ArrayList<>();
     public List<River> rivers = new ArrayList<>();
     public List<Grass> grasses = new ArrayList<>();
     public List<BrickWall> brickWalls = new ArrayList<>();
+    public List<Support> supports = new ArrayList<>();
 
     public TankFrame() {
         this.setSize(GAME_WIDTH, GAME_HEIGHT);
@@ -80,6 +82,10 @@ public class TankFrame extends Frame {
         for (int i = brickWalls.size() - 1; i >= 0; i--) {
             BrickWall brick = brickWalls.get(i);
             brick.paint(g, this);
+        }
+        for (int i = supports.size() - 1; i >= 0; i--) {
+            Support support = supports.get(i);
+            support.paint(g);
         }
     }
 

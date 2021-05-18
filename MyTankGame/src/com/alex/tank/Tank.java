@@ -33,7 +33,8 @@ public class Tank {
     public int sideArmor = 5;
     public int rearArmor = -20;
 
-    public int reactiveArmor = 5;
+    public int max_reactiveArmor = 6;
+    public int reactiveArmor = max_reactiveArmor;
 
     public int AP_left = 20;
     public int AT_left = 20;
@@ -183,7 +184,7 @@ public class Tank {
         g.setColor(Color.GREEN);
         g.fillRect(x, y, T_WIDTH * (hp * 100 / max_hp) / 100, 3);
         g.setColor(Color.BLUE);
-        g.fillRect(x, y + 3, T_WIDTH * (reactiveArmor * 10 / 5) / 10, 3);
+        g.fillRect(x, y + 3, T_WIDTH * (reactiveArmor * 10 / max_reactiveArmor) / 10, 3);
 
         g.setColor(c);
     }

@@ -13,6 +13,7 @@ public class ResourceMgr {
     public static BufferedImage atL, atR, atU, atD;
     public static BufferedImage heL, heR, heU, heD;
     public static BufferedImage ironWall, river, grass, brickWall, damagedBrick;
+    public static BufferedImage ammo, rearm, hpack;
 
     static {
         try {
@@ -75,6 +76,12 @@ public class ResourceMgr {
             damagedBrick = ImageIO.read(Objects.requireNonNull(
                     ResourceMgr.class.getClassLoader().getResourceAsStream("images/damagedBrick.png")));
 
+            ammo = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/ammo.png")));
+            rearm = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/rearm.png")));
+            hpack = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/hpack.png")));
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -30,6 +30,12 @@ public class Mapper {
                     BrickWall brickWall = new BrickWall(j * step, i * step + 150);
                     tf.brickWalls.add(brickWall);
                 }
+
+                // =========================================================================
+                else if (val == 5 || val == 6 || val == 7) {
+                    Support support = new Support(j * step, i * step + 150, val);
+                    tf.supports.add(support);
+                }
             }
         }
     }

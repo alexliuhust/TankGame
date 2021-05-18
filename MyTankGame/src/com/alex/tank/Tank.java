@@ -38,7 +38,7 @@ public class Tank {
 
     public int AP_left = 20;
     public int AT_left = 20;
-    public int HE_left = 20;
+    public int HE_left = 10;
     public int currentUse = 0;
 
 
@@ -98,15 +98,22 @@ public class Tank {
         if (!moving) return;
 
         // Detect collisions among tanks or between tanks and terrain
-        detectTankOrTerrainCollisions(tank.x, tank.y, T_WIDTH, T_HEIGHT, false);
+        detectTankOrTerrainCollisions(
+                tank.x, tank.y, T_WIDTH, T_HEIGHT, false);
+        for (Support support : this.tf.supports) {
+            detectSupportingPackageCollisions(support);
+        }
         for (IronWall iron : this.tf.ironWalls) {
-            detectTankOrTerrainCollisions(iron.x, iron.y, IronWall.IronWall_WIDTH, IronWall.IronWall_HEIGHT, false);
+            detectTankOrTerrainCollisions(
+                    iron.x, iron.y, IronWall.IronWall_WIDTH, IronWall.IronWall_HEIGHT, false);
         }
         for (River river : this.tf.rivers) {
-            detectTankOrTerrainCollisions(river.x, river.y, River.River_WIDTH, River.River_HEIGHT, false);
+            detectTankOrTerrainCollisions(
+                    river.x, river.y, River.River_WIDTH, River.River_HEIGHT, false);
         }
         for (BrickWall brick : this.tf.brickWalls) {
-            detectTankOrTerrainCollisions(brick.x, brick.y, BrickWall.BrickWall_WIDTH, BrickWall.BrickWall_HEIGHT, false);
+            detectTankOrTerrainCollisions(
+                    brick.x, brick.y, BrickWall.BrickWall_WIDTH, BrickWall.BrickWall_HEIGHT, false);
         }
 
         this.inGrass = false;
@@ -147,6 +154,14 @@ public class Tank {
         }
 
         Arrays.fill(isBlock, false);
+    }
+
+    private void detectSupportingPackageCollisions(Support support) {
+        Rectangle r1 = new Rectangle(x, y, T_WIDTH, T_HEIGHT);
+        Rectangle r2 = new Rectangle(support.x, support.y, Support.Support_WIDTH, Support.Support_HEIGHT);
+        if (r1.intersects(r2)) {
+            support.getPickedUp(this);
+        }
     }
 
     private boolean detectTankOrTerrainCollisions(int ox, int oy, int W, int H, boolean isGrass) {

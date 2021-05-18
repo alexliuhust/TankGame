@@ -85,7 +85,7 @@ public class TankFrame extends Frame {
         }
         for (int i = supports.size() - 1; i >= 0; i--) {
             Support support = supports.get(i);
-            support.paint(g);
+            support.paint(g, this);
         }
     }
 

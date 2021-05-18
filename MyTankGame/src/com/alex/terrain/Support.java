@@ -18,6 +18,8 @@ public class Support {
     // 7: Health package
     int type;
 
+    private boolean live = true;
+
     public Support(int x, int y, int type) {
         this.x = x;
         this.y = y;
@@ -29,14 +31,20 @@ public class Support {
         } else {
             this.support = ResourceMgr.hpack;
         }
+        Support_WIDTH = support.getWidth();
+        Support_HEIGHT = support.getHeight();
     }
 
-    public void paint(Graphics g) {
+    public void paint(Graphics g, TankFrame tf) {
+        if (!this.live) {
+            tf.supports.remove(this);
+            return;
+        }
         g.drawImage(support, x, y, null);
     }
 
-    public void getPickedUp(Tank tank, TankFrame tf) {
-        tf.supports.remove(this);
+    public void getPickedUp(Tank tank) {
+        this.live = false;
 
         if (type == 5) {
             if (tank.AP_left + tank.AT_left + tank.HE_left > 50) {

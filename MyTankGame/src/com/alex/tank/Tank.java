@@ -33,9 +33,11 @@ public class Tank {
     public int sideArmor = 5;
     public int rearArmor = -20;
 
-    public int AP_left = 10;
-    public int AT_left = 10;
-    public int HE_left = 10;
+    public int reactiveArmor = 5;
+
+    public int AP_left = 20;
+    public int AT_left = 20;
+    public int HE_left = 20;
     public int currentUse = 0;
 
 
@@ -88,7 +90,7 @@ public class Tank {
             fireTimeCount++;
         }
 
-        drawHpBar(g);
+        drawHpAndReArmBar(g);
     }
 
     private void move(Tank tank) {
@@ -174,12 +176,14 @@ public class Tank {
         return false;
     }
 
-    private void drawHpBar(Graphics g) {
+    private void drawHpAndReArmBar(Graphics g) {
         Color c = g.getColor();
         g.setColor(Color.WHITE);
         g.fillRect(x, y, T_WIDTH, 3);
         g.setColor(Color.GREEN);
         g.fillRect(x, y, T_WIDTH * (hp * 100 / max_hp) / 100, 3);
+        g.setColor(Color.BLUE);
+        g.fillRect(x, y + 3, T_WIDTH * (reactiveArmor * 10 / 5) / 10, 3);
 
         g.setColor(c);
     }
@@ -264,6 +268,17 @@ public class Tank {
     }
 
     public void getHit(Bullet b) {
+        if (this.reactiveArmor > 0) {
+            if (b.type.equals("HE")) {
+                reactiveArmor -= 3;
+                if (reactiveArmor < 0) reactiveArmor = 0;
+            } else {
+                reactiveArmor -= 1;
+            }
+
+            return;
+        }
+
         int damage = CalculateDamage.bulletDamage(b, this);
         System.out.println(damage);
         this.hp -= damage;

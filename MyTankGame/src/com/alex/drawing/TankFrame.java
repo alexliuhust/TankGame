@@ -102,9 +102,9 @@ public class TankFrame extends Frame {
         g.drawImage(tankIcon,x - 40, 35, null);
 
         if (tank.player == 1) {
-            g.drawString("Player 1: " + tank1.hp, x, 42);
+            g.drawString("Player 1: " + tank1.hp + "[" + tank1.reactiveArmor + "]", x, 42);
         } else {
-            g.drawString("Player 2: " + tank2.hp, x, 42);
+            g.drawString("Player 2: " + tank2.hp + "[" + tank2.reactiveArmor + "]", x, 42);
         }
 
         g.drawString("Reload: ", x, 60);

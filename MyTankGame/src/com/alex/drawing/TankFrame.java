@@ -33,7 +33,7 @@ public class TankFrame extends Frame {
         this.setTitle("Tank Game");
         this.setVisible(true);
 
-        Mapper.addTerrain(DigitalMaps.map1, this);
+        Mapper.addTerrain(DigitalMaps.broadRiver, this);
 
         this.addKeyListener(new MyKeyListener());
 

@@ -17,32 +17,35 @@ public class Tank {
     public int x;
     public int y;
     public Dir dir;
-    int SPEED = 5;
     static int T_WIDTH;
     static int T_HEIGHT;
     private final boolean[] isBlock = new boolean[4];
     private boolean inGrass = false;
-
     private boolean moving = false;
     public boolean live = true;
+
     public int fullFireTime = 50;
     public int fireTimeCount = fullFireTime;
-    public int max_hp = 2000;
-    public int hp = max_hp;
-    public int frontArmor = 20;
-    public int sideArmor = 5;
-    public int rearArmor = -20;
-
-    public int max_reactiveArmor = 6;
-    public int reactiveArmor = 1;
-
     public int AP_left = 10;
     public int AT_left = 10;
     public int HE_left = 10;
     public int currentUse = 0;
 
+    public String type;
+    public int max_hp = 2000;
+    public int hp = max_hp;
+    public int frontArmor = 20;
+    public int sideArmor = 5;
+    public int rearArmor = -20;
+    public int ORI_SPEED;
+    public int SPEED = ORI_SPEED;
 
-    public Tank(int x, int y, Dir dir, TankFrame tf, int player) {
+    public int max_reactiveArmor = 6;
+    public int reactiveArmor = 1;
+
+
+
+    public Tank(int x, int y, Dir dir, TankFrame tf, int player, String type) {
         this.x = x;
         this.y = y;
         this.dir = dir;
@@ -63,6 +66,26 @@ public class Tank {
 
         T_WIDTH = tankD.getWidth();
         T_HEIGHT = tankD.getHeight();
+
+        this.type = type;
+        if (type.equals("Heavy")) {
+            this.max_hp += 500;
+            this.hp += 500;
+            this.ORI_SPEED = 5;
+            this.frontArmor += 10;
+            this.sideArmor += 10;
+        }
+        else if (type.equals("Medium")) {
+            this.ORI_SPEED = 7;
+        }
+        else {
+            this.max_hp -= 500;
+            this.hp -= 500;
+            this.ORI_SPEED = 8;
+            this.frontArmor -= 10;
+            this.sideArmor -= 10;
+            reactiveArmor += 2;
+        }
     }
 
     public void paint(Graphics g, Tank enemy) {
@@ -123,8 +146,10 @@ public class Tank {
                 break;
             }
         }
-        if (inGrass) this.SPEED = 2;
-        else this.SPEED = 5;
+        if (inGrass) {
+            this.SPEED = ORI_SPEED - 3;
+        }
+        else this.SPEED = ORI_SPEED;
 
         // Move the tank
         switch (dir) {

@@ -17,8 +17,8 @@ import java.util.List;
 public class TankFrame extends Frame {
     public static final int GAME_WIDTH = 1200, GAME_HEIGHT = 850;
 
-    public Tank tank1 = new Tank(10, 160, Dir.RIGHT, this, 1);
-    public Tank tank2 = new Tank(1150, 800, Dir.LEFT, this, 2);
+    public Tank tank1 = new Tank(10,   160, Dir.RIGHT, this, 1, "Heavy");
+    public Tank tank2 = new Tank(1150, 800, Dir.LEFT,  this, 2, "Light");
     public List<Bullet> bullets = new ArrayList<>();
 
     public List<IronWall> ironWalls = new ArrayList<>();
@@ -33,7 +33,7 @@ public class TankFrame extends Frame {
         this.setTitle("Tank Game");
         this.setVisible(true);
 
-        Mapper.addTerrain(DigitalMaps.broadRiver, this);
+        Mapper.addTerrain(DigitalMaps.getMap("Grass Fort"), this);
 
         this.addKeyListener(new MyKeyListener());
 

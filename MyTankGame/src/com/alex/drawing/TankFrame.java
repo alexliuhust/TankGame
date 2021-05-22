@@ -17,8 +17,8 @@ import java.util.List;
 public class TankFrame extends Frame {
     public static final int GAME_WIDTH = 1200, GAME_HEIGHT = 850;
 
-    public Tank tank1 = new Tank(10,   160, Dir.RIGHT, this, 1, "Heavy");
-    public Tank tank2 = new Tank(1150, 800, Dir.LEFT,  this, 2, "Light");
+    public Tank tank1;
+    public Tank tank2;
     public List<Bullet> bullets = new ArrayList<>();
 
     public List<IronWall> ironWalls = new ArrayList<>();
@@ -27,13 +27,15 @@ public class TankFrame extends Frame {
     public List<BrickWall> brickWalls = new ArrayList<>();
     public List<Support> supports = new ArrayList<>();
 
-    public TankFrame() {
+    public TankFrame(String tank1type, String tank2type, String mapName) {
+        tank1 = new Tank(10,   160, Dir.RIGHT, this, 1, tank1type);
+        tank2 = new Tank(1150, 800, Dir.LEFT,  this, 2, tank2type);
+        Mapper.addTerrain(DigitalMaps.getMap(mapName), this);
+
         this.setSize(GAME_WIDTH, GAME_HEIGHT);
         this.setResizable(false);
         this.setTitle("Tank Game");
         this.setVisible(true);
-
-        Mapper.addTerrain(DigitalMaps.getMap("Grass Fort"), this);
 
         this.addKeyListener(new MyKeyListener());
 

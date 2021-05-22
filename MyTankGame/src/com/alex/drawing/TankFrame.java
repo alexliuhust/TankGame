@@ -68,15 +68,8 @@ public class TankFrame extends Frame {
     public void paint(Graphics g) {
         this.bullets.add(new Bullet(0, 0, Dir.UP, this, "AT", null));
 
-        Color c = g.getColor();
-        g.setColor(Color.WHITE);
-        Font originalFont = g.getFont();
-        Font titleFont = originalFont.deriveFont(originalFont.getSize() * 5.0F);
-        g.setFont(titleFont);
-        g.drawString(map_name, 450, 100);
-        g.setFont(originalFont);
-        g.setColor(c);
-
+        // Map Name
+        paintMapName(g);
         // Terrain drawing
         paintTerrain(g);
         // Show info of tanks
@@ -87,6 +80,17 @@ public class TankFrame extends Frame {
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).paint(g);
         }
+    }
+
+    private void paintMapName(Graphics g) {
+        Color c = g.getColor();
+        g.setColor(Color.WHITE);
+        Font originalFont = g.getFont();
+        Font titleFont = originalFont.deriveFont(originalFont.getSize() * 5.0F);
+        g.setFont(titleFont);
+        g.drawString(map_name, 450, 100);
+        g.setFont(originalFont);
+        g.setColor(c);
     }
 
     private void paintTerrain(Graphics g) {
@@ -119,12 +123,13 @@ public class TankFrame extends Frame {
             x += 1000;
             tankIcon = ResourceMgr.tankU2;
         }
-        g.drawImage(tankIcon,x - 65, 35, null);
+        g.drawImage(tankIcon,x - 55, 35, null);
 
         Font currentFont = g.getFont();
         Font newFont = currentFont.deriveFont(currentFont.getSize() * 1.2F);
         g.setFont(newFont);
-        g.drawString(tank.type, x - 65, 90);
+
+        g.drawString(tank.type, x - 55, 90);
         if (tank.player == 1) {
             g.drawString("Player 1: " + tank1.hp + "[" + tank1.reactiveArmor + "]", x, 45);
         } else {

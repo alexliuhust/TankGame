@@ -65,18 +65,18 @@ public class StartFrame extends Frame {
         g.setColor(Color.WHITE);
         int x1 = 50, x_m = 245, x2 = 480;
         g.setFont(titleFont);
-        g.drawString("PLAY 1", x1, 100);
-        g.drawString("MAPS", x_m + 20, 100);
-        g.drawString("PLAY 2", x2, 100);
+        g.drawString("PLAY 1", x1, 140);
+        g.drawString("MAPS", x_m + 20, 140);
+        g.drawString("PLAY 2", x2, 140);
 
 
         g.setFont(textFont);
         paintTankTypes(g, x1);
         paintTankTypes(g, x2);
         paintMapNames(g, x_m);
-        g.drawRect(x1 - 10, 170 + this.tank1selectedIndex * 100, 100, 40);
-        g.drawRect(x2 - 10, 170 + this.tank2selectedIndex * 100, 100, 40);
-        g.drawRect(x_m - 10, 170 + this.mapSelectedIndex * 100, 160, 40);
+        g.drawRect(x1 - 10, 170 + this.tank1selectedIndex * 50, 100, 40);
+        g.drawRect(x2 - 10, 170 + this.tank2selectedIndex * 50, 100, 40);
+        g.drawRect(x_m - 10, 170 + this.mapSelectedIndex * 50, 160, 40);
 
         g.setFont(originalFont);
         g.setColor(originalColor);
@@ -84,13 +84,13 @@ public class StartFrame extends Frame {
 
     private void paintTankTypes(Graphics g, int start_x) {
         for (int i = 0; i < tankTypes.size(); i++) {
-            g.drawString(tankTypes.get(i), start_x, 200 + i * 100);
+            g.drawString(tankTypes.get(i), start_x, 200 + i * 50);
         }
     }
 
     private void paintMapNames(Graphics g, int start_x) {
         for (int i = 0; i < mapNames.size(); i++) {
-            g.drawString(mapNames.get(i), start_x, 200 + i * 100);
+            g.drawString(mapNames.get(i), start_x, 200 + i * 50);
         }
     }
 
@@ -101,26 +101,26 @@ public class StartFrame extends Frame {
 
             switch (key) {
                 // Tanks move
-                case KeyEvent.VK_A:
+                case KeyEvent.VK_W:
                     tank1selectedIndex--;
                     if (tank1selectedIndex == -1) {
                         tank1selectedIndex = tankTypes.size() - 1;
                     }
                     break;
-                case KeyEvent.VK_D:
+                case KeyEvent.VK_S:
                     tank1selectedIndex++;
                     if (tank1selectedIndex == tankTypes.size()) {
                         tank1selectedIndex = 0;
                     }
                     break;
 
-                case KeyEvent.VK_LEFT:
+                case KeyEvent.VK_UP:
                     tank2selectedIndex--;
                     if (tank2selectedIndex == -1) {
                         tank2selectedIndex = tankTypes.size() - 1;
                     }
                     break;
-                case KeyEvent.VK_RIGHT:
+                case KeyEvent.VK_DOWN:
                     tank2selectedIndex++;
                     if (tank2selectedIndex == tankTypes.size()) {
                         tank2selectedIndex = 0;

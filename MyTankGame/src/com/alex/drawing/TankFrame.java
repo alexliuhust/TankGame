@@ -19,6 +19,7 @@ public class TankFrame extends Frame {
 
     public Tank tank1;
     public Tank tank2;
+    public String map_name;
     public List<Bullet> bullets = new ArrayList<>();
 
     public List<IronWall> ironWalls = new ArrayList<>();
@@ -31,6 +32,7 @@ public class TankFrame extends Frame {
         tank1 = new Tank(10,   160, Dir.RIGHT, this, 1, tank1type);
         tank2 = new Tank(1150, 800, Dir.LEFT,  this, 2, tank2type);
         Mapper.addTerrain(DigitalMaps.getMap(mapName), this);
+        this.map_name = mapName;
 
         this.setSize(GAME_WIDTH, GAME_HEIGHT);
         this.setResizable(false);
@@ -65,6 +67,16 @@ public class TankFrame extends Frame {
     @Override
     public void paint(Graphics g) {
         this.bullets.add(new Bullet(0, 0, Dir.UP, this, "AT", null));
+
+        Color c = g.getColor();
+        g.setColor(Color.WHITE);
+        Font originalFont = g.getFont();
+        Font titleFont = originalFont.deriveFont(originalFont.getSize() * 5.0F);
+        g.setFont(titleFont);
+        g.drawString(map_name, 450, 100);
+        g.setFont(originalFont);
+        g.setColor(c);
+
         // Terrain drawing
         paintTerrain(g);
         // Show info of tanks

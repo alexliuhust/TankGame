@@ -1,6 +1,8 @@
 package com.alex.terrain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DigitalMaps {
@@ -54,6 +56,11 @@ public class DigitalMaps {
 
     public static int[][] getMap(String name) {
         return map.get(name);
+    }
+
+    public static List<String> getAllMaps() {
+        List<String> list = new ArrayList<>(map.keySet());
+        return list;
     }
 
 }

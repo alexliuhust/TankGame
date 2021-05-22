@@ -100,31 +100,36 @@ public class TankFrame extends Frame {
 
     private void paintTankInfo(Graphics g, Tank tank) {
         BufferedImage tankIcon = ResourceMgr.tankU1;
-        int x = 50;
+        int x = 70;
         if (tank.player == 2) {
-            x += 1030;
+            x += 1000;
             tankIcon = ResourceMgr.tankU2;
         }
-        g.drawImage(tankIcon,x - 40, 35, null);
+        g.drawImage(tankIcon,x - 65, 35, null);
 
+        Font currentFont = g.getFont();
+        Font newFont = currentFont.deriveFont(currentFont.getSize() * 1.2F);
+        g.setFont(newFont);
+        g.drawString(tank.type, x - 65, 90);
         if (tank.player == 1) {
-            g.drawString("Player 1: " + tank1.hp + "[" + tank1.reactiveArmor + "]", x, 42);
+            g.drawString("Player 1: " + tank1.hp + "[" + tank1.reactiveArmor + "]", x, 45);
         } else {
-            g.drawString("Player 2: " + tank2.hp + "[" + tank2.reactiveArmor + "]", x, 42);
+            g.drawString("Player 2: " + tank2.hp + "[" + tank2.reactiveArmor + "]", x, 45);
         }
+        g.drawString("Reload: ", x, 70);
+        g.fillRect(x + 50, 60, tank.fireTimeCount, 10);
+        g.drawString("AP: " + tank.AP_left, x + 20, 90);
+        g.drawString("AT: " + tank.AT_left, x + 20, 110);
+        g.drawString("HE: " + tank.HE_left, x + 20, 130);
 
-        g.drawString("Reload: ", x, 60);
-        g.fillRect(x + 50, 50, tank.fireTimeCount, 10);
-        g.drawString("AP: " + tank.AP_left, x + 20, 80);
-        g.drawString("AT: " + tank.AT_left, x + 20, 100);
-        g.drawString("HE: " + tank.HE_left, x + 20, 120);
+        g.setFont(currentFont);
 
         if (tank.currentUse == 0) {
-            g.fillOval(x, 70, 10, 10);
+            g.fillOval(x, 80, 10, 10);
         } else if (tank.currentUse == 1) {
-            g.fillOval(x, 90, 10, 10);
+            g.fillOval(x, 100, 10, 10);
         } else {
-            g.fillOval(x, 110, 10, 10);
+            g.fillOval(x, 120, 10, 10);
         }
     }
 

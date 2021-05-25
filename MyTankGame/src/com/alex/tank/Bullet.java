@@ -67,17 +67,20 @@ public class Bullet {
         }
 
         if (collideWithTanks(tf.tank1) || collideWithTanks(tf.tank2)) {
+            bringExplosionImage();
             return;
         }
 
         for (IronWall ironWall : tf.ironWalls) {
             if (collideWithIronWalls(ironWall)) {
+                bringExplosionImage();
                 return;
             }
         }
 
         for (BrickWall brick : tf.brickWalls) {
             if (collideWithBrickWalls(brick)) {
+                bringExplosionImage();
                 return;
             }
         }
@@ -86,6 +89,10 @@ public class Bullet {
 
         loadDirImages(g);
         move();
+    }
+
+    private void bringExplosionImage() {
+        tf.explosions.add(new Explosion(x - 9, y - 9, this.type, tf));
     }
 
     private void loadDirImages(Graphics g) {

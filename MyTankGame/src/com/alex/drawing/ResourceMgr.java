@@ -14,6 +14,7 @@ public class ResourceMgr {
     public static BufferedImage heL, heR, heU, heD;
     public static BufferedImage ironWall, river, grass, brickWall, damagedBrick;
     public static BufferedImage ammo, rearm, hpack;
+    public static BufferedImage ap_exp, at_exp, he_exp;
 
     static {
         try {
@@ -82,6 +83,14 @@ public class ResourceMgr {
                     ResourceMgr.class.getClassLoader().getResourceAsStream("images/rearm.png")));
             hpack = ImageIO.read(Objects.requireNonNull(
                     ResourceMgr.class.getClassLoader().getResourceAsStream("images/hpack.png")));
+
+            // ==============================================================================================
+            ap_exp = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/ap_exp.png")));
+            at_exp = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/at_exp.png")));
+            he_exp = ImageIO.read(Objects.requireNonNull(
+                    ResourceMgr.class.getClassLoader().getResourceAsStream("images/he_exp.png")));
 
         } catch (IOException e) {
             e.printStackTrace();

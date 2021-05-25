@@ -2,6 +2,7 @@ package com.alex.drawing;
 
 import com.alex.tank.Bullet;
 import com.alex.tank.Dir;
+import com.alex.tank.Explosion;
 import com.alex.tank.Tank;
 import com.alex.terrain.*;
 
@@ -27,6 +28,7 @@ public class TankFrame extends Frame {
     public List<Grass> grasses = new ArrayList<>();
     public List<BrickWall> brickWalls = new ArrayList<>();
     public List<Support> supports = new ArrayList<>();
+    public List<Explosion> explosions = new ArrayList<>();
 
     public TankFrame(String tank1type, String tank2type, String mapName) {
         tank1 = new Tank(10,   160, Dir.RIGHT, this, 1, tank1type);
@@ -79,6 +81,10 @@ public class TankFrame extends Frame {
         // Bullets drawing
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).paint(g);
+        }
+        // Explosions drawing
+        for (int i = 0; i < explosions.size(); i++) {
+            explosions.get(i).paint(g);
         }
     }
 

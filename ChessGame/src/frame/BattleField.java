@@ -5,16 +5,23 @@ import model.Arm;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.*;
+import java.util.List;
 
 public class BattleField extends Frame {
 
     public static final int GAME_WIDTH = 580, GAME_HEIGHT = 650;
-    public Arm blue1, red1, red2;
+    public List<Arm> blue_arms = new ArrayList<>();
+    public List<Arm> red_arms = new ArrayList<>();
+    public boolean[][] board = new boolean[8][8];
 
     public BattleField() {
-        this.blue1 = new Arm(0,0, Color.BLUE);
-        this.red1 = new Arm(1,1, Color.RED);
-        this.red2 = new Arm(3,6, Color.RED);
+        blue_arms.add(new Arm(0,0, Color.BLUE, this));
+//        blue_arms.add(new Arm(4,0, Color.BLUE, this));
+//        blue_arms.add(new Arm(7,2, Color.BLUE, this));
+//        red_arms.add(new Arm(1,1, Color.RED, this));
+        red_arms.add(new Arm(7,0, Color.RED, this));
+//        red_arms.add(new Arm(5,7, Color.RED, this));
 
         this.setSize(GAME_WIDTH, GAME_HEIGHT);
         this.setResizable(false);
@@ -58,9 +65,30 @@ public class BattleField extends Frame {
         }
         g.setColor(originalColor);
 
-        this.blue1.paint(g);
-        this.red1.paint(g);
-        this.red2.paint(g);
+        // Set board info
+        for (boolean[] row : board) Arrays.fill(row, false);
+        for (int i = 0; i < blue_arms.size(); i++) {
+            board[blue_arms.get(i).y][blue_arms.get(i).x] = true;
+        }
+        for (int i = 0; i < red_arms.size(); i++) {
+            board[red_arms.get(i).y][red_arms.get(i).x] = true;
+        }
+        // ==================================
+//        for (boolean[] row : board) {
+//            for (boolean b : row) {
+//                System.out.print(b ? 1 : 0);
+//            }
+//            System.out.println();
+//        }
+        // ==================================
+
+        // Drawing arms
+        for (int i = 0; i < blue_arms.size(); i++) {
+            blue_arms.get(i).paint(g);
+        }
+        for (int i = 0; i < red_arms.size(); i++) {
+            red_arms.get(i).paint(g);
+        }
     }
 
 }

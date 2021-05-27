@@ -17,12 +17,12 @@ public class BattleField extends Frame {
     public boolean[][] board = new boolean[8][8];
 
     public BattleField() {
-        blue_arms.add(new Arm(7,2, Color.BLUE, this));
-        red_arms.add(new Arm(0,7, Color.RED, this));
+        blue_arms.add(new Arm(0,5, Color.BLUE, this));
+        red_arms.add(new Arm(0,3, Color.RED, this));
 
-        yellow_arms.add(new Arm(4,3, Color.YELLOW, this));
-        yellow_arms.add(new Arm(6,3, Color.YELLOW, this));
-        yellow_arms.add(new Arm(7,3, Color.YELLOW, this));
+        yellow_arms.add(new Arm(3,4, Color.YELLOW, this));
+        yellow_arms.add(new Arm(1,4, Color.YELLOW, this));
+        yellow_arms.add(new Arm(0,4, Color.YELLOW, this));
 
         this.setSize(GAME_WIDTH, GAME_HEIGHT);
         this.setResizable(false);

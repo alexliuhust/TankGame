@@ -35,6 +35,15 @@ public class Move {
 
         // The target is on the right
         else {
+            if (Math.abs(dis_y) > Math.abs(dis_x)) {
+                if (dis_y > 0 && !board[y + 1][x]) next_step[1] = y + 1;
+                else if (dis_y < 0 && !board[y - 1][x]) next_step[1] = y - 1;
+                else if (!board[y][x + 1]) next_step[0] = x + 1;
+            } else {
+                if (!board[y][x + 1]) next_step[0] = x + 1;
+                else if (dis_y > 0 && !board[y + 1][x]) next_step[1] = y + 1;
+                else if (dis_y < 0 && !board[y - 1][x]) next_step[1] = y - 1;
+            }
 
         }
 

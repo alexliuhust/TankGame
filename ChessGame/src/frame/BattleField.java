@@ -13,15 +13,16 @@ public class BattleField extends Frame {
     public static final int GAME_WIDTH = 580, GAME_HEIGHT = 650;
     public List<Arm> blue_arms = new ArrayList<>();
     public List<Arm> red_arms = new ArrayList<>();
+    public List<Arm> yellow_arms = new ArrayList<>();
     public boolean[][] board = new boolean[8][8];
 
     public BattleField() {
-        blue_arms.add(new Arm(0,0, Color.BLUE, this));
-//        blue_arms.add(new Arm(4,0, Color.BLUE, this));
-//        blue_arms.add(new Arm(7,2, Color.BLUE, this));
-//        red_arms.add(new Arm(1,1, Color.RED, this));
-        red_arms.add(new Arm(7,0, Color.RED, this));
-//        red_arms.add(new Arm(5,7, Color.RED, this));
+        blue_arms.add(new Arm(7,2, Color.BLUE, this));
+        red_arms.add(new Arm(0,7, Color.RED, this));
+
+        yellow_arms.add(new Arm(4,3, Color.YELLOW, this));
+        yellow_arms.add(new Arm(6,3, Color.YELLOW, this));
+        yellow_arms.add(new Arm(7,3, Color.YELLOW, this));
 
         this.setSize(GAME_WIDTH, GAME_HEIGHT);
         this.setResizable(false);
@@ -73,14 +74,9 @@ public class BattleField extends Frame {
         for (int i = 0; i < red_arms.size(); i++) {
             board[red_arms.get(i).y][red_arms.get(i).x] = true;
         }
-        // ==================================
-//        for (boolean[] row : board) {
-//            for (boolean b : row) {
-//                System.out.print(b ? 1 : 0);
-//            }
-//            System.out.println();
-//        }
-        // ==================================
+        for (int i = 0; i < yellow_arms.size(); i++) {
+            board[yellow_arms.get(i).y][yellow_arms.get(i).x] = true;
+        }
 
         // Drawing arms
         for (int i = 0; i < blue_arms.size(); i++) {
@@ -88,6 +84,9 @@ public class BattleField extends Frame {
         }
         for (int i = 0; i < red_arms.size(); i++) {
             red_arms.get(i).paint(g);
+        }
+        for (int i = 0; i < yellow_arms.size(); i++) {
+            yellow_arms.get(i).paint(g);
         }
     }
 

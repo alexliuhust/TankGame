@@ -21,7 +21,7 @@ public class Arm {
     public int max_hp = 100;
     public int hp = max_hp;
 
-    public int max_move_time = 20;
+    public int max_move_time = 10;
     public int move_time = 0;
 
     public int attack = 20;
@@ -54,11 +54,11 @@ public class Arm {
     }
 
     private void moveToTheClosestEnemy() {
-//        //==========================
-//        if (this.armColor.equals(Color.RED)) {
-//            return;
-//        }
-//        //============================
+        //==========================
+        if (!this.armColor.equals(Color.BLUE)) {
+            return;
+        }
+        //============================
 
         // Get the position of the closest enemy
         if (enemies.isEmpty()) return;

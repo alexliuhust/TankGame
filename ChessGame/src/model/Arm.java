@@ -4,8 +4,10 @@ import action.Attack;
 import action.Move;
 import effect.MeleeEffect;
 import frame.BattleField;
+import resource.ResourceManager;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.*;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -17,8 +19,9 @@ public class Arm {
     private List<Arm> comrades;
 
     public int x, y;
-    public static int Width = 40, Height = 40;
+    public static int Width = 46, Height = 46;
     public Color armColor;
+    public BufferedImage icon;
 
     public boolean alive = true;
     public int max_hp = 300;
@@ -51,6 +54,8 @@ public class Arm {
             this.enemies = bf.red_arms;
             this.comrades = bf.blue_arms;
         }
+
+        this.icon = ResourceManager.warrior_icon;
     }
 
     public void paint(Graphics g) {
@@ -62,7 +67,8 @@ public class Arm {
 
         Color originalColor = g.getColor();
         g.setColor(armColor);
-        g.fillOval(leftTop()[0], leftTop()[1], Width, Height);
+        g.fillRect(leftTop()[0], leftTop()[1], Width, Height);
+        g.drawImage(icon, leftTop()[0] + 3, leftTop()[1] + 3, null);
         paintHpBar(g);
         g.setColor(originalColor);
     }
@@ -93,9 +99,9 @@ public class Arm {
     private void paintHpBar(Graphics g) {
         Color c = g.getColor();
         g.setColor(Color.WHITE);
-        g.fillRect(leftTop()[0], leftTop()[1], Width, 3);
+        g.fillRect(leftTop()[0] + 3, leftTop()[1] + 3, Width - 6, 5);
         g.setColor(Color.GREEN);
-        g.fillRect(leftTop()[0], leftTop()[1], Width * (hp * 100 / max_hp) / 100, 3);
+        g.fillRect(leftTop()[0] + 3, leftTop()[1] + 3, Width * (hp * 100 / max_hp) / 100 - 6, 5);
 
         g.setColor(c);
     }

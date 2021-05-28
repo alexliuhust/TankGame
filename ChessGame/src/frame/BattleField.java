@@ -2,6 +2,7 @@ package frame;
 
 import effect.Effect;
 import model.Arm;
+import resource.ResourceManager;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -35,7 +36,6 @@ public class BattleField extends Frame {
         blue_arms.add(new Arm(4,7, Color.BLUE, this));
         blue_arms.get(3).range = 3;
         blue_arms.get(3).max_att_time = 30;
-
 
         this.setSize(GAME_WIDTH, GAME_HEIGHT);
         this.setResizable(false);

@@ -2,6 +2,15 @@ package action;
 
 public class Move {
 
+    /**
+     * The moving action: tell the arm where is the next step
+     * @param x the x-coordinate of the arm
+     * @param y the y-coordinate of the arm
+     * @param target_x the x-coordinate of the target that this arm intended to go
+     * @param target_y the y-coordinate of the target that this arm intended to go
+     * @param board the chess board
+     * @return the {x-coordinate, y-coordinate} of the next step
+     */
     public static int[] getNextStep(int x, int y, int target_x, int target_y, boolean[][] board) {
         int[] next_step = new int[] {x, y};
 
@@ -47,9 +56,6 @@ public class Move {
 
         }
 
-
-
-//        System.out.println(next_step[0] + "," + next_step[1]);
         return next_step;
     }
 

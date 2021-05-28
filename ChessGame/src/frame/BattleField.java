@@ -11,9 +11,11 @@ import java.util.List;
 public class BattleField extends Frame {
 
     public static final int GAME_WIDTH = 580, GAME_HEIGHT = 650;
+
     public List<Arm> blue_arms = new ArrayList<>();
     public List<Arm> red_arms = new ArrayList<>();
     public List<Arm> yellow_arms = new ArrayList<>();
+
     public boolean[][] board = new boolean[8][8];
 
     public BattleField() {

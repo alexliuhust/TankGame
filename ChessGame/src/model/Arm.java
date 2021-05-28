@@ -23,14 +23,14 @@ public class Arm {
     public int max_hp = 300;
     public int hp = max_hp;
 
-    public int max_move_time = 10;
+    public int max_move_time = 20;
     public int move_time = 0;
 
     public int attack = 40;
     public int range = 1;
 
-    public int max_att_time = 50;
-    public int att_time = 0;
+    public int max_att_time = 30;
+    public int att_time = max_att_time;
 
     public String type = "Worrier";
 
@@ -54,9 +54,7 @@ public class Arm {
             this.comrades.remove(this);
         }
 
-        this.att_time++;
-        this.move_time++;
-        moveToTheClosestEnemy();
+        moveOrAttack();
 
         Color originalColor = g.getColor();
         g.setColor(armColor);
@@ -65,6 +63,9 @@ public class Arm {
         g.setColor(originalColor);
     }
 
+    /**
+     * Draw the HP bar
+     */
     private void paintHpBar(Graphics g) {
         Color c = g.getColor();
         g.setColor(Color.WHITE);
@@ -75,33 +76,20 @@ public class Arm {
         g.setColor(c);
     }
 
-    private void moveToTheClosestEnemy() {
-//        //==========================
-//        if (!this.armColor.equals(Color.BLUE)) {
-//            return;
-//        }
-//        //============================
+    /**
+     * Find the closest enemy and try to attack it.
+     * If it is out of the range, try to move to it.
+     */
+    private void moveOrAttack() {
+        this.att_time++;
+        this.move_time++;
 
-        // Get the position of the closest enemy
-        if (enemies.isEmpty()) return;
-        PriorityQueue<Arm> pq = new PriorityQueue<>((a, b) -> {
-            int dis_a = Math.abs(x - a.x) + Math.abs(y - a.y);
-            int dis_b = Math.abs(x - b.x) + Math.abs(y - b.y);
-            return dis_a - dis_b;
-        });
-        pq.addAll(this.enemies);
-        Arm target = pq.poll();
-
-        int target_x = target.x;
-        int target_y = target.y;
-        int distance = Math.max(Math.abs(target_x - x), Math.abs(target_y - y));
+        Arm target = getTheClosestEnemy();
+        if (target == null) return;
 
         // If the closest enemy is within the range, attack it
+        int distance = Math.max(Math.abs(target.x - x), Math.abs(target.y - y));
         if (distance <= range) {
-            if (this.att_time < this.max_att_time) {
-                return;
-            }
-            this.att_time = 0;
             Attack.normalAttack(this, target);
             return;
         }
@@ -111,10 +99,29 @@ public class Arm {
             return;
         }
         this.move_time = 0;
-        int[] next_step = Move.getNextStep(x, y, target_x, target_y, bf.board);
+        int[] next_step = Move.getNextStep(x, y, target.x, target.y, bf.board);
 
         this.x = next_step[0];
         this.y = next_step[1];
+    }
+
+    /**
+     * Get the closest enemy
+     */
+    private Arm getTheClosestEnemy() {
+        // Get the position of the closest enemy
+        if (enemies.isEmpty()) {
+            return null;
+        }
+
+        PriorityQueue<Arm> pq = new PriorityQueue<>((a, b) -> {
+            int dis_a = Math.abs(x - a.x) + Math.abs(y - a.y);
+            int dis_b = Math.abs(x - b.x) + Math.abs(y - b.y);
+            return dis_a - dis_b;
+        });
+        pq.addAll(this.enemies);
+
+        return pq.poll();
     }
 
 }

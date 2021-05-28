@@ -2,6 +2,8 @@ package frame;
 
 import effect.Effect;
 import model.Arm;
+import model.Hunter;
+import model.Worrier;
 import resource.ResourceManager;
 
 import java.awt.*;
@@ -23,19 +25,15 @@ public class BattleField extends Frame {
     public boolean[][] board = new boolean[8][8];
 
     public BattleField() {
-        red_arms.add(new Arm(0,3, Color.RED, this));
-        red_arms.add(new Arm(2,3, Color.RED, this));
-        red_arms.add(new Arm(4,3, Color.RED, this));
-        red_arms.add(new Arm(6,3, Color.RED, this));
-        red_arms.get(0).max_att_time = 30;
-        red_arms.get(2).max_att_time = 30;
+        red_arms.add(new Worrier(0,3, Color.RED, this));
+        red_arms.add(new Worrier(2,3, Color.RED, this));
+        red_arms.add(new Worrier(4,3, Color.RED, this));
+        red_arms.add(new Worrier(6,3, Color.RED, this));
 
-        blue_arms.add(new Arm(2,4, Color.BLUE, this));
-        blue_arms.add(new Arm(3,4, Color.BLUE, this));
-        blue_arms.add(new Arm(4,4, Color.BLUE, this));
-        blue_arms.add(new Arm(4,7, Color.BLUE, this));
-        blue_arms.get(3).range = 3;
-        blue_arms.get(3).max_att_time = 30;
+        blue_arms.add(new Hunter(2,6, Color.BLUE, this));
+        blue_arms.add(new Hunter(3,6, Color.BLUE, this));
+        blue_arms.add(new Hunter(4,6, Color.BLUE, this));
+        blue_arms.add(new Hunter(4,7, Color.BLUE, this));
 
         this.setSize(GAME_WIDTH, GAME_HEIGHT);
         this.setResizable(false);

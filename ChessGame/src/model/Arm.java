@@ -36,7 +36,7 @@ public class Arm {
     public int max_att_time = 40;
     public int att_time;
 
-    public String type = "Worrier";
+    public String career;
 
     public Arm(int x, int y, Color armColor, BattleField bf) {
         this.bf = bf;
@@ -54,8 +54,6 @@ public class Arm {
             this.enemies = bf.red_arms;
             this.comrades = bf.blue_arms;
         }
-
-        this.icon = ResourceManager.warrior_icon;
     }
 
     public void paint(Graphics g) {
@@ -153,4 +151,6 @@ public class Arm {
         return pq.poll();
     }
 
+
+    public void castSkill(Arm caster, Arm target, BattleField bf) {}
 }

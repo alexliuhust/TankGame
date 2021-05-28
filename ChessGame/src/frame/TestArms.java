@@ -9,42 +9,100 @@ import java.awt.*;
 import java.util.List;
 
 public class TestArms {
-
-    public static void _2Warrior_4Hunter(List<Arm> list, boolean isBlue, BattleField bf) {
+    public static void _8Warrior(List<Arm> list, boolean isBlue, BattleField bf) {
         if (!isBlue) {
-            list.add(new Warrior(3,3, Color.RED, bf));
-            list.add(new Warrior(4,3, Color.RED, bf));
-            list.add(new Hunter(3,1,  Color.RED, bf));
-            list.add(new Hunter(4,1,  Color.RED, bf));
-            list.add(new Hunter(3,0,  Color.RED, bf));
-            list.add(new Hunter(4,0,  Color.RED, bf));
+            for (int x = 0; x <= 7; x++) {
+                list.add(new Warrior(x,2, Color.RED, bf));
+            }
         } else {
-            list.add(new Warrior(3,4, Color.BLUE, bf));
-            list.add(new Warrior(4,4, Color.BLUE, bf));
-            list.add(new Hunter(3,6,  Color.BLUE, bf));
-            list.add(new Hunter(4,6,  Color.BLUE, bf));
-            list.add(new Hunter(3,7,  Color.BLUE, bf));
-            list.add(new Hunter(4,7,  Color.BLUE, bf));
+            for (int x = 0; x <= 7; x++) {
+                list.add(new Warrior(x,5, Color.BLUE, bf));
+            }
         }
     }
 
-    public static void _4Knight_2Hunter(List<Arm> list, boolean isBlue, BattleField bf) {
+    public static void _8Knight(List<Arm> list, boolean isBlue, BattleField bf) {
         if (!isBlue) {
-            list.add(new Knight(2,1, Color.RED,  bf));
-            list.add(new Knight(3,1, Color.RED,  bf));
-            list.add(new Knight(4,1, Color.RED,  bf));
-            list.add(new Knight(5,1, Color.RED,  bf));
-
-            list.add(new Hunter(3,0, Color.RED,  bf));
-            list.add(new Hunter(4,0, Color.RED,  bf));
+            for (int x = 0; x <= 7; x++) {
+                list.add(new Knight(x,3, Color.RED, bf));
+            }
         } else {
-            list.add(new Knight(2,6, Color.BLUE, bf));
-            list.add(new Knight(3,6, Color.BLUE, bf));
-            list.add(new Knight(4,6, Color.BLUE, bf));
-            list.add(new Knight(5,6, Color.BLUE, bf));
+            for (int x = 0; x <= 7; x++) {
+                list.add(new Knight(x,4, Color.BLUE, bf));
+            }
+        }
+    }
 
-            list.add(new Hunter(3,7, Color.BLUE, bf));
-            list.add(new Hunter(4,7, Color.BLUE, bf));
+
+    public static void _2Warrior_6Hunter(List<Arm> list, boolean isBlue, BattleField bf) {
+        if (!isBlue) {
+            for (int x = 3; x <= 4; x++) {
+                list.add(new Warrior(x,2, Color.RED, bf));
+            }
+            for (int x = 1; x <= 6; x++) {
+                list.add(new Hunter(x,0,  Color.RED, bf));
+            }
+        } else {
+            for (int x = 3; x <= 4; x++) {
+                list.add(new Warrior(x,5, Color.BLUE, bf));
+            }
+            for (int x = 1; x <= 6; x++) {
+                list.add(new Hunter(x,7,  Color.BLUE, bf));
+            }
+        }
+    }
+
+    public static void _4Warrior_4Hunter(List<Arm> list, boolean isBlue, BattleField bf) {
+        if (!isBlue) {
+            for (int x = 2; x <= 5; x++) {
+                list.add(new Warrior(x,2, Color.RED, bf));
+            }
+            for (int x = 2; x <= 5; x++) {
+                list.add(new Hunter(x,0,  Color.RED, bf));
+            }
+        } else {
+            for (int x = 2; x <= 5; x++) {
+                list.add(new Warrior(x,5, Color.BLUE, bf));
+            }
+            for (int x = 2; x <= 5; x++) {
+                list.add(new Hunter(x,7,  Color.BLUE, bf));
+            }
+        }
+    }
+
+    public static void _2Knight_6Hunter(List<Arm> list, boolean isBlue, BattleField bf) {
+        if (!isBlue) {
+            for (int x = 3; x <= 4; x++) {
+                list.add(new Knight(x,2, Color.RED, bf));
+            }
+            for (int x = 1; x <= 6; x++) {
+                list.add(new Hunter(x,0,  Color.RED, bf));
+            }
+        } else {
+            for (int x = 3; x <= 4; x++) {
+                list.add(new Knight(x,5, Color.BLUE, bf));
+            }
+            for (int x = 1; x <= 6; x++) {
+                list.add(new Hunter(x,7,  Color.BLUE, bf));
+            }
+        }
+    }
+
+    public static void _4Knight_4Hunter(List<Arm> list, boolean isBlue, BattleField bf) {
+        if (!isBlue) {
+            for (int x = 2; x <= 5; x++) {
+                list.add(new Knight(x,2, Color.RED, bf));
+            }
+            for (int x = 2; x <= 5; x++) {
+                list.add(new Hunter(x,0,  Color.RED, bf));
+            }
+        } else {
+            for (int x = 2; x <= 5; x++) {
+                list.add(new Knight(x,5, Color.BLUE, bf));
+            }
+            for (int x = 2; x <= 5; x++) {
+                list.add(new Hunter(x,7,  Color.BLUE, bf));
+            }
         }
     }
 }

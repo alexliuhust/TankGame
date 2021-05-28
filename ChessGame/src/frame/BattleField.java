@@ -26,8 +26,20 @@ public class BattleField extends Frame {
     public boolean[][] board = new boolean[8][8];
 
     public BattleField() {
-        TestArms._2Warrior_4Hunter(red_arms, false, this);
-        TestArms._4Knight_2Hunter(blue_arms, true , this);
+//        TestArms._8Warrior(         red_arms, false,    this);
+//        TestArms._8Knight(          red_arms, false,    this);
+//        TestArms._2Knight_6Hunter(  red_arms, false,    this);
+//        TestArms._2Warrior_6Hunter( red_arms, false,    this);
+        TestArms._4Warrior_4Hunter( red_arms, false ,   this);
+//        TestArms._4Knight_4Hunter(  red_arms, false ,   this);
+
+//        TestArms._8Warrior(        blue_arms, true,     this);
+//        TestArms._8Knight(         blue_arms, true,     this);
+//        TestArms._2Knight_6Hunter( blue_arms, true,     this);
+        TestArms._2Warrior_6Hunter(blue_arms, true,     this);
+//        TestArms._4Warrior_4Hunter(blue_arms, true ,    this);
+//        TestArms._4Knight_4Hunter( blue_arms, true ,    this);
+
 
         CareerBonus.careerBonus(red_arms);
         CareerBonus.careerBonus(blue_arms);

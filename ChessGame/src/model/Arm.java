@@ -45,8 +45,8 @@ public class Arm {
         this.y = y;
         this.armColor = armColor;
         Random rand = new Random();
-        this.move_time = rand.nextInt(max_move_time / 2);
-        this.att_time = rand.nextInt(max_att_time / 2);
+        this.move_time = rand.nextInt(max_move_time);
+        this.att_time = rand.nextInt(max_att_time);
 
         if (this.armColor.equals(Color.RED)){
             this.enemies = bf.blue_arms;

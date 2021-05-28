@@ -25,12 +25,12 @@ public class BattleField extends Frame {
         red_arms.add(new Arm(0,0, Color.RED, this));
         red_arms.add(new Arm(5,0, Color.RED, this));
         red_arms.add(new Arm(6,0, Color.RED, this));
-//        red_arms.get(2).range = 4;
+        red_arms.get(2).range = 4;
 
         blue_arms.add(new Arm(3,5, Color.BLUE, this));
         blue_arms.add(new Arm(4,5, Color.BLUE, this));
-        blue_arms.add(new Arm(3,7, Color.BLUE, this));
-//        blue_arms.get(2).range = 4;
+        blue_arms.add(new Arm(7,7, Color.BLUE, this));
+        blue_arms.get(2).range = 4;
 
         this.setSize(GAME_WIDTH, GAME_HEIGHT);
         this.setResizable(false);

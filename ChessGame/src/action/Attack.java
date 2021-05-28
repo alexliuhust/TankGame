@@ -1,6 +1,7 @@
 package action;
 
 import effect.MeleeEffect;
+import effect.RangeEffect;
 import frame.BattleField;
 import model.Arm;
 
@@ -16,13 +17,24 @@ public class Attack {
             return;
         }
 
-        bf.effects.add(new MeleeEffect(attacker, defender, attacker.armColor));
-
-        attacker.att_time = 0;
-        defender.hp -= attacker.attack;
-        if (defender.hp < 0) {
-            defender.alive = false;
+        // Melee
+        if (attacker.range <= 1) {
+            bf.effects.add(new MeleeEffect(attacker, defender, attacker.armColor));
+            attacker.att_time = 0;
+            defender.hp -= attacker.attack;
+            if (defender.hp < 0) {
+                defender.alive = false;
+            }
         }
+
+        // Range
+        else {
+            bf.effects.add(new RangeEffect(attacker, defender, attacker.armColor));
+            attacker.att_time = 0;
+        }
+
+
+
     }
 
 }

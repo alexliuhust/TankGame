@@ -70,7 +70,7 @@ public class Arm {
     /**
      * Get the left-top position
      */
-    private int[] leftTop() {
+    public int[] leftTop() {
         int[] pos = new int[2];
         pos[0] = this.x * 60 + 50 + (60 - Width) / 2;
         pos[1] = this.y * 60 + 100 + (60 - Height) / 2;

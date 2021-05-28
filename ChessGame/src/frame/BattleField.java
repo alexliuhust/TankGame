@@ -23,21 +23,24 @@ public class BattleField extends Frame {
 
     public BattleField() {
         red_arms.add(new Arm(0,3, Color.RED, this));
-        red_arms.add(new Arm(5,3, Color.RED, this));
+        red_arms.add(new Arm(2,3, Color.RED, this));
+        red_arms.add(new Arm(4,3, Color.RED, this));
         red_arms.add(new Arm(6,3, Color.RED, this));
-        red_arms.get(2).max_att_time = 20;
+        red_arms.get(0).max_att_time = 30;
+        red_arms.get(2).max_att_time = 30;
 
-        blue_arms.add(new Arm(3,5, Color.BLUE, this));
-        blue_arms.add(new Arm(4,5, Color.BLUE, this));
+        blue_arms.add(new Arm(2,4, Color.BLUE, this));
+        blue_arms.add(new Arm(3,4, Color.BLUE, this));
+        blue_arms.add(new Arm(4,4, Color.BLUE, this));
         blue_arms.add(new Arm(4,7, Color.BLUE, this));
-        blue_arms.get(2).range = 7;
-        blue_arms.get(2).max_att_time = 15;
+        blue_arms.get(3).range = 3;
+        blue_arms.get(3).max_att_time = 30;
+
 
         this.setSize(GAME_WIDTH, GAME_HEIGHT);
         this.setResizable(false);
         this.setTitle("My Chess Game");
         this.setVisible(true);
-
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -63,6 +66,27 @@ public class BattleField extends Frame {
 
     @Override
     public void paint(Graphics g) {
+        paintFieldInfo(g);
+        paintBoard(g);
+        updateBoardInfo();
+        paintArmsAndEffects(g);
+    }
+
+    /**
+     * Paint field info
+     */
+    private void paintFieldInfo(Graphics g) {
+        Color originalColor = g.getColor();
+        g.setColor(Color.WHITE);
+        g.drawString("Red  Player has " + red_arms.size() + " arms", 45, 75);
+        g.drawString("Blue Player has " + blue_arms.size() + " arms", 45, 610);
+        g.setColor(originalColor);
+    }
+
+    /**
+     * Paint chess board
+     */
+    private void paintBoard(Graphics g) {
         Color originalColor = g.getColor();
         g.setColor(Color.GRAY);
         // Drawing horizontal lines
@@ -73,13 +97,13 @@ public class BattleField extends Frame {
         for (int i = 0; i < 9; i++) {
             g.fillRect(45 + i * 60,95,10, 490);
         }
-
-        g.setColor(Color.WHITE);
-        g.drawString("Red  Player has " + red_arms.size() + " arms", 45, 75);
-        g.drawString("Blue Player has " + blue_arms.size() + " arms", 45, 610);
         g.setColor(originalColor);
+    }
 
-        // Set board info
+    /**
+     * Update occupation info of the chess board
+     */
+    private void updateBoardInfo() {
         for (boolean[] row : board) Arrays.fill(row, false);
         for (int i = 0; i < blue_arms.size(); i++) {
             board[blue_arms.get(i).y][blue_arms.get(i).x] = true;
@@ -87,7 +111,12 @@ public class BattleField extends Frame {
         for (int i = 0; i < red_arms.size(); i++) {
             board[red_arms.get(i).y][red_arms.get(i).x] = true;
         }
+    }
 
+    /**
+     * Paint arms and effects
+     */
+    private void paintArmsAndEffects(Graphics g) {
         // Drawing arms
         for (int i = 0; i < blue_arms.size(); i++) {
             blue_arms.get(i).paint(g);
@@ -101,5 +130,4 @@ public class BattleField extends Frame {
             effects.get(i).paint(g, this);
         }
     }
-
 }

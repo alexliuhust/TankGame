@@ -7,10 +7,17 @@ import java.awt.*;
 
 public class MeleeEffect extends Effect {
 
-    public MeleeEffect(int x, int y, Color effectColor) {
+    public int x1;
+    public int y1;
+    public int x2;
+    public int y2;
+
+    public MeleeEffect(Arm attacker, Arm defender, Color effectColor) {
         super();
-        this.x = x;
-        this.y = y;
+        this.x1 = attacker.central()[0];
+        this.y1 = attacker.central()[1];
+        this.x2 = defender.central()[0];
+        this.y2 = defender.central()[1];
         this.lastTime = 10;
         this.effectColor = effectColor;
     }
@@ -25,10 +32,7 @@ public class MeleeEffect extends Effect {
         Color originalColor = g.getColor();
         g.setColor(effectColor);
 
-        int posX = this.x * 60 + 50 + (60 - Arm.Width) / 2;
-        int posY = this.y * 60 + 100 + (60 - Arm.Width) / 2 + Arm.Width / 2;
-
-        g.fillRect(posX, posY, 40, 4);
+        g.drawLine(x1, y1, x2, y2);
 
         g.setColor(originalColor);
     }

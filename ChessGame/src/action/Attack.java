@@ -15,7 +15,9 @@ public class Attack {
         if (attacker.att_time < attacker.max_att_time) {
             return;
         }
-        bf.effects.add(new MeleeEffect(defender.x, defender.y, attacker.armColor));
+
+        bf.effects.add(new MeleeEffect(attacker, defender, attacker.armColor));
+
         attacker.att_time = 0;
         defender.hp -= attacker.attack;
         if (defender.hp < 0) {

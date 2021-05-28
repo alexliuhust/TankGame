@@ -78,6 +78,16 @@ public class Arm {
     }
 
     /**
+     * Get central position
+     */
+    public int[] central() {
+        int[] pos = new int[2];
+        pos[0] = this.x * 60 + 50 + (60 - Width) / 2 + Width / 2;
+        pos[1] = this.y * 60 + 100 + (60 - Height) / 2 + Height / 2;
+        return pos;
+    }
+
+    /**
      * Draw the HP bar
      */
     private void paintHpBar(Graphics g) {

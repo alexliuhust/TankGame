@@ -1,5 +1,6 @@
 package effect;
 
+import action.Attack;
 import frame.BattleField;
 import model.Arm;
 
@@ -46,7 +47,7 @@ public class RangeEffect extends Effect {
         Rectangle r1 = new Rectangle(x, y, this.Width, this.Height);
         Rectangle r2 = new Rectangle(defender.leftTop()[0], defender.leftTop()[1], Arm.Width, Arm.Height);
         if (r1.intersects(r2)) {
-            defender.hp -= attacker.attack;
+            defender.hp -= Attack.calculateDamage(attacker, defender);
             if (defender.hp < 0) {
                 defender.alive = false;
             }

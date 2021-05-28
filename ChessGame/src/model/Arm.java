@@ -24,10 +24,11 @@ public class Arm {
     public BufferedImage icon;
 
     public boolean alive = true;
-    public int max_hp = 300;
+    public int max_hp = 200;
     public int hp = max_hp;
+    public int armor = 0;
 
-    public int max_move_time = 20;
+    public int max_move_time = 40;
     public int move_time;
 
     public int attack = 40;
@@ -54,6 +55,14 @@ public class Arm {
             this.enemies = bf.red_arms;
             this.comrades = bf.blue_arms;
         }
+    }
+
+    public int getArmor() {
+        return this.armor;
+    }
+
+    public int getAttack() {
+        return this.attack;
     }
 
     public void paint(Graphics g) {

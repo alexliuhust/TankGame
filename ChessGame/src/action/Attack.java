@@ -21,7 +21,7 @@ public class Attack {
         if (attacker.range <= 1) {
             bf.effects.add(new MeleeEffect(attacker, defender, attacker.armColor));
             attacker.att_time = 0;
-            defender.hp -= attacker.attack;
+            defender.hp -= calculateDamage(attacker, defender);
             if (defender.hp < 0) {
                 defender.alive = false;
             }
@@ -32,9 +32,11 @@ public class Attack {
             bf.effects.add(new RangeEffect(attacker, defender, attacker.armColor));
             attacker.att_time = 0;
         }
+    }
 
-
-
+    public static int calculateDamage(Arm attacker, Arm defender) {
+        int damage = attacker.getAttack() * (100 - defender.getArmor()) / 100;
+        return damage;
     }
 
 }

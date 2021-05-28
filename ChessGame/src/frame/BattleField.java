@@ -1,10 +1,11 @@
 package frame;
 
+import action.CareerBonus;
 import effect.Effect;
 import model.Arm;
 import model.Hunter;
-import model.Worrier;
-import resource.ResourceManager;
+import model.Knight;
+import model.Warrior;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -25,15 +26,11 @@ public class BattleField extends Frame {
     public boolean[][] board = new boolean[8][8];
 
     public BattleField() {
-        red_arms.add(new Worrier(0,3, Color.RED, this));
-        red_arms.add(new Worrier(2,3, Color.RED, this));
-        red_arms.add(new Worrier(4,3, Color.RED, this));
-        red_arms.add(new Worrier(6,3, Color.RED, this));
+        TestArms._2Warrior_4Hunter(red_arms, false, this);
+        TestArms._4Knight_2Hunter(blue_arms, true , this);
 
-        blue_arms.add(new Hunter(2,6, Color.BLUE, this));
-        blue_arms.add(new Hunter(3,6, Color.BLUE, this));
-        blue_arms.add(new Hunter(4,6, Color.BLUE, this));
-        blue_arms.add(new Hunter(4,7, Color.BLUE, this));
+        CareerBonus.careerBonus(red_arms);
+        CareerBonus.careerBonus(blue_arms);
 
         this.setSize(GAME_WIDTH, GAME_HEIGHT);
         this.setResizable(false);

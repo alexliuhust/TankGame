@@ -1,5 +1,6 @@
 package frame;
 
+import effect.Effect;
 import model.Arm;
 
 import java.awt.*;
@@ -16,24 +17,20 @@ public class BattleField extends Frame {
     public List<Arm> red_arms = new ArrayList<>();
     public List<Arm> yellow_arms = new ArrayList<>();
 
+    public List<Effect> effects = new ArrayList<>();
+
     public boolean[][] board = new boolean[8][8];
 
     public BattleField() {
         red_arms.add(new Arm(0,0, Color.RED, this));
         red_arms.add(new Arm(5,0, Color.RED, this));
         red_arms.add(new Arm(6,0, Color.RED, this));
+//        red_arms.get(2).range = 4;
 
-        blue_arms.add(new Arm(1,7, Color.BLUE, this));
-        blue_arms.add(new Arm(2,7, Color.BLUE, this));
-        blue_arms.add(new Arm(7,7, Color.BLUE, this));
-
-//        yellow_arms.add(new Arm(3,4, Color.YELLOW, this));
-//        yellow_arms.add(new Arm(1,4, Color.YELLOW, this));
-//        yellow_arms.add(new Arm(0,4, Color.YELLOW, this));
-//        yellow_arms.add(new Arm(2,0, Color.YELLOW, this));
-//        yellow_arms.add(new Arm(2,1, Color.YELLOW, this));
-//        yellow_arms.add(new Arm(5,6, Color.YELLOW, this));
-//        yellow_arms.add(new Arm(6,6, Color.YELLOW, this));
+        blue_arms.add(new Arm(3,5, Color.BLUE, this));
+        blue_arms.add(new Arm(4,5, Color.BLUE, this));
+        blue_arms.add(new Arm(3,7, Color.BLUE, this));
+//        blue_arms.get(2).range = 4;
 
         this.setSize(GAME_WIDTH, GAME_HEIGHT);
         this.setResizable(false);
@@ -81,10 +78,6 @@ public class BattleField extends Frame {
         g.drawString("Blue Player has " + blue_arms.size() + " arms", 45, 610);
         g.setColor(originalColor);
 
-
-
-
-
         // Set board info
         for (boolean[] row : board) Arrays.fill(row, false);
         for (int i = 0; i < blue_arms.size(); i++) {
@@ -93,9 +86,6 @@ public class BattleField extends Frame {
         for (int i = 0; i < red_arms.size(); i++) {
             board[red_arms.get(i).y][red_arms.get(i).x] = true;
         }
-//        for (int i = 0; i < yellow_arms.size(); i++) {
-//            board[yellow_arms.get(i).y][yellow_arms.get(i).x] = true;
-//        }
 
         // Drawing arms
         for (int i = 0; i < blue_arms.size(); i++) {
@@ -104,9 +94,11 @@ public class BattleField extends Frame {
         for (int i = 0; i < red_arms.size(); i++) {
             red_arms.get(i).paint(g);
         }
-//        for (int i = 0; i < yellow_arms.size(); i++) {
-//            yellow_arms.get(i).paint(g);
-//        }
+
+        // Drawing effects
+        for (int i = 0; i < effects.size(); i++) {
+            effects.get(i).paint(g, this);
+        }
     }
 
 }

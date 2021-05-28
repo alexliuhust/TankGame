@@ -33,6 +33,10 @@ public class MeleeEffect extends Effect {
         g.setColor(effectColor);
 
         g.drawLine(x1, y1, x2, y2);
+        g.drawLine(x1 - 1, y1 - 1, x2 - 1, y2 - 1);
+        g.drawLine(x1 + 1, y1 - 1, x2 + 1, y2 - 1);
+        g.drawLine(x1 - 1, y1 + 1, x2 - 1, y2 + 1);
+        g.drawLine(x1 + 1, y1 + 1, x2 + 1, y2 + 1);
 
         g.setColor(originalColor);
     }

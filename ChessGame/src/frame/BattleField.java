@@ -36,9 +36,9 @@ public class BattleField extends Frame {
 //        TestArms._8Warrior(        blue_arms, true,     this);
 //        TestArms._8Knight(         blue_arms, true,     this);
 //        TestArms._2Knight_6Hunter( blue_arms, true,     this);
-        TestArms._2Warrior_6Hunter(blue_arms, true,     this);
+//        TestArms._2Warrior_6Hunter(blue_arms, true,     this);
 //        TestArms._4Warrior_4Hunter(blue_arms, true ,    this);
-//        TestArms._4Knight_4Hunter( blue_arms, true ,    this);
+        TestArms._4Knight_4Hunter( blue_arms, true ,    this);
 
 
         CareerBonus.careerBonus(red_arms);

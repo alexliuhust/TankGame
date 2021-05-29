@@ -69,6 +69,7 @@ public class Arm {
         if (!this.alive) {
             this.comrades.remove(this);
         }
+        fieldUpdate(g);
 
         moveOrAttack();
 
@@ -79,6 +80,9 @@ public class Arm {
         paintHpBar(g);
         g.setColor(originalColor);
     }
+
+
+    public void fieldUpdate(Graphics g) {}
 
     /**
      * Get the left-top position

@@ -1,6 +1,7 @@
 package action;
 
 import model.Arm;
+import model.Knight;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,14 +24,18 @@ public class CareerBonus {
             for (Arm arm : map.get("Warrior")) {
                 arm.max_hp  += level * 100;
                 arm.hp      += level * 100;
+                if (level >= 3) {
+                    arm.armor += 2 * level;
+                }
             }
         }
 
         // Knight
         if (map.containsKey("Knight") && !map.get("Knight").isEmpty()) {
-            int level = map.get("Knight").size() / 2;
+            int level = map.get("Knight").size();
             for (Arm arm : map.get("Knight")) {
-                arm.armor += level * 16;
+                Knight knight = (Knight) arm;
+                knight.shieldProb += level * 8;
             }
         }
 

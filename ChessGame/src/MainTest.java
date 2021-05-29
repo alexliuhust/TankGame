@@ -6,7 +6,7 @@ public class MainTest {
         BattleField bf = new BattleField();
 
         while (true) {
-            Thread.sleep(15);
+            Thread.sleep(25);
             bf.repaint();
         }
     }

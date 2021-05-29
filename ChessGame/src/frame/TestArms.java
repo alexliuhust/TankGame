@@ -40,14 +40,14 @@ public class TestArms {
                 list.add(new Warrior(x,2, Color.RED, bf));
             }
             for (int x = 1; x <= 6; x++) {
-                list.add(new Hunter(x,0,  Color.RED, bf));
+                list.add(new Hunter(x,1,  Color.RED, bf));
             }
         } else {
             for (int x = 3; x <= 4; x++) {
                 list.add(new Warrior(x,5, Color.BLUE, bf));
             }
             for (int x = 1; x <= 6; x++) {
-                list.add(new Hunter(x,7,  Color.BLUE, bf));
+                list.add(new Hunter(x,6,  Color.BLUE, bf));
             }
         }
     }
@@ -58,14 +58,14 @@ public class TestArms {
                 list.add(new Warrior(x,2, Color.RED, bf));
             }
             for (int x = 2; x <= 5; x++) {
-                list.add(new Hunter(x,0,  Color.RED, bf));
+                list.add(new Hunter(x,1,  Color.RED, bf));
             }
         } else {
             for (int x = 2; x <= 5; x++) {
                 list.add(new Warrior(x,5, Color.BLUE, bf));
             }
             for (int x = 2; x <= 5; x++) {
-                list.add(new Hunter(x,7,  Color.BLUE, bf));
+                list.add(new Hunter(x,6,  Color.BLUE, bf));
             }
         }
     }
@@ -76,7 +76,7 @@ public class TestArms {
                 list.add(new Knight(x,2, Color.RED, bf));
             }
             for (int x = 1; x <= 6; x++) {
-                list.add(new Hunter(x,0,  Color.RED, bf));
+                list.add(new Hunter(x,1,  Color.RED, bf));
             }
         } else {
             for (int x = 3; x <= 4; x++) {
@@ -94,14 +94,14 @@ public class TestArms {
                 list.add(new Knight(x,2, Color.RED, bf));
             }
             for (int x = 2; x <= 5; x++) {
-                list.add(new Hunter(x,0,  Color.RED, bf));
+                list.add(new Hunter(x,1,  Color.RED, bf));
             }
         } else {
             for (int x = 2; x <= 5; x++) {
                 list.add(new Knight(x,5, Color.BLUE, bf));
             }
             for (int x = 2; x <= 5; x++) {
-                list.add(new Hunter(x,7,  Color.BLUE, bf));
+                list.add(new Hunter(x,6,  Color.BLUE, bf));
             }
         }
     }

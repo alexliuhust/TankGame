@@ -26,7 +26,7 @@ public class Knight extends Arm {
     @Override
     public int getArmor() {
         if (shieldActivated) {
-            return Math.min(this.armor + shieldProb, 100);
+            return Math.min(this.armor + 55 + rand.nextInt(25), 100);
         }
         return this.armor;
     }
@@ -35,19 +35,37 @@ public class Knight extends Arm {
     public void fieldUpdate(Graphics g) {
         Color originalColor = g.getColor();
         g.setColor(Color.CYAN);
+
+        // The shield is on
         if (shieldTime > 0) {
             shieldActivated = true;
-            g.drawOval(leftTop()[0] - 5, leftTop()[1] - 5, Width + 10, Height + 10);
+            if (shieldTime >= 10) {
+                g.drawOval(leftTop()[0] - 4, leftTop()[1] - 4, Width + 8, Height + 8);
+            }
+            if (shieldTime >= 20) {
+                g.drawOval(leftTop()[0] - 5, leftTop()[1] - 5, Width + 10, Height + 10);
+            }
+            if (shieldTime >= 30) {
+                g.drawOval(leftTop()[0] - 6, leftTop()[1] - 6, Width + 12, Height + 12);
+            }
             shieldTime--;
         }
+
+        // Randomly generate shield
         else {
-            if (rand.nextInt(100) <= this.shieldProb) {
-                shieldTime = 30;
-                shieldActivated = true;
+            if (shieldTime == 0) {
+                if (rand.nextInt(100) <= this.shieldProb) {
+                    shieldTime = rand.nextInt(30) + 30;
+                    shieldActivated = true;
+                } else {
+                    shieldTime = rand.nextInt(20) - 30;
+                    shieldActivated = false;
+                }
             } else {
-                shieldTime = 0;
-                shieldActivated = false;
+                shieldTime++;
             }
+
+
         }
         g.setColor(originalColor);
     }

@@ -18,8 +18,6 @@ public class Assassin extends Arm {
         this.career = "Assassin";
         this.icon = ResourceManager.assassin_icon;
 
-        this.max_move_time -= 10;
-
         this.attack += 20;
     }
 
@@ -44,7 +42,7 @@ public class Assassin extends Arm {
     @Override
     public int getArmor() {
         int r = rand.nextInt(100);
-        if (r <= 20) {
+        if (r <= 15) {
             return 100;
         }
         return this.armor;
@@ -69,7 +67,7 @@ public class Assassin extends Arm {
         int maxDis = Integer.MIN_VALUE;
         Arm farthest = null;
         for (Arm arm : enemies) {
-            int dis = Math.abs(x - arm.x) + Math.abs(y - arm.y);
+            int dis = (x - arm.x) * (x - arm.x) + (y - arm.y) * (y - arm.y);
             if (dis > maxDis) {
                 maxDis = dis;
                 farthest = arm;

@@ -17,5 +17,7 @@ public class Warrior extends Arm {
         this.armor += 30;
 
         this.max_move_time -= 15;
+
+        this.attack -= 20;
     }
 }

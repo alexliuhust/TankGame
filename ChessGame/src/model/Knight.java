@@ -21,6 +21,8 @@ public class Knight extends Arm {
         this.max_hp += 100;
         this.hp += 100;
         this.armor += 20;
+
+        this.attack -= 20;
     }
 
     @Override

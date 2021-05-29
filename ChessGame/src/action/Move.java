@@ -11,7 +11,7 @@ public class Move {
      * @param board the chess board
      * @return the {x-coordinate, y-coordinate} of the next step
      */
-    public static int[] getNextStep(int x, int y, int target_x, int target_y, boolean[][] board) {
+    public static int[] normalMove(int x, int y, int target_x, int target_y, boolean[][] board) {
         int[] next_step = new int[] {x, y};
 
         int dis_x = target_x - x;
@@ -59,4 +59,39 @@ public class Move {
         return next_step;
     }
 
+    /**
+     * The Assassin tries to jump to the farthest enemy
+     * @param x the x-coordinate of the arm
+     * @param y the y-coordinate of the arm
+     * @param target_x the x-coordinate of the target that this arm intended to go
+     * @param target_y the y-coordinate of the target that this arm intended to go
+     * @param board the chess board
+     * @return the {x-coordinate, y-coordinate} of the next step
+     */
+    public static int[] assassinJump(int x, int y, int target_x, int target_y, boolean[][] board) {
+        int[] next_step = new int[] {x, y};
+
+        if (target_y <= 3 && target_y >= 1) {
+            if (!board[target_y - 1][target_x]) {
+                next_step[0] = target_x;
+                next_step[1] = target_y - 1;
+            }
+            else if (!board[target_y + 1][target_x]) {
+                next_step[0] = target_x;
+                next_step[1] = target_y + 1;
+            }
+        }
+
+        else if (target_y >= 4 && target_y <= 6) {
+            if (!board[target_y + 1][target_x]) {
+                next_step[0] = target_x;
+                next_step[1] = target_y + 1;
+            }
+            else if (!board[target_y - 1][target_x]) {
+                next_step[0] = target_x;
+                next_step[1] = target_y - 1;
+            }
+        }
+        return next_step;
+    }
 }

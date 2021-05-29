@@ -64,8 +64,6 @@ public class Knight extends Arm {
             } else {
                 shieldTime++;
             }
-
-
         }
         g.setColor(originalColor);
     }

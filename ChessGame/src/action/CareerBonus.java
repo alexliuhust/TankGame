@@ -1,6 +1,7 @@
 package action;
 
 import model.Arm;
+import model.Assassin;
 import model.Knight;
 
 import java.util.ArrayList;
@@ -45,6 +46,15 @@ public class CareerBonus {
             int level = map.get("Hunter").size() / 2;
             for (Arm arm : map.get("Hunter")) {
                 arm.max_att_time -= level * 4;
+            }
+        }
+
+        // Assassin
+        if (map.containsKey("Assassin") && !map.get("Assassin").isEmpty()) {
+            int level = map.get("Assassin").size() / 2;
+            for (Arm arm : map.get("Assassin")) {
+                Assassin assassin = (Assassin) arm;
+                assassin.strikeProb += level * 18;
             }
         }
 

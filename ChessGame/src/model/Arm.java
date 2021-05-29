@@ -2,9 +2,7 @@ package model;
 
 import action.Attack;
 import action.Move;
-import effect.MeleeEffect;
 import frame.BattleField;
-import resource.ResourceManager;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -14,9 +12,10 @@ import java.util.PriorityQueue;
 
 public class Arm {
 
-    private BattleField bf;
-    private List<Arm> enemies;
-    private List<Arm> comrades;
+    protected BattleField bf;
+    protected List<Arm> enemies;
+    protected List<Arm> comrades;
+    private Arm target;
 
     public int x, y;
     public static int Width = 46, Height = 46;
@@ -81,7 +80,6 @@ public class Arm {
         g.setColor(originalColor);
     }
 
-
     public void fieldUpdate(Graphics g) {}
 
     /**
@@ -95,7 +93,7 @@ public class Arm {
     }
 
     /**
-     * Get central position
+     * Get the central position
      */
     public int[] central() {
         int[] pos = new int[2];
@@ -125,24 +123,37 @@ public class Arm {
         this.att_time++;
         this.move_time++;
 
-        Arm target = getTheClosestEnemy();
+        this.target = getTheClosestEnemy();
         if (target == null) return;
-
         // If the closest enemy is within the range, attack it
-        int distance = Math.max(Math.abs(target.x - x), Math.abs(target.y - y));
-        if (distance <= range) {
-
-            Attack.normalAttack(this, target, this.bf);
-            return;
-        }
+        if (tryToAttackTheClosestEnemy(target)) return;
 
         // Move one step to the target
         if (this.move_time < this.max_move_time) return;
         this.move_time = 0;
-        int[] next_step = Move.getNextStep(x, y, target.x, target.y, bf.board);
+        int[] next_pos = this.getNextPosition();
+        this.x = next_pos[0];
+        this.y = next_pos[1];
+    }
 
-        this.x = next_step[0];
-        this.y = next_step[1];
+    /**
+     * Get the next position
+     */
+    protected int[] getNextPosition() {
+        return Move.normalMove(x, y, target.x, target.y, bf.board);
+    }
+
+    /**
+     * Try to attack the closest enemy
+     */
+    private boolean tryToAttackTheClosestEnemy(Arm target) {
+        // If the closest enemy is within the range, attack it
+        int distance = Math.max(Math.abs(target.x - x), Math.abs(target.y - y));
+        if (distance <= range) {
+            Attack.normalAttack(this, target, this.bf);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -154,16 +165,21 @@ public class Arm {
             return null;
         }
 
-        PriorityQueue<Arm> pq = new PriorityQueue<>((a, b) -> {
-            int dis_a = Math.abs(x - a.x) + Math.abs(y - a.y);
-            int dis_b = Math.abs(x - b.x) + Math.abs(y - b.y);
-            return dis_a - dis_b;
-        });
-        pq.addAll(this.enemies);
+        int minDis = Integer.MAX_VALUE;
+        Arm closest = null;
+        for (Arm arm : enemies) {
+            int dis = Math.abs(x - arm.x) + Math.abs(y - arm.y);
+            if (dis < minDis) {
+                minDis = dis;
+                closest = arm;
+            }
+        }
 
-        return pq.poll();
+        return closest;
     }
 
-
+    /**
+     * Use the skills
+     */
     public void castSkill(Arm caster, Arm target, BattleField bf) {}
 }

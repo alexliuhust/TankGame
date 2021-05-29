@@ -1,9 +1,6 @@
 package frame;
 
-import model.Arm;
-import model.Hunter;
-import model.Knight;
-import model.Warrior;
+import model.*;
 
 import java.awt.*;
 import java.util.List;
@@ -33,6 +30,17 @@ public class TestArms {
         }
     }
 
+    public static void _8Assassin(List<Arm> list, boolean isBlue, BattleField bf) {
+        if (!isBlue) {
+            for (int x = 0; x <= 7; x++) {
+                list.add(new Assassin(x,1, Color.RED, bf));
+            }
+        } else {
+            for (int x = 0; x <= 7; x++) {
+                list.add(new Assassin(x,6, Color.BLUE, bf));
+            }
+        }
+    }
 
     public static void _2Warrior_6Hunter(List<Arm> list, boolean isBlue, BattleField bf) {
         if (!isBlue) {
@@ -105,4 +113,5 @@ public class TestArms {
             }
         }
     }
+
 }

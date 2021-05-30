@@ -109,7 +109,7 @@ public class TestArms {
                 list.add(new Knight(x,5, Color.BLUE, bf));
             }
             for (int x = 1; x <= 6; x++) {
-                list.add(new Hunter(x,7,  Color.BLUE, bf));
+                list.add(new Hunter(x,6,  Color.BLUE, bf));
             }
         }
     }

@@ -66,7 +66,7 @@ public class Arm {
 
     public void paint(Graphics g) {
         if (!this.alive) {
-//            this.bf.board[y][x] = false;
+            this.bf.board[y][x] = false;
             this.comrades.remove(this);
         }
         fieldUpdate(g);
@@ -74,7 +74,6 @@ public class Arm {
 
         Color originalColor = g.getColor();
         g.setColor(armColor);
-//        this.bf.board[y][x] = true;
         g.fillRect(leftTop()[0], leftTop()[1], Width, Height);
         g.drawImage(icon, leftTop()[0] + 3, leftTop()[1] + 3, null);
         paintHpBar(g);
@@ -133,10 +132,11 @@ public class Arm {
         if (this.move_time < this.max_move_time) return;
         this.move_time = 0;
         int[] next_pos = this.getNextPosition();
-//        this.bf.board[y][x] = false;
+
+        this.bf.board[y][x] = false;
         this.x = next_pos[0];
         this.y = next_pos[1];
-
+        this.bf.board[y][x] = true;
     }
 
     /**

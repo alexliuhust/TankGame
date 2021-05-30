@@ -23,15 +23,15 @@ public class BattleField extends Frame {
     public boolean[][] board = new boolean[8][8];
 
     public BattleField() {
-//        TestArms._8Warrior(         red_arms, false,    this);
-//        TestArms._2Warrior_6Hunter( red_arms, false ,   this);
-//        TestArms._8Assassin(        red_arms, false ,   this);
-        TestArms._4Warrior_4Assassin(red_arms, false ,   this);
+//        TestArms._8Assassin(          red_arms, false ,   this);
+//        TestArms._8Warrior(           red_arms, false ,   this);
+        TestArms._4Warrior_4Hunter(   red_arms, false ,   this);
+//        TestArms._4Warrior_4Assassin( red_arms, false ,   this);
 
-//        TestArms._8Knight(         blue_arms, true,     this);
-        TestArms._4Knight_4Hunter( blue_arms, true ,    this);
-//        TestArms._8Assassin(        blue_arms, true ,   this);
-//        TestArms._4Knight_4Assassin(blue_arms, true ,   this);
+        TestArms._8Assassin(          blue_arms, true ,   this);
+//        TestArms._8Knight(            blue_arms, true ,   this);
+//        TestArms._4Knight_4Hunter(    blue_arms, true ,   this);
+//        TestArms._4Knight_4Assassin(  blue_arms, true ,   this);
 
 
         CareerBonus.careerBonus(red_arms);
@@ -68,7 +68,6 @@ public class BattleField extends Frame {
     public void paint(Graphics g) {
         paintFieldInfo(g);
         paintBoard(g);
-        updateBoardInfo();
         paintArmsAndEffects(g);
     }
 
@@ -98,19 +97,6 @@ public class BattleField extends Frame {
             g.fillRect(45 + i * 60,95,10, 490);
         }
         g.setColor(originalColor);
-    }
-
-    /**
-     * Update occupation info of the chess board
-     */
-    private void updateBoardInfo() {
-        for (boolean[] row : board) Arrays.fill(row, false);
-        for (int i = 0; i < blue_arms.size(); i++) {
-            board[blue_arms.get(i).y][blue_arms.get(i).x] = true;
-        }
-        for (int i = 0; i < red_arms.size(); i++) {
-            board[red_arms.get(i).y][red_arms.get(i).x] = true;
-        }
     }
 
     /**

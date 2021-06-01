@@ -23,10 +23,10 @@ public class BattleField extends Frame {
     public boolean[][] board = new boolean[8][8];
 
     public BattleField() {
-        TestArms._8Assassin(          red_arms, false ,   this);
+//        TestArms._8Assassin(          red_arms, false ,   this);
 //        TestArms._8Warrior(           red_arms, false ,   this);
 //        TestArms._2Warrior_6Hunter(   red_arms, false ,   this);
-//        TestArms._4Warrior_4Assassin( red_arms, false ,   this);
+        TestArms._4Warrior_4Assassin( red_arms, false ,   this);
 
 //        TestArms._8Assassin(          blue_arms, true ,   this);
 //        TestArms._8Knight(            blue_arms, true ,   this);

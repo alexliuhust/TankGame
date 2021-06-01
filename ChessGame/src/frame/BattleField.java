@@ -66,9 +66,27 @@ public class BattleField extends Frame {
 
     @Override
     public void paint(Graphics g) {
+//        paintBoardOccupied(g);
         paintFieldInfo(g);
         paintBoard(g);
         paintArmsAndEffects(g);
+    }
+
+    /**
+     * Paint occupation of the board
+     */
+    private void paintBoardOccupied(Graphics g) {
+        Color originalColor = g.getColor();
+        g.setColor(Color.PINK);
+
+        for (int i = 0; i <= 7; i++) {
+            for (int j = 0; j <= 7; j++) {
+                if (board[i][j]) {
+                    g.fillRect(57 + j * 60,107 + i * 60,46, 46);
+                }
+            }
+        }
+        g.setColor(originalColor);
     }
 
     /**

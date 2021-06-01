@@ -25,7 +25,8 @@ public class CareerBonus {
             for (Arm arm : map.get("Warrior")) {
                 arm.max_hp  += level * 100;
                 arm.hp      += level * 100;
-                if (level >= 4) {
+                arm.attack  += level * 5;
+                if (level >= 2) {
                     arm.armor += 2 * level;
                 }
             }
@@ -37,7 +38,7 @@ public class CareerBonus {
             for (Arm arm : map.get("Knight")) {
                 Knight knight = (Knight) arm;
                 knight.shieldProb += level * 20;
-                knight.shieldTime += 10;
+                knight.shieldTime += 15;
             }
         }
 
@@ -54,7 +55,9 @@ public class CareerBonus {
             int level = map.get("Assassin").size() / 2;
             for (Arm arm : map.get("Assassin")) {
                 Assassin assassin = (Assassin) arm;
-                assassin.strikeProb += level * 18;
+                assassin.strikeProb += level * 9;
+                assassin.max_att_time -= level;
+                assassin.dodgeProb += level * 1.5;
             }
         }
 

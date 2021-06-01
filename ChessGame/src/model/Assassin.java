@@ -15,13 +15,12 @@ public class Assassin extends Arm {
     private Random rand = new Random();
 
     public int strikeProb = 18;
+    public int dodgeProb = 5;
 
     public Assassin(int x, int y, Color armColor, BattleField bf) {
         super(x, y, armColor, bf);
         this.career = "Assassin";
         this.icon = ResourceManager.assassin_icon;
-
-        this.attack += 20;
     }
 
     @Override
@@ -45,7 +44,7 @@ public class Assassin extends Arm {
     @Override
     public int getArmor() {
         int r = rand.nextInt(100);
-        if (r <= 15) {
+        if (r <= dodgeProb) {
             return 100;
         }
         return this.armor;

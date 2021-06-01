@@ -1,5 +1,7 @@
 package action;
 
+import java.util.PriorityQueue;
+
 public class Move {
 
     /**
@@ -18,45 +20,21 @@ public class Move {
         int dis_y = target_y - y;
         if (dis_x == 0 && dis_y == 0) return next_step;
 
-        // Straight Direction
-        if (dis_x * dis_y == 0) {
-            if (dis_x == 0) {
-                if (dis_y > 0 && !board[y + 1][x]) next_step[1] = y + 1;
-                else if (dis_y < 0 && !board[y - 1][x]) next_step[1] = y - 1;
-            } else {
-                if (dis_x > 0 && !board[y][x + 1]) next_step[0] = x + 1;
-                else if (dis_x < 0 && !board[y][x - 1]) next_step[0] = x - 1;
-            }
+        int[] dir = {0, -1, 0, 1, 0};
+        PriorityQueue<int[]> availableCells = new PriorityQueue<>((a, b) -> {
+            int dis_a = (a[0] - target_x) * (a[0] - target_x) + (a[1] - target_y) * (a[1] - target_y);
+            int dis_b = (b[0] - target_x) * (b[0] - target_x) + (b[1] - target_y) * (b[1] - target_y);
+            return dis_a - dis_b;
+        });
+        for (int k = 0; k < 4; k++) {
+            int nx = x + dir[k];
+            int ny = y + dir[k + 1];
+            if (nx < 0 || nx >= 8 || ny < 0 || ny >= 8 || board[ny][nx]) continue;
+
+            availableCells.add(new int[] {nx, ny});
         }
 
-        // The target is on the left
-        if (dis_x < 0) {
-            if (Math.abs(dis_y) > Math.abs(dis_x)) {
-                if (dis_y > 0 && !board[y + 1][x]) next_step[1] = y + 1;
-                else if (dis_y < 0 && !board[y - 1][x]) next_step[1] = y - 1;
-                else if (!board[y][x - 1]) next_step[0] = x - 1;
-            } else {
-                if (!board[y][x - 1]) next_step[0] = x - 1;
-                else if (dis_y > 0 && !board[y + 1][x]) next_step[1] = y + 1;
-                else if (dis_y < 0 && !board[y - 1][x]) next_step[1] = y - 1;
-            }
-        }
-
-        // The target is on the right
-        else {
-            if (Math.abs(dis_y) > Math.abs(dis_x)) {
-                if (dis_y > 0 && !board[y + 1][x]) next_step[1] = y + 1;
-                else if (dis_y < 0 && !board[y - 1][x]) next_step[1] = y - 1;
-                else if (!board[y][x + 1]) next_step[0] = x + 1;
-            } else {
-                if (!board[y][x + 1]) next_step[0] = x + 1;
-                else if (dis_y > 0 && !board[y + 1][x]) next_step[1] = y + 1;
-                else if (dis_y < 0 && !board[y - 1][x]) next_step[1] = y - 1;
-            }
-
-        }
-
-        return next_step;
+        if (availableCells.isEmpty()) return next_step;
+        return availableCells.peek();
     }
-
 }

@@ -12,9 +12,9 @@ public class Warrior extends Arm {
         this.career = "Warrior";
         this.icon = ResourceManager.warrior_icon;
 
-        this.max_hp += 300;
-        this.hp += 300;
-        this.armor += 30;
+        this.max_hp += 200;
+        this.hp += 200;
+        this.armor += 5;
 
         this.max_move_time -= 15;
 

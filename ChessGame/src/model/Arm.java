@@ -44,7 +44,7 @@ public class Arm {
         this.y = y;
         this.armColor = armColor;
         Random rand = new Random();
-        this.move_time = rand.nextInt(max_move_time);
+        this.move_time = rand.nextInt(max_move_time / 4);
         this.att_time = rand.nextInt(max_att_time);
 
         if (this.armColor.equals(Color.RED)){
@@ -68,7 +68,9 @@ public class Arm {
         if (!this.alive) {
             this.bf.board[y][x] = false;
             this.comrades.remove(this);
+            return;
         }
+        this.bf.board[y][x] = true;
         fieldUpdate(g);
         moveOrAttack();
 

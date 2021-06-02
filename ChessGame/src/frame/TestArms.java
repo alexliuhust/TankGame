@@ -16,8 +16,11 @@ public class TestArms {
         int numWarrior = Math.min(nums[0], 8);
         int numKnight = Math.min(nums[1], 8);
         int numHunter = Math.min(nums[2], 8);
-        int numAssassin = Math.min(nums[3], 8);
+        int numMage = Math.min(nums[3], 8);
+        int numAssassin = Math.min(nums[4], 8);
 
+
+        // Melee
         int frontY = isBlue ? 4 : 3;
         int pos = 0;
         for (int i = 0; i < numWarrior; i++) {
@@ -33,13 +36,23 @@ public class TestArms {
             pos++;
         }
 
+        // Range
         int rangeY = isBlue ? 6 : 1;
         pos = 0;
         for (int i = 0; i < numHunter; i++) {
             list.add(new Hunter(frontLine_middle[pos], rangeY, armColor, bf));
             pos++;
         }
+        if (pos == 8 || numHunter == 8) {
+            pos = 0;
+            rangeY = isBlue ? 7 : 0;
+        }
+        for (int i = 0; i < numMage; i++) {
+            list.add(new Mage(frontLine_middle[pos], rangeY, armColor, bf));
+            pos++;
+        }
 
+        // Jump
         int jumpY = isBlue ? 7 : 0;
         pos = 0;
         for (int i = 0; i < numAssassin; i++) {

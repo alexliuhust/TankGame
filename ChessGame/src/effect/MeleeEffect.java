@@ -17,8 +17,8 @@ public class MeleeEffect extends Effect {
         put("1_0", new int[]{20, 20});
         put("1_1", new int[]{0, 20});
         put("0_1", new int[]{-20, 20});
-        put("1-_1", new int[]{-20, 0});
-        put("1-_0", new int[]{-20, -20});
+        put("-1_1", new int[]{-20, 0});
+        put("-1_0", new int[]{-20, -20});
     }};
 
     public MeleeEffect(Arm attacker, Arm defender, Color effectColor) {

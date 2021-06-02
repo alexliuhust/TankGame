@@ -1,6 +1,6 @@
 package frame;
 
-import action.CareerBonus;
+import common.CareerBonus;
 import effect.Effect;
 import model.Arm;
 
@@ -12,27 +12,18 @@ import java.util.List;
 
 public class BattleField extends Frame {
 
-    public static final int GAME_WIDTH = 580, GAME_HEIGHT = 650;
+    public static final int GAME_WIDTH = 580, GAME_HEIGHT = 680;
 
     public List<Arm> blue_arms = new ArrayList<>();
     public List<Arm> red_arms = new ArrayList<>();
-    public List<Arm> yellow_arms = new ArrayList<>();
 
     public List<Effect> effects = new ArrayList<>();
 
     public boolean[][] board = new boolean[8][8];
 
     public BattleField() {
-//        TestArms._8Assassin(          red_arms, false ,   this);
-//        TestArms._8Warrior(           red_arms, false ,   this);
-        TestArms._4Warrior_4Hunter(   red_arms, false ,   this);
-//        TestArms._4Warrior_4Assassin( red_arms, false ,   this);
-
-//        TestArms._8Assassin(          blue_arms, true ,   this);
-//        TestArms._8Knight(            blue_arms, true ,   this);
-        TestArms._2Knight_6Hunter(    blue_arms, true ,   this);
-//        TestArms._4Knight_4Assassin(  blue_arms, true ,   this);
-
+        TestArms.deployArms(red_arms, false, this, new int[] {0,0,0,6});
+        TestArms.deployArms(blue_arms, true, this, new int[] {0,2,4,0});
 
         CareerBonus.careerBonus(red_arms);
         CareerBonus.careerBonus(blue_arms);

@@ -1,4 +1,4 @@
-package action;
+package common;
 
 import effect.MeleeEffect;
 import effect.RangeEffect;

@@ -1,14 +1,13 @@
 package model;
 
-import action.Attack;
-import action.Move;
+import common.Attack;
+import common.Move;
 import frame.BattleField;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.*;
 import java.util.List;
-import java.util.PriorityQueue;
 
 public class Arm {
 

@@ -1,6 +1,6 @@
 package effect;
 
-import action.Attack;
+import common.Attack;
 import frame.BattleField;
 import model.Arm;
 

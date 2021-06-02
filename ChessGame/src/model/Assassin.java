@@ -1,6 +1,6 @@
 package model;
 
-import action.Move;
+import common.Move;
 import frame.BattleField;
 import resource.ResourceManager;
 

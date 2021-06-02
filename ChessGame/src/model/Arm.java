@@ -25,11 +25,13 @@ public class Arm {
     public int max_hp = 200;
     public int hp = max_hp;
     public int armor = 0;
+    public int magicResistance = 0;
 
     public int max_move_time = 40;
     public int move_time;
 
     public int attack = 40;
+    public boolean isMagic = false;
     public int range = 1;
 
     public int max_att_time = 40;
@@ -57,6 +59,9 @@ public class Arm {
 
     public int getArmor() {
         return this.armor;
+    }
+    public int getMagicResistance() {
+        return this.magicResistance;
     }
 
     public int getAttack() {

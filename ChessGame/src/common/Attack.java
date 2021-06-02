@@ -35,7 +35,15 @@ public class Attack {
     }
 
     public static int calculateDamage(Arm attacker, Arm defender) {
-        int damage = attacker.getAttack() * (100 - defender.getArmor()) / 100;
+        int damage;
+
+        if (!attacker.isMagic) {
+            damage = attacker.getAttack() * (100 - defender.getArmor()) / 100;
+        }
+        else {
+            damage = attacker.getAttack() * (100 - defender.getMagicResistance()) / 100;
+        }
+
         return damage;
     }
 

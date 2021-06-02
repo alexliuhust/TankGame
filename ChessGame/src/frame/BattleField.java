@@ -23,7 +23,7 @@ public class BattleField extends Frame {
 
     public BattleField() {
         TestArms.deployArms(red_arms, false, this, new int[] {4,0,0,0});
-        TestArms.deployArms(blue_arms, true, this, new int[] {0,0,0,4});
+        TestArms.deployArms(blue_arms, true, this, new int[] {0,4,0,0});
 
         CareerBonus.careerBonus(red_arms);
         CareerBonus.careerBonus(blue_arms);

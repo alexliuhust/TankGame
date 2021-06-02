@@ -21,8 +21,9 @@ public class Knight extends Arm {
         this.max_hp += 100;
         this.hp += 100;
         this.armor += 20;
+        this.magicResistance += 20;
 
-        this.attack -= 20;
+        this.attack -= 10;
     }
 
     @Override
@@ -31,6 +32,14 @@ public class Knight extends Arm {
             return Math.min(this.armor + 55 + rand.nextInt(25), 100);
         }
         return this.armor;
+    }
+
+    @Override
+    public int getMagicResistance() {
+        if (shieldActivated) {
+            return Math.min(this.magicResistance + 80 + rand.nextInt(25), 100);
+        }
+        return this.magicResistance;
     }
 
     @Override

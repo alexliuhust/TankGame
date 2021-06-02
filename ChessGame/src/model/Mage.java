@@ -11,6 +11,10 @@ public class Mage extends Arm {
         this.career = "Mage";
         this.icon = ResourceManager.mage_icon;
 
+        this.max_hp -= 50;
+        this.hp -= 50;
+        this.magicResistance += 50;
+
         this.isMagic = true;
         this.range += 3;
     }

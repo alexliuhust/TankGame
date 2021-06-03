@@ -25,7 +25,6 @@ public class RangeEffect extends Effect {
         this.x = attacker.central()[0] - Width / 2;
         this.y = attacker.central()[1] - Height / 2;
         this.effectColor = effectColor;
-
     }
 
     @Override
@@ -43,7 +42,7 @@ public class RangeEffect extends Effect {
         moveToTarget();
     }
 
-    private void moveToTarget() {
+    protected void moveToTarget() {
         Rectangle r1 = new Rectangle(x, y, this.Width, this.Height);
         Rectangle r2 = new Rectangle(defender.leftTop()[0], defender.leftTop()[1], Arm.Width, Arm.Height);
         if (r1.intersects(r2)) {
@@ -55,9 +54,8 @@ public class RangeEffect extends Effect {
             return;
         }
 
-
-        int relative_x = defender.central()[0] - x;
-        int relative_y = defender.central()[1] - y;
+        int relative_x = defender.central()[0] - (x);
+        int relative_y = defender.central()[1] - (y);
         int[] ans = new int[2];
         if (relative_x != 0) {
             double radian = Math.atan((0.0 + relative_y) / relative_x);

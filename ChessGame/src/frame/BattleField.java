@@ -22,8 +22,8 @@ public class BattleField extends Frame {
     public boolean[][] board = new boolean[8][8];
 
     public BattleField() {
-        TestArms.deployArms(red_arms, false, this, new int[] {4,0,0,0,0});
-        TestArms.deployArms(blue_arms, true, this, new int[] {0,0,0,4,0});
+        TestArms.deployArms(red_arms, false, this, new int[] {8,0,0,0,0});
+        TestArms.deployArms(blue_arms, true, this, new int[] {0,2,0,6,0});
 
         CareerBonus.careerBonus(red_arms, blue_arms);
         CareerBonus.careerBonus(blue_arms, red_arms);

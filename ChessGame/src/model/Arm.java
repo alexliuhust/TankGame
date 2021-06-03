@@ -12,7 +12,7 @@ import java.util.List;
 public class Arm {
 
     protected BattleField bf;
-    protected List<Arm> enemies;
+    public List<Arm> enemies;
     protected List<Arm> comrades;
     private Arm target;
 
@@ -76,6 +76,7 @@ public class Arm {
         }
         this.bf.board[y][x] = true;
         fieldUpdate(g);
+        castSkill(this.bf);
         moveOrAttack();
 
         Color originalColor = g.getColor();
@@ -168,7 +169,7 @@ public class Arm {
     /**
      * Get the closest enemy
      */
-    private Arm getTheClosestEnemy() {
+    protected Arm getTheClosestEnemy() {
         // Get the position of the closest enemy
         if (enemies.isEmpty()) {
             return null;
@@ -190,5 +191,5 @@ public class Arm {
     /**
      * Use the skills
      */
-    public void castSkill(Arm caster, Arm target, BattleField bf) {}
+    public void castSkill(BattleField bf) {}
 }

@@ -8,6 +8,7 @@ import java.util.*;
 import java.util.List;
 
 public class PhotosphereEffect extends RangeEffect {
+    private Random rand = new Random();
 
     private int relative_x;
     private double radian;
@@ -66,17 +67,7 @@ public class PhotosphereEffect extends RangeEffect {
         }
         this.flyingTime--;
 
-        for (Arm arm : enemies) {
-            Rectangle r1 = new Rectangle(x, y, this.Width, this.Height);
-            Rectangle r2 = new Rectangle(arm.leftTop()[0], arm.leftTop()[1], Arm.Width, Arm.Height);
-            if (r1.intersects(r2)) {
-                int damage = 8;
-                arm.hp -= damage * (100 - arm.getMagicResistance()) / 100;
-                if (arm.hp < 0) {
-                    arm.alive = false;
-                }
-            }
-        }
+        enemiesGetHit();
 
         int[] ans = new int[2];
         ans[0] = (int) Math.round(speed * Math.cos(radian));
@@ -87,5 +78,20 @@ public class PhotosphereEffect extends RangeEffect {
         }
         this.x += ans[0];
         this.y += ans[1];
+    }
+
+    private void enemiesGetHit() {
+        Rectangle r1 = new Rectangle(x, y, this.Width, this.Height);
+        for (Arm arm : enemies) {
+            Rectangle r2 = new Rectangle(arm.leftTop()[0], arm.leftTop()[1], Arm.Width, Arm.Height);
+
+            if (r1.intersects(r2)) {
+                int damage = 3 + this.flyingTime / 5;
+                arm.hp -= damage * (100 - arm.getMagicResistance()) / 100;
+                if (arm.hp < 0) {
+                    arm.alive = false;
+                }
+            }
+        }
     }
 }

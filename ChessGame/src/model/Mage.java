@@ -17,7 +17,7 @@ public class Mage extends Arm {
         super(x, y, armColor, bf);
         this.career = "Mage";
         this.icon = ResourceManager.mage_icon;
-        this.mana = rand.nextInt(max_mana / 2);
+        this.mana = max_mana / 3 + rand.nextInt(max_mana / 2);
 
         this.max_hp -= 50;
         this.hp -= 50;

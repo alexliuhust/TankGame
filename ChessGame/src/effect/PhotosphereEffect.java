@@ -12,10 +12,11 @@ public class PhotosphereEffect extends RangeEffect {
     private int relative_x;
     private double radian;
     private List<Arm> enemies;
+    private int flyingTime = 30;
 
     public PhotosphereEffect(Arm attacker, Arm defender, Color effectColor) {
         super(attacker, defender, effectColor);
-        this.speed = 8.0;
+        this.speed = 9.0;
         this.Width = 85;
         this.Height = 85;
         this.x = attacker.central()[0] - Width / 2;
@@ -37,29 +38,39 @@ public class PhotosphereEffect extends RangeEffect {
 
         Color originalColor = g.getColor();
         g.setColor(effectColor);
-
-        g.drawOval(x, y, this.Width, this.Height);
-        g.drawOval(x + 20, y       , this.Width - 40, this.Height);
-        g.drawOval(x, y + 20       , this.Width, this.Height - 40);
-        g.drawOval(x + 2, y + 2, this.Width - 4, this.Height - 4);
-        g.drawOval(x + 4, y + 4, this.Width - 8, this.Height - 8);
+        paintOvals(g);
         g.setColor(originalColor);
 
         moveToTarget();
     }
 
+    private void paintOvals(Graphics g) {
+        g.drawOval(x, y, this.Width, this.Height);
+        g.drawOval(x + 19, y       , this.Width - 38, this.Height);
+        g.drawOval(x + 20, y       , this.Width - 40, this.Height);
+        g.drawOval(x + 21, y       , this.Width - 42, this.Height);
+        g.drawOval(x, y + 19       , this.Width, this.Height - 38);
+        g.drawOval(x, y + 20       , this.Width, this.Height - 40);
+        g.drawOval(x, y + 21       , this.Width, this.Height - 42);
+        g.drawOval(x + 1, y + 1, this.Width - 2, this.Height - 2);
+        g.drawOval(x + 2, y + 2, this.Width - 4, this.Height - 4);
+        g.drawOval(x + 4, y + 4, this.Width - 8, this.Height - 8);
+    }
+
     @Override
     protected void moveToTarget() {
-        if (x <= 0 || x >= BattleField.GAME_WIDTH || y <= 0 || y >= BattleField.GAME_HEIGHT) {
+        if (x <= 0 || x >= BattleField.GAME_WIDTH || y <= 0 || y >= BattleField.GAME_HEIGHT
+                || this.flyingTime <= 0) {
             this.alive = false;
             return;
         }
+        this.flyingTime--;
 
         for (Arm arm : enemies) {
             Rectangle r1 = new Rectangle(x, y, this.Width, this.Height);
             Rectangle r2 = new Rectangle(arm.leftTop()[0], arm.leftTop()[1], Arm.Width, Arm.Height);
             if (r1.intersects(r2)) {
-                int damage = 5;
+                int damage = 8;
                 arm.hp -= damage * (100 - arm.getMagicResistance()) / 100;
                 if (arm.hp < 0) {
                     arm.alive = false;

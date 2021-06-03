@@ -52,7 +52,7 @@ public class CareerBonus {
                     case "Mage":
                         Mage mage = (Mage) arm;
                         mage.attack += level * 5;
-                        mage.magicResistance += level * 5;
+                        mage.magicResistance += level * 10;
                         break;
 
                     case "Assassin":

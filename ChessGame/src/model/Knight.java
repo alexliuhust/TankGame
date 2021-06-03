@@ -37,7 +37,7 @@ public class Knight extends Arm {
     @Override
     public int getMagicResistance() {
         if (shieldActivated) {
-            return Math.min(this.magicResistance + 80 + rand.nextInt(25), 100);
+            return Math.min(this.magicResistance + 55 + rand.nextInt(25), 100);
         }
         return this.magicResistance;
     }

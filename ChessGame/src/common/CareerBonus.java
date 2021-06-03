@@ -1,9 +1,6 @@
 package common;
 
-import model.Arm;
-import model.Assassin;
-import model.Knight;
-import model.Mage;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,12 +28,10 @@ public class CareerBonus {
             for (Arm arm : map.get(career)) {
                 switch (career) {
                     case "Warrior":
-                        arm.max_hp += level * 100;
-                        arm.hp += level * 100;
-                        arm.attack += level * 5;
-                        if (level >= 2) {
-                            arm.armor += 2 * level;
-                        }
+                        Warrior warrior = (Warrior) arm;
+                        warrior.max_hp += level * 100;
+                        warrior.hp += level * 100;
+                        warrior.attack += level * 5;
                         break;
 
                     case "Knight":

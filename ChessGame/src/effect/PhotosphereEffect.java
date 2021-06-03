@@ -39,13 +39,13 @@ public class PhotosphereEffect extends RangeEffect {
 
         Color originalColor = g.getColor();
         g.setColor(effectColor);
-        paintOvals(g);
+        paintEffect(g);
         g.setColor(originalColor);
 
         moveToTarget();
     }
 
-    private void paintOvals(Graphics g) {
+    private void paintEffect(Graphics g) {
         g.drawOval(x, y, this.Width, this.Height);
         g.drawOval(x + 19, y       , this.Width - 38, this.Height);
         g.drawOval(x + 20, y       , this.Width - 40, this.Height);

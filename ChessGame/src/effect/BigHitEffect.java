@@ -32,16 +32,17 @@ public class BigHitEffect extends Effect {
         int width = 120 - 4 * lastTime;
         int x = central_x - width / 2;
         int y = central_y - width / 2;
-        this.paintOval(g, x, y, width);
+        this.paintEffect(g, x, y, width);
         this.enemiesGetHit(x, y, width);
     }
 
-    private void paintOval(Graphics g, int x, int y, int R) {
+    private void paintEffect(Graphics g, int x, int y, int R) {
         Color originalColor = g.getColor();
         g.setColor(effectColor);
         g.drawOval(x, y, R, R);
         g.drawOval(x + 1, y + 1, R - 2, R - 2);
         g.drawOval(x + 2, y + 2, R - 4, R - 4);
+
         g.setColor(originalColor);
     }
 

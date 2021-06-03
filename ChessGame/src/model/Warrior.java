@@ -19,7 +19,7 @@ public class Warrior extends Arm {
 
         this.max_hp += 200;
         this.hp += 200;
-        this.armor += 5;
+        this.armor += 15;
 
         this.mana = max_mana / 2 + rand.nextInt(max_mana / 2);
 
@@ -31,10 +31,17 @@ public class Warrior extends Arm {
     @Override
     public void castSkill(BattleField bf) {
         if (mana == max_mana) {
-            mana = 0;
-            bf.effects.add(new BigHitEffect(this, this.enemies));
-            return;
+            Arm target = this.getTheClosestEnemy();
+            if (target != null) {
+                int distance = Math.max(Math.abs(target.x - x), Math.abs(target.y - y));
+                if (distance <= range) {
+                    mana = 0;
+                    bf.effects.add(new BigHitEffect(this, this.enemies));
+                }
+            }
         }
-        mana++;
+        else {
+            mana++;
+        }
     }
 }

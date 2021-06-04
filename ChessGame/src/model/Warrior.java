@@ -18,7 +18,7 @@ public class Warrior extends Arm {
         this.icon = ResourceManager.warrior_icon;
 
         this.max_hp += 200;
-        this.hp += 200;
+        this.hp +=     200;
         this.armor += 15;
 
         this.mana = max_mana / 2 + rand.nextInt(max_mana / 2);

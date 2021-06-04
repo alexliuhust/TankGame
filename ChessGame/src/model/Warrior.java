@@ -23,9 +23,21 @@ public class Warrior extends Arm {
 
         this.mana = max_mana / 2 + rand.nextInt(max_mana / 2);
 
-        this.max_move_time -= 15;
+        this.max_move_time -= 20;
 
-        this.attack -= 20;
+        this.attack -= 30;
+    }
+
+    @Override
+    public int getArmor() {
+        this.mana += 2;
+        return super.getArmor();
+    }
+
+    @Override
+    public int getMagicResistance() {
+        this.mana += 2;
+        return super.getMagicResistance();
     }
 
     @Override
@@ -44,4 +56,5 @@ public class Warrior extends Arm {
             mana++;
         }
     }
+
 }

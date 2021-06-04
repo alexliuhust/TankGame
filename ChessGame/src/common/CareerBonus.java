@@ -41,7 +41,7 @@ public class CareerBonus {
                         break;
 
                     case "Hunter":
-                        arm.max_att_time -= level * 4;
+                        arm.max_att_time -= level * 2;
                         break;
 
                     case "Mage":

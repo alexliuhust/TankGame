@@ -29,6 +29,18 @@ public class Mage extends Arm {
     }
 
     @Override
+    public int getArmor() {
+        this.mana += 2;
+        return super.getArmor();
+    }
+
+    @Override
+    public int getMagicResistance() {
+        this.mana += 2;
+        return super.getMagicResistance();
+    }
+
+    @Override
     public void castSkill(BattleField bf) {
         if (mana == max_mana) {
             mana = 0;

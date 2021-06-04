@@ -156,7 +156,7 @@ public class Arm {
     /**
      * Try to attack the closest enemy
      */
-    private boolean tryToAttackTheClosestEnemy(Arm target) {
+    protected boolean tryToAttackTheClosestEnemy(Arm target) {
         // If the closest enemy is within the range, attack it
         int distance = Math.max(Math.abs(target.x - x), Math.abs(target.y - y));
         if (distance <= range) {

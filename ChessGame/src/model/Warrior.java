@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class Warrior extends Arm {
     private Random rand = new Random();
-    public int max_mana = 250;
+    public int max_mana = 210;
     public int mana;
 
     public Warrior(int x, int y, Color armColor, BattleField bf) {
@@ -42,7 +42,7 @@ public class Warrior extends Arm {
 
     @Override
     public void castSkill(BattleField bf) {
-        if (mana == max_mana) {
+        if (mana >= max_mana) {
             Arm target = this.getTheClosestEnemy();
             if (target != null) {
                 int distance = Math.max(Math.abs(target.x - x), Math.abs(target.y - y));

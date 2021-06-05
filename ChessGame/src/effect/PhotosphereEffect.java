@@ -86,7 +86,7 @@ public class PhotosphereEffect extends RangeEffect {
             Rectangle r2 = new Rectangle(arm.leftTop()[0], arm.leftTop()[1], Arm.Width, Arm.Height);
 
             if (r1.intersects(r2)) {
-                int damage = 9 - this.flyingTime / 5;
+                int damage = 8 - this.flyingTime / 5;
                 arm.hp -= damage * (100 - arm.getMagicResistance()) / 100;
                 if (arm.hp < 0) {
                     arm.alive = false;

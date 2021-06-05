@@ -17,7 +17,7 @@ public class Hunter extends Arm {
         this.icon = ResourceManager.hunter_icon;
 
         this.range += 3;
-
+        this.max_att_time += 10;
         this.preTarget = this.getTheClosestEnemy();
         this.org_max_att_time = this.max_att_time;
     }
@@ -26,7 +26,7 @@ public class Hunter extends Arm {
     public int getAttack() {
         Arm target = this.getTheClosestEnemy();
         if (target == this.preTarget) {
-            this.max_att_time -= 2;
+            this.max_att_time -= 5;
             this.max_att_time = Math.max(12, this.max_att_time);
         } else {
             this.max_att_time = this.org_max_att_time;

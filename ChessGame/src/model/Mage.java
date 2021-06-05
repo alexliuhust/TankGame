@@ -17,13 +17,13 @@ public class Mage extends Arm {
         super(x, y, armColor, bf);
         this.career = "Mage";
         this.icon = ResourceManager.mage_icon;
-        this.mana = max_mana / 3 + rand.nextInt(max_mana / 2);
+        this.mana = rand.nextInt(20);
 
         this.max_hp -= 50;
         this.hp -= 50;
         this.magicResistance += 10;
 
-        this.attack -= 30;
+        this.attack = 2;
         this.isMagic = true;
         this.range += 3;
     }
@@ -42,7 +42,7 @@ public class Mage extends Arm {
 
     @Override
     public void castSkill(BattleField bf) {
-        if (mana == max_mana) {
+        if (mana >= max_mana) {
             mana = 0;
             Arm target = this.getTheClosestEnemy();
             this.bf.effects.add(new PhotosphereEffect(this, target, this.armColor));

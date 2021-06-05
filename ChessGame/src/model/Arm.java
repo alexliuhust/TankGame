@@ -126,7 +126,7 @@ public class Arm {
      * Find the closest enemy and try to attack it.
      * If it is out of the range, try to move to it.
      */
-    private void moveOrAttack() {
+    protected void moveOrAttack() {
         this.att_time++;
         this.move_time++;
 

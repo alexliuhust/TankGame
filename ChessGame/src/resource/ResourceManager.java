@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class ResourceManager {
 
-    public static BufferedImage assassin_icon, hunter_icon, knight_icon, mage_icon, warrior_icon;
+    public static BufferedImage assassin_icon, hunter_icon, knight_icon, mage_icon, priest_icon, warrior_icon;
 
     static {
         try {
@@ -20,6 +20,8 @@ public class ResourceManager {
                     ResourceManager.class.getClassLoader().getResourceAsStream("image/knight_icon.png")));
             mage_icon = ImageIO.read(Objects.requireNonNull(
                     ResourceManager.class.getClassLoader().getResourceAsStream("image/mage_icon.png")));
+            priest_icon = ImageIO.read(Objects.requireNonNull(
+                    ResourceManager.class.getClassLoader().getResourceAsStream("image/priest_icon.png")));
             warrior_icon = ImageIO.read(Objects.requireNonNull(
                     ResourceManager.class.getClassLoader().getResourceAsStream("image/warrior_icon.png")));
 

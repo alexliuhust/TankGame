@@ -6,8 +6,10 @@ import model.Arm;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class BigHitEffect extends Effect {
+    private Random rand = new Random();
 
     private List<Arm> enemies = new ArrayList<>();
     private int central_x, central_y;
@@ -51,7 +53,8 @@ public class BigHitEffect extends Effect {
         for (Arm arm : enemies) {
             Rectangle r2 = new Rectangle(arm.leftTop()[0], arm.leftTop()[1], Arm.Width, Arm.Height);
             if (r1.intersects(r2)) {
-                int damage = 7;
+                arm.armor -= rand.nextInt(10) < 2? 1 : 0;
+                int damage = 4;
                 arm.hp -= damage * (100 - arm.getArmor()) / 100;
                 if (arm.hp < 0) {
                     arm.alive = false;

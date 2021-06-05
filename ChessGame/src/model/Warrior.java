@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class Warrior extends Arm {
     private Random rand = new Random();
-    public int max_mana = 150;
+    public int max_mana = 250;
     public int mana;
 
     public Warrior(int x, int y, Color armColor, BattleField bf) {

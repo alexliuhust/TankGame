@@ -6,7 +6,7 @@ public class MainTest {
         BattleField bf = new BattleField();
 
         while (bf.blue_arms.size() * bf.red_arms.size() != 0) {
-            Thread.sleep(25);
+            Thread.sleep(15);
             bf.repaint();
         }
 

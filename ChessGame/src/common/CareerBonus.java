@@ -52,8 +52,8 @@ public class CareerBonus {
 
                     case "Assassin":
                         Assassin assassin = (Assassin) arm;
-                        assassin.strikeProb += level * 9;
-                        assassin.max_att_time -= level;
+                        assassin.strikeProb += level * 18;
+                        assassin.max_att_time -= level * 2;
                         assassin.dodgeProb += level * 1.5;
                         break;
 

@@ -18,8 +18,6 @@ public class Hunter extends Arm {
 
         this.range += 3;
 
-        this.max_att_time -= 5;
-
         this.preTarget = this.getTheClosestEnemy();
         this.org_max_att_time = this.max_att_time;
     }
@@ -28,8 +26,8 @@ public class Hunter extends Arm {
     public int getAttack() {
         Arm target = this.getTheClosestEnemy();
         if (target == this.preTarget) {
-            this.max_att_time -= 3;
-            this.max_att_time = Math.max(10, this.max_att_time);
+            this.max_att_time -= 2;
+            this.max_att_time = Math.max(12, this.max_att_time);
         } else {
             this.max_att_time = this.org_max_att_time;
             this.preTarget = target;
@@ -37,22 +35,4 @@ public class Hunter extends Arm {
         return super.getAttack();
     }
 
-    //    @Override
-//    protected boolean tryToAttackTheClosestEnemy(Arm target) {
-//        int distance = Math.max(Math.abs(target.x - x), Math.abs(target.y - y));
-//        if (distance <= range) {
-//            if (target == this.preTarget) {
-//                this.max_att_time -= 1;
-//                this.max_att_time = Math.max(2, this.max_att_time);
-//            } else {
-//                this.max_att_time = this.org_max_att_time;
-//                this.preTarget = target;
-//            }
-//
-//
-//            Attack.normalAttack(this, target, this.bf);
-//            return true;
-//        }
-//        return false;
-//    }
 }

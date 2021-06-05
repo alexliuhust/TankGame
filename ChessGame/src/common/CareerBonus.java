@@ -19,6 +19,7 @@ public class CareerBonus {
 
         for (String career : map.keySet()) {
             int level = map.get(career).size() / 2;
+
             if (career.equals("Mage")) {
                 for (Arm arm : enemies) {
                     arm.magicResistance -= level * 10;
@@ -49,6 +50,11 @@ public class CareerBonus {
                         mage.attack += level * 5;
                         mage.magicResistance += level * 10;
                         mage.mana += level * 40;
+                        break;
+
+                    case "Priest":
+                        Priest priest = (Priest) arm;
+                        priest.healing += 1;
                         break;
 
                     case "Assassin":

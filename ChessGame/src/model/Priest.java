@@ -10,15 +10,18 @@ import java.util.PriorityQueue;
 
 public class Priest extends Arm {
 
-    private int healing = 2;
+    public int healing = 3;
 
     public Priest(int x, int y, Color armColor, BattleField bf) {
         super(x, y, armColor, bf);
         this.career = "Priest";
         this.icon = ResourceManager.priest_icon;
 
+        this.max_hp -= 100;
+        this.hp     -= 100;
+
         this.max_move_time -= 15;
-        this.magicResistance += 75;
+        this.magicResistance += 50;
 
         this.attack = 0;
         this.range = 0;
@@ -47,7 +50,7 @@ public class Priest extends Arm {
     private Arm getTheClosestComrade() {
         PriorityQueue<Arm> pq = new PriorityQueue<>((a, b) -> {
             int dis_a = (x - a.x) * (x - a.x) + (y - a.y) * (y - a.y);
-            int dis_b = (x - b.x) * (x - a.x) + (y - a.y) * (y - b.y);
+            int dis_b = (x - b.x) * (x - b.x) + (y - b.y) * (y - b.y);
             if (dis_a != dis_b) {
                 return dis_a - dis_b;
             }

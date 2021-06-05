@@ -10,9 +10,7 @@ import java.util.PriorityQueue;
 
 public class Priest extends Arm {
 
-    private int max_mana = 100;
-    private int mana = max_mana;
-    private int healing = 10;
+    private int healing = 2;
 
     public Priest(int x, int y, Color armColor, BattleField bf) {
         super(x, y, armColor, bf);
@@ -39,9 +37,10 @@ public class Priest extends Arm {
     @Override
     protected int[] getNextPosition() {
         Arm target = this.getTheClosestComrade();
-        if (target == null) {
+        if (target == null || Math.max(Math.abs(target.x - x), Math.abs(target.y - y)) <= 1) {
             return new int[] {x, y};
         }
+
         return Move.normalMove(x, y, target.x, target.y, this.bf.board);
     }
 
@@ -54,25 +53,24 @@ public class Priest extends Arm {
             }
             return a.hp - b.hp;
         });
-        pq.addAll(this.comrades);
+        for (Arm arm : this.comrades) {
+            if (arm.hp < arm.max_hp) {
+                pq.add(arm);
+            }
+        }
         return  pq.isEmpty()? null : pq.peek();
     }
 
     @Override
     public void castSkill(BattleField bf) {
-        if (mana >= max_mana) {
-            Arm target = this.getTheClosestComrade();
-            if (target == null) {
-                mana++;
-                return;
-            }
-            if (Math.max(Math.abs(target.x - x), Math.abs(target.y - y)) <= 1) {
-                this.bf.effects.add(new HealingEffect(this, target, Color.GREEN));
-                target.hp += this.healing;
-                target.hp = Math.max(target.hp, target.max_hp);
-            }
-        } else {
-            mana++;
+        Arm target = this.getTheClosestComrade();
+        if (target == null || target.hp == target.max_hp) {
+            return;
+        }
+        if (Math.max(Math.abs(target.x - x), Math.abs(target.y - y)) <= 1) {
+            this.bf.effects.add(new HealingEffect(this, target, Color.GREEN));
+            target.hp += this.healing;
+            target.hp = Math.min(target.hp, target.max_hp);
         }
     }
 }

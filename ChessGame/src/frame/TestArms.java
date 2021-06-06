@@ -15,9 +15,9 @@ public class TestArms {
 
         int numWarrior = Math.min(nums[0], 8);
         int numKnight = Math.min(nums[1], 8);
-        int numHunter = Math.min(nums[2], 8);
-        int numMage = Math.min(nums[3], 8);
-        int numPriest = Math.min(nums[4], 8);
+        int numPriest = Math.min(nums[2], 8);
+        int numHunter = Math.min(nums[3], 8);
+        int numMage = Math.min(nums[4], 8);
         int numAssassin = Math.min(nums[5], 8);
 
 
@@ -28,7 +28,7 @@ public class TestArms {
             list.add(new Warrior(frontLine_middle[pos], frontY, armColor, bf));
             pos++;
         }
-        if (pos == 8 || ( pos > 0 && numKnight == 8)) {
+        if (pos == 8 || ( pos > 0 && numKnight + pos >= 8)) {
             pos = 0;
             frontY = isBlue ? 5 : 2;
         }
@@ -45,7 +45,7 @@ public class TestArms {
             pos++;
         }
 
-        if (pos == 8 || (pos > 0 && numHunter == 8)) {
+        if (pos == 8 || (pos > 0 && numHunter + pos >= 8)) {
             pos = 0;
             rangeY = isBlue ? 7 : 0;
         }
@@ -53,6 +53,11 @@ public class TestArms {
         for (int i = 0; i < numHunter; i++) {
             list.add(new Hunter(frontLine_middle[pos], rangeY, armColor, bf));
             pos++;
+        }
+
+        if (pos == 8 || (pos > 0 && numMage + pos >= 8)) {
+            pos = 0;
+            rangeY = isBlue ? 7 : 0;
         }
 
         for (int i = 0; i < numMage; i++) {

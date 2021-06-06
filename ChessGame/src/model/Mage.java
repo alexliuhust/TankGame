@@ -29,6 +29,16 @@ public class Mage extends Arm {
     }
 
     @Override
+    protected void paintHpBar(Graphics g) {
+        super.paintHpBar(g);
+        Color c = g.getColor();
+        g.setColor(Color.PINK);
+        g.fillRect(leftTop()[0] + 3, leftTop()[1] + 8,
+                Width * (mana * 100 / max_mana) / 100 - 6, 5);
+        g.setColor(c);
+    }
+
+    @Override
     public int getArmor() {
         this.mana += 2;
         return super.getArmor();
@@ -45,7 +55,9 @@ public class Mage extends Arm {
         if (mana >= max_mana) {
             mana = 0;
             Arm target = this.getTheClosestEnemy();
-            this.bf.effects.add(new PhotosphereEffect(this, target, this.armColor));
+            if (target != null) {
+                this.bf.effects.add(new PhotosphereEffect(this, target, this.armColor));
+            }
             return;
         }
         mana++;

@@ -13,7 +13,7 @@ public class PhotosphereEffect extends RangeEffect {
     private int relative_x;
     private double radian;
     private List<Arm> enemies;
-    private int flyingTime = 30;
+    private int flyingTime = 35;
 
     public PhotosphereEffect(Arm attacker, Arm defender, Color effectColor) {
         super(attacker, defender, effectColor);
@@ -47,15 +47,20 @@ public class PhotosphereEffect extends RangeEffect {
 
     private void paintEffect(Graphics g) {
         g.drawOval(x, y, this.Width, this.Height);
-        g.drawOval(x + 19, y       , this.Width - 38, this.Height);
-        g.drawOval(x + 20, y       , this.Width - 40, this.Height);
-        g.drawOval(x + 21, y       , this.Width - 42, this.Height);
-        g.drawOval(x, y + 19       , this.Width, this.Height - 38);
-        g.drawOval(x, y + 20       , this.Width, this.Height - 40);
-        g.drawOval(x, y + 21       , this.Width, this.Height - 42);
         g.drawOval(x + 1, y + 1, this.Width - 2, this.Height - 2);
-        g.drawOval(x + 2, y + 2, this.Width - 4, this.Height - 4);
-        g.drawOval(x + 4, y + 4, this.Width - 8, this.Height - 8);
+        if (flyingTime <= 25) {
+            g.drawOval(x + 20, y       , this.Width - 40, this.Height);
+            g.drawOval(x, y + 20       , this.Width, this.Height - 40);
+            g.drawOval(x + 2, y + 2, this.Width - 4, this.Height - 4);
+
+        }
+        if (flyingTime <= 15) {
+            g.drawOval(x + 19, y       , this.Width - 38, this.Height);
+            g.drawOval(x + 21, y       , this.Width - 42, this.Height);
+            g.drawOval(x, y + 19       , this.Width, this.Height - 38);
+            g.drawOval(x, y + 21       , this.Width, this.Height - 42);
+            g.drawOval(x + 4, y + 4, this.Width - 8, this.Height - 8);
+        }
     }
 
     @Override

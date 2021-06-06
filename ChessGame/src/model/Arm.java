@@ -114,11 +114,8 @@ public class Arm {
      */
     protected void paintHpBar(Graphics g) {
         Color c = g.getColor();
-        g.setColor(Color.WHITE);
-        g.fillRect(leftTop()[0] + 3, leftTop()[1] + 3, Width - 6, 5);
         g.setColor(Color.GREEN);
         g.fillRect(leftTop()[0] + 3, leftTop()[1] + 3, Width * (hp * 100 / max_hp) / 100 - 6, 5);
-
         g.setColor(c);
     }
 

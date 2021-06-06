@@ -112,7 +112,7 @@ public class Arm {
     /**
      * Draw the HP bar
      */
-    private void paintHpBar(Graphics g) {
+    protected void paintHpBar(Graphics g) {
         Color c = g.getColor();
         g.setColor(Color.WHITE);
         g.fillRect(leftTop()[0] + 3, leftTop()[1] + 3, Width - 6, 5);

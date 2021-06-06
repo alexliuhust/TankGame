@@ -54,7 +54,8 @@ public class CareerBonus {
 
                     case "Priest":
                         Priest priest = (Priest) arm;
-                        priest.healing += 1;
+                        priest.max_healingStorage += level * 50;
+                        priest.healingStorage     += level * 50;
                         break;
 
                     case "Assassin":

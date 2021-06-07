@@ -43,7 +43,7 @@ public class Assassin extends Arm {
 
     @Override
     protected int[] getNextPosition() {
-        if (rand.nextInt(5) < 1) {
+        if (rand.nextInt(7) < 1) {
             return super.getNextPosition();
         }
 

@@ -22,6 +22,7 @@ public class Mage extends Arm {
         this.max_hp -= 50;
         this.hp -= 50;
         this.magicResistance += 10;
+        this.armor = -5;
 
         this.attack = 2;
         this.isMagic = true;

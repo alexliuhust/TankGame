@@ -2,7 +2,7 @@ package frame;
 
 import common.CareerBonus;
 import effect.Effect;
-import model.Arm;
+import model.*;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -22,8 +22,17 @@ public class BattleField extends Frame {
     public boolean[][] board = new boolean[8][8];
 
     public BattleField() {
-        TestArms.deployArms(red_arms, false, this, new int[] {2,0,4,0,6,2});
-        TestArms.deployArms(blue_arms, true, this, new int[] {8,6,0,0,0,0});
+        TestArms.deployArms(red_arms, false, this, new int[] {0,0,0,0,8,0});
+        TestArms.deployArms(blue_arms, true, this, new int[] {0,0,0,0,0,0});
+
+        blue_arms.add(new Knight(0, 5, Color.BLUE, this));
+        blue_arms.add(new Knight(1, 5, Color.BLUE, this));
+        blue_arms.add(new Knight(2, 5, Color.BLUE, this));
+        blue_arms.add(new Knight(2, 6, Color.BLUE, this));
+        blue_arms.add(new Knight(1, 7, Color.BLUE, this));
+        blue_arms.add(new Hunter(0, 6, Color.BLUE, this));
+        blue_arms.add(new Hunter(1, 6, Color.BLUE, this));
+        blue_arms.add(new Hunter(0, 7, Color.BLUE, this));
 
         CareerBonus.careerBonus(red_arms, blue_arms);
         CareerBonus.careerBonus(blue_arms, red_arms);

@@ -23,8 +23,6 @@ public class Warrior extends Arm {
 
         this.mana = max_mana / 2 + rand.nextInt(max_mana / 2);
 
-        this.max_move_time -= 20;
-
         this.attack -= 30;
     }
 

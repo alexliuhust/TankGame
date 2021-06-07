@@ -9,7 +9,7 @@ import java.util.Random;
 public class Knight extends Arm {
 
     public int shieldProb = 1;
-    public int shieldTime = 40;
+    public int shieldTime = 80;
     public boolean shieldActivated = false;
     private Random rand = new Random();
 
@@ -20,10 +20,8 @@ public class Knight extends Arm {
 
         this.max_hp += 100;
         this.hp += 100;
-        this.armor += 20;
-        this.magicResistance += 20;
-
-        this.attack -= 10;
+        this.armor += 25;
+        this.magicResistance += 25;
     }
 
     @Override

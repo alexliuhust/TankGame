@@ -198,21 +198,25 @@ public class Tank {
 
         else {
             // Left:
-            if (x <= ox + W && x >= ox + W - SPEED
-                    && y > oy - T_HEIGHT && y < oy + H)
+            if (x <= ox + W && x >= ox + W - SPEED && y > oy - T_HEIGHT && y < oy + H) {
                 isBlock[0] = true;
+                x = ox + W;
+            }
             // Right:
-            if (x >= ox - T_WIDTH && x <= ox - T_WIDTH + SPEED
-                    && y > oy - T_HEIGHT && y < oy + H)
+            if (x >= ox - T_WIDTH && x <= ox - T_WIDTH + SPEED && y > oy - T_HEIGHT && y < oy + H) {
                 isBlock[1] = true;
+                x = ox - T_WIDTH;
+            }
             // Up:
-            if (y <= oy + H && y >= oy + H - SPEED
-                    && x > ox - T_WIDTH && x < ox + W)
+            if (y <= oy + H && y >= oy + H - SPEED && x > ox - T_WIDTH && x < ox + W) {
                 isBlock[2] = true;
+                y = oy + H;
+            }
             // Down:
-            if (y >= oy - T_HEIGHT && y <= oy - T_HEIGHT + SPEED
-                    && x > ox - T_WIDTH && x < ox + W)
+            if (y >= oy - T_HEIGHT && y <= oy - T_HEIGHT + SPEED && x > ox - T_WIDTH && x < ox + W) {
                 isBlock[3] = true;
+                y = oy - T_HEIGHT;
+            }
         }
         return false;
     }

@@ -71,12 +71,13 @@ public class Tank {
         if (type.equals("Heavy")) {
             this.max_hp += 500;
             this.hp += 500;
-            this.ORI_SPEED = 5;
+            this.ORI_SPEED = 4;
             this.frontArmor += 10;
             this.sideArmor += 10;
         }
         else if (type.equals("Medium")) {
-            this.ORI_SPEED = 7;
+            this.ORI_SPEED = 6;
+            reactiveArmor += 1;
         }
         else {
             this.max_hp -= 500;
@@ -84,7 +85,7 @@ public class Tank {
             this.ORI_SPEED = 8;
             this.frontArmor -= 10;
             this.sideArmor -= 10;
-            reactiveArmor += 2;
+            reactiveArmor += 3;
         }
     }
 

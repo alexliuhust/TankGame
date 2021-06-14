@@ -14,8 +14,11 @@ public class BombardEffect extends RangeEffect {
     private boolean isBombard = false;
     private int bombardingTime = 10;
 
+    private double pre_distance = Double.MAX_VALUE;
+
     public BombardEffect(Arm attacker, Arm defender, Color effectColor) {
         super(attacker, defender, effectColor);
+        this.speed = 7.0;
         this.Width = 20;
         this.Height = 20;
         this.target_x = defender.central()[0] - Width / 2;
@@ -51,7 +54,11 @@ public class BombardEffect extends RangeEffect {
 
     @Override
     protected void moveToTarget() {
-        if (Math.sqrt((x-target_x)*(x-target_x) + (y-target_y)*(y-target_y)) <= speed*2) {
+        double distance = Math.sqrt((x-target_x)*(x-target_x) + (y-target_y)*(y-target_y));
+
+        if (distance <= this.pre_distance) {
+            this.pre_distance = distance;
+        } else {
             if (this.isBombard) {
                 this.bombardingTime--;
                 if (this.bombardingTime <= 0) {

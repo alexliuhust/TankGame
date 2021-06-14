@@ -34,7 +34,5 @@ public class Artillery extends Arm {
 
         int index = rand.nextInt(this.enemies.size());
         return this.enemies.get(index);
-
-//        return super.getTheClosestEnemy();
     }
 }

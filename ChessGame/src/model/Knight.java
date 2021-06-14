@@ -25,19 +25,11 @@ public class Knight extends Arm {
     }
 
     @Override
-    public int getAttack() {
-        if (shieldActivated) {
-            return super.getAttack() + 10 + this.shieldTime / 3;
-        }
-        return super.getAttack();
-    }
-
-    @Override
     public int getArmor() {
         if (shieldActivated) {
             return Math.min(this.armor + 55 + rand.nextInt(25), 100);
         }
-        return this.armor;
+        return Math.min(100, this.armor);
     }
 
     @Override
@@ -45,7 +37,7 @@ public class Knight extends Arm {
         if (shieldActivated) {
             return Math.min(this.magicResistance + 55 + rand.nextInt(25), 100);
         }
-        return this.magicResistance;
+        return Math.min(100, this.magicResistance);
     }
 
     @Override

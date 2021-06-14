@@ -7,11 +7,13 @@ import java.util.Objects;
 
 public class ResourceManager {
 
-    public static BufferedImage assassin_icon, hunter_icon, knight_icon, mage_icon, priest_icon, warrior_icon;
+    public static BufferedImage artillery_icon, assassin_icon, hunter_icon, knight_icon,
+            mage_icon, priest_icon, warrior_icon;
 
     static {
         try {
-
+            artillery_icon = ImageIO.read(Objects.requireNonNull(
+                    ResourceManager.class.getClassLoader().getResourceAsStream("image/artillery_icon.png")));
             assassin_icon = ImageIO.read(Objects.requireNonNull(
                     ResourceManager.class.getClassLoader().getResourceAsStream("image/assassin_icon.png")));
             hunter_icon = ImageIO.read(Objects.requireNonNull(

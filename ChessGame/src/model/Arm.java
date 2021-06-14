@@ -167,7 +167,7 @@ public class Arm {
      * Get the closest enemy
      */
     protected Arm getTheClosestEnemy() {
-        // Get the position of the closest enemy
+        // Get the the closest enemy
         if (enemies.isEmpty()) {
             return null;
         }

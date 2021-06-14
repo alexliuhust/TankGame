@@ -19,10 +19,22 @@ public class Artillery extends Arm {
 
         this.max_move_time += 40;
 
-        this.attack += 35;
-        this.range += 4;
+        this.attack += 15;
+        this.range += 7;
 
         this.max_att_time += 40;
         this.att_time = max_att_time - rand.nextInt(10);
+    }
+
+    @Override
+    protected Arm getTheClosestEnemy() {
+        if (this.enemies == null || this.enemies.isEmpty()) {
+            return null;
+        }
+
+        int index = rand.nextInt(this.enemies.size());
+        return this.enemies.get(index);
+
+//        return super.getTheClosestEnemy();
     }
 }

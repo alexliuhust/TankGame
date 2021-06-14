@@ -87,10 +87,10 @@ public class BombardEffect extends RangeEffect {
             int distance = (pos_x-c_x)*(pos_x-c_x) + (pos_y-c_y)*(pos_y-c_y);
             if (distance <= 75*75) {
                 if (distance <= 35*35) {
-                    arm.hp -= Attack.calculateDamage(attacker, arm);
+                    arm.hp -= Attack.calculateDamage(attacker, arm) + 20;
                     arm.armor -= 2;
                 } else {
-                    arm.hp -= Attack.calculateDamage(attacker, arm) / 2;
+                    arm.hp -= Attack.calculateDamage(attacker, arm);
                     arm.armor -= 1;
                 }
                 if (arm.hp < 0) {

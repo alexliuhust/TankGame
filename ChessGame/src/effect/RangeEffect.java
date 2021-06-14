@@ -54,8 +54,8 @@ public class RangeEffect extends Effect {
             return;
         }
 
-        int relative_x = defender.central()[0] - (x);
-        int relative_y = defender.central()[1] - (y);
+        int relative_x = defender.central()[0] - (x + Width / 2);
+        int relative_y = defender.central()[1] - (y + Height / 2);
         int[] ans = new int[2];
         if (relative_x != 0) {
             double radian = Math.atan((0.0 + relative_y) / relative_x);
@@ -66,7 +66,7 @@ public class RangeEffect extends Effect {
                 ans[1] = -ans[1];
             }
         } else {
-            ans[1] = (int) speed;
+            ans[1] = relative_y < 0 ? -(int) speed : (int) speed;
         }
 
         this.x += ans[0];

@@ -1,5 +1,6 @@
 package common;
 
+import effect.BombardEffect;
 import effect.MeleeEffect;
 import effect.RangeEffect;
 import frame.BattleField;
@@ -29,7 +30,11 @@ public class Attack {
 
         // Range
         else {
-            bf.effects.add(new RangeEffect(attacker, defender, attacker.armColor));
+            if (!attacker.career.equals("Artillery")) {
+                bf.effects.add(new RangeEffect(attacker, defender, attacker.armColor));
+            } else {
+                bf.effects.add(new BombardEffect(attacker, defender, attacker.armColor));
+            }
             attacker.att_time = 0;
         }
     }

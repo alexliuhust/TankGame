@@ -43,11 +43,13 @@ public class BombardEffect extends RangeEffect {
     private void paintEffect(Graphics g) {
         Color originalColor = g.getColor();
         g.setColor(effectColor);
-        g.fillOval(x, y, this.Width, this.Height);
+
         if (isBombard) {
             g.drawOval(x - 30, y - 30, this.Width + 60, this.Height + 60);
             g.drawOval(x - 31, y - 31, this.Width + 62, this.Height + 62);
             g.drawOval(x - 29, y - 29, this.Width + 58, this.Height + 58);
+        } else {
+            g.fillOval(x, y, this.Width, this.Height);
         }
         g.setColor(originalColor);
     }

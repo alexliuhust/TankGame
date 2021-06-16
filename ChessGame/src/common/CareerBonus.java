@@ -26,6 +26,12 @@ public class CareerBonus {
                 }
             }
 
+            if (career.equals("Artillery")) {
+                for (Arm arm : enemies) {
+                    arm.armor -= level * 10;
+                }
+            }
+
             for (Arm arm : map.get(career)) {
                 switch (career) {
                     case "Warrior":

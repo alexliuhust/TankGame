@@ -22,8 +22,8 @@ public class Artillery extends Arm {
         this.attack += 15;
         this.range += 7;
 
-        this.max_att_time += 40;
-        this.att_time = max_att_time - rand.nextInt(10);
+        this.max_att_time += 80;
+        this.att_time = max_att_time - rand.nextInt(20);
     }
 
     @Override

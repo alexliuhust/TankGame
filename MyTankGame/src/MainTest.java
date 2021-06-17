@@ -1,11 +1,11 @@
-import com.alex.drawing.StartFrame;
-import com.alex.drawing.TankFrame;
+import frame.StartFrame;
+import frame.TankFrame;
 
 public class MainTest {
     public static void main(String[] args) throws InterruptedException {
         StartFrame sf = new StartFrame();
         while (!sf.closed) {
-            Thread.sleep(35);
+            Thread.sleep(40);
             sf.repaint();
         }
         sf.setVisible(false);

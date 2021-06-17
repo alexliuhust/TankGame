@@ -18,7 +18,8 @@ public class Support {
     // 7: Health package
     int type;
 
-    private boolean live = true;
+    private int max_disappearing = 150;
+    private int disappearing = max_disappearing;
 
     public Support(int x, int y, int type) {
         this.x = x;
@@ -36,15 +37,18 @@ public class Support {
     }
 
     public void paint(Graphics g, TankFrame tf) {
-        if (!this.live) {
-            tf.supports.remove(this);
+        if (disappearing < max_disappearing) {
+            disappearing++;
             return;
         }
         g.drawImage(support, x, y, null);
     }
 
     public void getPickedUp(Tank tank) {
-        this.live = false;
+        if (disappearing < max_disappearing) {
+            return;
+        }
+        disappearing = 0;
 
         if (type == 5) {
             if (tank.AP_left + tank.AT_left + tank.HE_left > 50) {
@@ -63,11 +67,13 @@ public class Support {
         else if (type == 6) {
             if (tank.reactiveArmor < tank.max_reactiveArmor) {
                 tank.reactiveArmor++;
+                tank.reactiveArmor = Math.min(tank.reactiveArmor, tank.max_reactiveArmor);
             }
         }
         else {
             if (tank.hp < tank.max_hp) {
-                tank.hp += 100;
+                tank.hp += 200;
+                tank.hp = Math.min(tank.max_hp, tank.hp);
             }
         }
     }

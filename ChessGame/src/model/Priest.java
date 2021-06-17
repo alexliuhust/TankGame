@@ -4,7 +4,6 @@ import common.Move;
 import effect.HealingEffect;
 import frame.BattleField;
 import resource.ResourceManager;
-
 import java.awt.*;
 import java.util.PriorityQueue;
 

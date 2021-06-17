@@ -3,14 +3,10 @@ package model;
 import common.Move;
 import frame.BattleField;
 import resource.ResourceManager;
-
 import java.awt.*;
 import java.util.List;
-import java.util.Random;
 
 public class Assassin extends Arm {
-
-    private Random rand = new Random();
 
     public int strikeProb = 18;
     public int dodgeProb = 5;

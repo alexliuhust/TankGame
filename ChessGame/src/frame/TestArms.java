@@ -28,7 +28,7 @@ public class TestArms {
             list.add(new Warrior(frontLine_middle[pos], frontY, armColor, bf));
             pos++;
         }
-        if (pos == 8 || ( pos > 0 && numKnight + pos >= 8)) {
+        if (pos == 8 || ( pos > 0 && numKnight + pos > 8)) {
             pos = 0;
             frontY = isBlue ? 5 : 2;
         }
@@ -45,7 +45,7 @@ public class TestArms {
             pos++;
         }
 
-        if (pos == 8 || (pos > 0 && numHunter + pos >= 8)) {
+        if (pos == 8 || (pos > 0 && numHunter + pos > 8)) {
             pos = 0;
             rangeY = isBlue ? 7 : 0;
         }
@@ -55,7 +55,7 @@ public class TestArms {
             pos++;
         }
 
-        if (pos == 8 || (pos > 0 && numMage + pos >= 8)) {
+        if (pos == 8 || (pos > 0 && numMage + pos > 8)) {
             pos = 0;
             rangeY = isBlue ? 7 : 0;
         }

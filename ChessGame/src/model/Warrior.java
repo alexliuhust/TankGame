@@ -3,12 +3,9 @@ package model;
 import effect.BigHitEffect;
 import frame.BattleField;
 import resource.ResourceManager;
-
 import java.awt.*;
-import java.util.Random;
 
 public class Warrior extends Arm {
-    private Random rand = new Random();
     public int max_mana = 210;
     public int mana;
 

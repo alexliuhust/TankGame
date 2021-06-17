@@ -22,17 +22,17 @@ public class BattleField extends Frame {
     public boolean[][] board = new boolean[8][8];
 
     public BattleField() {
-        TestArms.deployArms(red_arms, false, this, new int[] {8,0,0,0,8,0});
-        TestArms.deployArms(blue_arms, true, this, new int[] {0,8,0,0,0,0});
+        TestArms.deployArms(red_arms, false, this, new int[] {4,4,0,2,6,0});
+        TestArms.deployArms(blue_arms, true, this, new int[] {8,0,0,0,0,0});
 
-        blue_arms.add(new Assassin(0, 5, Color.BLUE, this));
-        blue_arms.add(new Assassin(1, 5, Color.BLUE, this));
-        blue_arms.add(new Assassin(2, 5, Color.BLUE, this));
-        blue_arms.add(new Assassin(2, 6, Color.BLUE, this));
-        blue_arms.add(new Assassin(1, 7, Color.BLUE, this));
-        blue_arms.add(new Assassin(0, 6, Color.BLUE, this));
-        blue_arms.add(new Assassin(1, 6, Color.BLUE, this));
-        blue_arms.add(new Assassin(0, 7, Color.BLUE, this));
+        blue_arms.add(new Artillery(0, 5, Color.BLUE, this));
+        blue_arms.add(new Artillery(1, 5, Color.BLUE, this));
+        blue_arms.add(new Artillery(2, 5, Color.BLUE, this));
+        blue_arms.add(new Artillery(2, 6, Color.BLUE, this));
+        blue_arms.add(new Artillery(1, 7, Color.BLUE, this));
+        blue_arms.add(new Artillery(0, 6, Color.BLUE, this));
+        blue_arms.add(new Artillery(1, 6, Color.BLUE, this));
+        blue_arms.add(new Artillery(0, 7, Color.BLUE, this));
 
         CareerBonus.careerBonus(red_arms, blue_arms);
         CareerBonus.careerBonus(blue_arms, red_arms);

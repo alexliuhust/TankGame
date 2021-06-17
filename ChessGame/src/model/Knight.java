@@ -2,16 +2,13 @@ package model;
 
 import frame.BattleField;
 import resource.ResourceManager;
-
 import java.awt.*;
-import java.util.Random;
 
 public class Knight extends Arm {
 
     public int shieldProb = 1;
     public int shieldTime = 80;
     public boolean shieldActivated = false;
-    private Random rand = new Random();
 
     public Knight(int x, int y, Color armColor, BattleField bf) {
         super(x, y, armColor, bf);

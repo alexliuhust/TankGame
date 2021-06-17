@@ -10,6 +10,7 @@ import java.util.*;
 import java.util.List;
 
 public class Arm {
+    protected Random rand = new Random();
 
     protected BattleField bf;
     public List<Arm> enemies;

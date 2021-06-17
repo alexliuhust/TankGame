@@ -2,12 +2,9 @@ package model;
 
 import frame.BattleField;
 import resource.ResourceManager;
-
 import java.awt.*;
-import java.util.Random;
 
 public class Artillery extends Arm {
-    private Random rand = new Random();
 
     public Artillery(int x, int y, Color armColor, BattleField bf) {
         super(x, y, armColor, bf);

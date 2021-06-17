@@ -3,15 +3,12 @@ package model;
 import effect.PhotosphereEffect;
 import frame.BattleField;
 import resource.ResourceManager;
-
 import java.awt.*;
-import java.util.Random;
 
 public class Mage extends Arm {
 
     public int max_mana = 180;
     public int mana;
-    private Random rand = new Random();
 
     public Mage(int x, int y, Color armColor, BattleField bf) {
         super(x, y, armColor, bf);

@@ -1,4 +1,4 @@
-package calculate;
+package common;
 
 import tank.Bullet;
 import tank.Dir;

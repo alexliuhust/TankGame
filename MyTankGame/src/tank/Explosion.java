@@ -1,7 +1,7 @@
 package tank;
 
 import resource.ResourceMgr;
-import frame.TankFrame;
+import frame.BattleFrame;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,9 +12,9 @@ public class Explosion {
     private int lastingTime = 6;
     public int x, y;
     private BufferedImage exp;
-    private TankFrame tf = null;
+    private BattleFrame tf = null;
 
-    public Explosion(int x, int y, String type, TankFrame tf) {
+    public Explosion(int x, int y, String type, BattleFrame tf) {
         this.x = x;
         this.y = y;
         this.type = type;

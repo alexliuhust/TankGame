@@ -1,7 +1,7 @@
 package tank;
 
 import resource.ResourceMgr;
-import frame.TankFrame;
+import frame.BattleFrame;
 import terrain.BrickWall;
 import terrain.IronWall;
 
@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 
 public class Bullet {
 
-    private TankFrame tf = null;
+    private BattleFrame tf = null;
     Tank fromTank;
 
     private int x;
@@ -26,7 +26,7 @@ public class Bullet {
     private BufferedImage bulletL, bulletR, bulletU, bulletD;
 
 
-    public Bullet(int x, int y, Dir dir, TankFrame tf, String type, Tank fromTank) {
+    public Bullet(int x, int y, Dir dir, BattleFrame tf, String type, Tank fromTank) {
         this.x = x;
         this.y = y;
         this.dir = dir;
@@ -134,7 +134,7 @@ public class Bullet {
                 break;
         }
 
-        if (x < -SPEED || y < 150-SPEED || x > TankFrame.GAME_WIDTH + SPEED || y > TankFrame.GAME_HEIGHT + SPEED) {
+        if (x < -SPEED || y < 150-SPEED || x > BattleFrame.GAME_WIDTH + SPEED || y > BattleFrame.GAME_HEIGHT + SPEED) {
             this.live = false;
         }
     }

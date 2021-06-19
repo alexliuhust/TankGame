@@ -1,7 +1,7 @@
 package terrain;
 
 import resource.ResourceMgr;
-import frame.TankFrame;
+import frame.BattleFrame;
 import tank.Tank;
 
 import java.awt.*;
@@ -18,7 +18,7 @@ public class Support {
     // 7: Health package
     int type;
 
-    private int max_disappearing = 150;
+    private int max_disappearing = 250;
     private int disappearing = max_disappearing;
 
     public Support(int x, int y, int type) {
@@ -36,7 +36,7 @@ public class Support {
         Support_HEIGHT = support.getHeight();
     }
 
-    public void paint(Graphics g, TankFrame tf) {
+    public void paint(Graphics g, BattleFrame tf) {
         if (disappearing < max_disappearing) {
             disappearing++;
             return;

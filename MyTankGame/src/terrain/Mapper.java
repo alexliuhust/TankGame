@@ -1,10 +1,10 @@
 package terrain;
 
-import frame.TankFrame;
+import frame.BattleFrame;
 
 public class Mapper {
 
-    public static void addTerrain(int[][] map, TankFrame tf) {
+    public static void addTerrain(int[][] map, BattleFrame tf) {
         int step = 50;
 
         for (int i = 0; i < map.length; i++) {

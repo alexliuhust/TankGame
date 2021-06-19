@@ -16,7 +16,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TankFrame extends Frame {
+public class BattleFrame extends Frame {
     public static final int GAME_WIDTH = 1200, GAME_HEIGHT = 850;
 
     public Tank tank1;
@@ -31,7 +31,7 @@ public class TankFrame extends Frame {
     public List<Support> supports = new ArrayList<>();
     public List<Explosion> explosions = new ArrayList<>();
 
-    public TankFrame(String tank1type, String tank2type, String mapName) {
+    public BattleFrame(String tank1type, String tank2type, String mapName) {
         tank1 = new Tank(10,   160, Dir.RIGHT, this, 1, tank1type);
         tank2 = new Tank(1150, 800, Dir.LEFT,  this, 2, tank2type);
         Mapper.addTerrain(DigitalMaps.getMap(mapName), this);

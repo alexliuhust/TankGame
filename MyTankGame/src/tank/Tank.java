@@ -1,8 +1,8 @@
 package tank;
 
-import calculate.CalculateDamage;
+import common.CalculateDamage;
 import resource.ResourceMgr;
-import frame.TankFrame;
+import frame.BattleFrame;
 import terrain.*;
 
 import java.awt.*;
@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 public class Tank {
 
-    private TankFrame tf;
+    private BattleFrame tf;
     private BufferedImage tankL, tankR, tankU, tankD;
 
     public int player;
@@ -46,7 +46,7 @@ public class Tank {
 
 
 
-    public Tank(int x, int y, Dir dir, TankFrame tf, int player, String type) {
+    public Tank(int x, int y, Dir dir, BattleFrame tf, int player, String type) {
         this.x = x;
         this.y = y;
         this.dir = dir;
@@ -149,7 +149,7 @@ public class Tank {
             }
         }
         if (inGrass) {
-            this.SPEED = ORI_SPEED - 3;
+            this.SPEED = ORI_SPEED / 2;
         }
         else this.SPEED = ORI_SPEED;
 
@@ -161,7 +161,7 @@ public class Tank {
                 }
                 break;
             case RIGHT:
-                if (x < TankFrame.GAME_WIDTH - T_WIDTH && !isBlock[1]) {
+                if (x < BattleFrame.GAME_WIDTH - T_WIDTH && !isBlock[1]) {
                     x += SPEED;
                 }
                 break;
@@ -171,7 +171,7 @@ public class Tank {
                 }
                 break;
             case DOWN:
-                if (y < TankFrame.GAME_HEIGHT - T_HEIGHT && !isBlock[3]) {
+                if (y < BattleFrame.GAME_HEIGHT - T_HEIGHT && !isBlock[3]) {
                     y += SPEED;
                 }
                 break;
@@ -235,17 +235,8 @@ public class Tank {
         g.setColor(c);
     }
 
-
-    public Dir getDir() {
-        return dir;
-    }
-
     public void setDir(Dir dir) {
         this.dir = dir;
-    }
-
-    public boolean isMoving() {
-        return moving;
     }
 
     public void setMoving(boolean moving) {

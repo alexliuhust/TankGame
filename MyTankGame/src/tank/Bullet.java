@@ -1,5 +1,6 @@
 package tank;
 
+import common.Collision;
 import resource.ResourceMgr;
 import frame.BattleFrame;
 import terrain.BrickWall;
@@ -10,16 +11,16 @@ import java.awt.image.BufferedImage;
 
 public class Bullet {
 
-    private BattleFrame tf = null;
-    Tank fromTank;
+    public BattleFrame tf = null;
+    public Tank fromTank;
 
-    private int x;
-    private int y;
-    static int WIDTH;
-    static int HEIGHT;
+    public int x;
+    public int y;
+    public static int WIDTH;
+    public static int HEIGHT;
     public Dir dir;
     private static final int SPEED = 35;
-    private boolean live = true;
+    public boolean live = true;
     public int flyingTime = 0;
 
     public String type;
@@ -66,24 +67,7 @@ public class Bullet {
             return;
         }
 
-        if (collideWithTanks(tf.tank1) || collideWithTanks(tf.tank2)) {
-            bringExplosionImage();
-            return;
-        }
-
-        for (IronWall ironWall : tf.ironWalls) {
-            if (collideWithIronWalls(ironWall)) {
-                bringExplosionImage();
-                return;
-            }
-        }
-
-        for (BrickWall brick : tf.brickWalls) {
-            if (collideWithBrickWalls(brick)) {
-                bringExplosionImage();
-                return;
-            }
-        }
+        Collision.detectCollisionsForBullet(this);
 
         this.flyingTime++;
 
@@ -91,7 +75,7 @@ public class Bullet {
         move();
     }
 
-    private void bringExplosionImage() {
+    public void bringExplosionImage() {
         tf.explosions.add(new Explosion(x - 9, y - 9, this.type, tf));
     }
 
@@ -139,39 +123,4 @@ public class Bullet {
         }
     }
 
-    public boolean collideWithTanks(Tank tank) {
-        boolean ans = false;
-        Rectangle rect1 = new Rectangle(x, y, WIDTH, HEIGHT);
-        Rectangle rect2 = new Rectangle(tank.x, tank.y, Tank.T_WIDTH, Tank.T_HEIGHT);
-
-        if (rect1.intersects(rect2)) {
-            if (fromTank.player != tank.player) {
-                this.live = false;
-                tank.getHit(this);
-                ans = true;
-            }
-        }
-        return ans;
-    }
-
-    public boolean collideWithIronWalls(IronWall ironWall) {
-        Rectangle rect1 = new Rectangle(x, y, WIDTH, HEIGHT);
-        Rectangle rect2 = new Rectangle(ironWall.x, ironWall.y, IronWall.IronWall_WIDTH, IronWall.IronWall_HEIGHT);
-        if (rect1.intersects(rect2)) {
-            this.live = false;
-            return true;
-        }
-        return false;
-    }
-
-    public boolean collideWithBrickWalls(BrickWall brickWall) {
-        Rectangle rect1 = new Rectangle(x, y, WIDTH, HEIGHT);
-        Rectangle rect2 = new Rectangle(brickWall.x, brickWall.y, BrickWall.BrickWall_WIDTH, BrickWall.BrickWall_HEIGHT);
-        if (rect1.intersects(rect2)) {
-            this.live = false;
-            brickWall.getHit(this);
-            return true;
-        }
-        return false;
-    }
 }

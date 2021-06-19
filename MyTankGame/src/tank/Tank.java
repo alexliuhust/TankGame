@@ -1,9 +1,9 @@
 package tank;
 
 import common.CalculateDamage;
+import common.Collision;
 import resource.ResourceMgr;
 import frame.BattleFrame;
-import terrain.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -11,17 +11,17 @@ import java.util.Arrays;
 
 public class Tank {
 
-    private BattleFrame tf;
+    public BattleFrame tf;
     private BufferedImage tankL, tankR, tankU, tankD;
 
     public int player;
     public int x;
     public int y;
     public Dir dir;
-    static int T_WIDTH;
-    static int T_HEIGHT;
-    private final boolean[] isBlock = new boolean[4];
-    private boolean inGrass = false;
+    public int T_WIDTH;
+    public int T_HEIGHT;
+    public final boolean[] isBlock = new boolean[4];
+    public boolean inGrass = false;
     private boolean moving = false;
     public boolean live = true;
 
@@ -119,39 +119,11 @@ public class Tank {
         drawHpAndReArmBar(g);
     }
 
-    private void move(Tank tank) {
+    private void move(Tank enemy) {
         if (!moving) return;
 
         // Detect collisions among tanks or between tanks and terrain
-        detectTankOrTerrainCollisions(
-                tank.x, tank.y, T_WIDTH, T_HEIGHT, false);
-        for (Support support : this.tf.supports) {
-            detectSupportingPackageCollisions(support);
-        }
-        for (IronWall iron : this.tf.ironWalls) {
-            detectTankOrTerrainCollisions(
-                    iron.x, iron.y, IronWall.IronWall_WIDTH, IronWall.IronWall_HEIGHT, false);
-        }
-        for (River river : this.tf.rivers) {
-            detectTankOrTerrainCollisions(
-                    river.x, river.y, River.River_WIDTH, River.River_HEIGHT, false);
-        }
-        for (BrickWall brick : this.tf.brickWalls) {
-            detectTankOrTerrainCollisions(
-                    brick.x, brick.y, BrickWall.BrickWall_WIDTH, BrickWall.BrickWall_HEIGHT, false);
-        }
-
-        this.inGrass = false;
-        for (Grass grass : this.tf.grasses) {
-            if (detectTankOrTerrainCollisions(grass.x, grass.y, Grass.Grass_WIDTH, Grass.Grass_HEIGHT, true)){
-                this.inGrass = true;
-                break;
-            }
-        }
-        if (inGrass) {
-            this.SPEED = ORI_SPEED / 2;
-        }
-        else this.SPEED = ORI_SPEED;
+        Collision.detectCollisionsForTank(this, enemy);
 
         // Move the tank
         switch (dir) {
@@ -181,46 +153,6 @@ public class Tank {
         }
 
         Arrays.fill(isBlock, false);
-    }
-
-    private void detectSupportingPackageCollisions(Support support) {
-        Rectangle r1 = new Rectangle(x, y, T_WIDTH, T_HEIGHT);
-        Rectangle r2 = new Rectangle(support.x, support.y, Support.Support_WIDTH, Support.Support_HEIGHT);
-        if (r1.intersects(r2)) {
-            support.getPickedUp(this);
-        }
-    }
-
-    private boolean detectTankOrTerrainCollisions(int ox, int oy, int W, int H, boolean isGrass) {
-        if (isGrass) {
-            Rectangle rect1 = new Rectangle(x, y, T_WIDTH, T_HEIGHT);
-            Rectangle rect2 = new Rectangle(ox, oy, W, H);
-            return rect1.intersects(rect2);
-        }
-
-        else {
-            // Left:
-            if (x <= ox + W && x >= ox + W - SPEED && y > oy - T_HEIGHT && y < oy + H) {
-                isBlock[0] = true;
-                x = ox + W;
-            }
-            // Right:
-            if (x >= ox - T_WIDTH && x <= ox - T_WIDTH + SPEED && y > oy - T_HEIGHT && y < oy + H) {
-                isBlock[1] = true;
-                x = ox - T_WIDTH;
-            }
-            // Up:
-            if (y <= oy + H && y >= oy + H - SPEED && x > ox - T_WIDTH && x < ox + W) {
-                isBlock[2] = true;
-                y = oy + H;
-            }
-            // Down:
-            if (y >= oy - T_HEIGHT && y <= oy - T_HEIGHT + SPEED && x > ox - T_WIDTH && x < ox + W) {
-                isBlock[3] = true;
-                y = oy - T_HEIGHT;
-            }
-        }
-        return false;
     }
 
     private void drawHpAndReArmBar(Graphics g) {
@@ -283,7 +215,7 @@ public class Tank {
         }
 
         Bullet b = new Bullet(bx, by, this.dir, this.tf, fire_type, this);
-        if (!b.collideWithTanks(tf.tank1) && !b.collideWithTanks(tf.tank2)) {
+        if (!Collision.collideWithTanks(b, tf.tank1) && !Collision.collideWithTanks(b, tf.tank2)) {
             tf.bullets.add(b);
         }
 

@@ -1,6 +1,6 @@
 package frame;
 
-import terrain.DigitalMaps;
+import map.DigitalMaps;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;

@@ -1,6 +1,7 @@
-package terrain;
+package map;
 
 import frame.BattleFrame;
+import terrain.*;
 
 public class Mapper {
 
@@ -27,12 +28,16 @@ public class Mapper {
                 }
 
                 else if (val == 4) {
+                    Grass grass = new Grass(j * step, i * step + 150);
+                    tf.grasses.add(grass);
                     BrickWall brickWall = new BrickWall(j * step, i * step + 150);
                     tf.brickWalls.add(brickWall);
                 }
 
                 // =========================================================================
                 else if (val == 5 || val == 6 || val == 7) {
+                    Grass grass = new Grass(j * step, i * step + 150);
+                    tf.grasses.add(grass);
                     Support support = new Support(j * step, i * step + 150, val);
                     tf.supports.add(support);
                 }

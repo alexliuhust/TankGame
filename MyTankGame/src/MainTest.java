@@ -31,7 +31,7 @@ public class MainTest {
         BattleFrame tf = new BattleFrame(
                 "Light",
                 "Light",
-                "Broad River");
+                "Grass Fort");
 
         while (true) {
             Thread.sleep(a);

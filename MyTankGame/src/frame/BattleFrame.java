@@ -1,5 +1,7 @@
 package frame;
 
+import map.DigitalMaps;
+import map.Mapper;
 import tank.Bullet;
 import tank.Dir;
 import tank.Explosion;
